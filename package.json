@@ -1,7 +1,7 @@
 {
   "name": "jscharting",
   "version": "1.0.0",
-  "description": "",
+  "description": "JSCharting Product Review Demo Code",
   "main": "first.js",
   "scripts": {
     "start": "babel-node fourth-app"
