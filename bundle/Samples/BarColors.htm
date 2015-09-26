@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bar Colors Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Modify data point colors based on their value.
+Learn how to:
+
+  - Dynamically style individual data points.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  legendVisible: false,
+  renderMode: 'JavaScript',
+  type: 'column rounded',
+  yAxisMarkers: [ {value: 0,color: [  'black',  0.7],lineWidth: 1 }  ],
+  titleLabelText: ' Unit sales change month over month ',
+  series: [
+    {
+      name: 'Representatives',
+      points: [
+        { name: 'Angie', y: -3  },
+        { name: 'Chris', y: 8  },
+        { name: 'Arthur', y: 5  },
+        { name: 'David', y: 2  },
+        { name: 'Mike', y: -4  },
+        { name: 'George', y: -6  },
+        { name: 'Jeff', y: 6  }
+      ]
+    }
+  ]
+};
+
+// Change colors of some data
+var pts = json.series[0].points;
+for(var i in pts){	if(pts[i].y<0){  pts[i].color='red'; }}
+
+var chart = new JSC.Chart(json);
+
+
+</script>
+	</body>
+</html>

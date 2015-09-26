@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Combo BS Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A combination of bar and stepline series types.
+Learn how to:
+
+  - Draw a combo chart with different series types.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeries: { type: 'column', transparency: 0.2  },
+  series: [
+    {
+      type: 'lineStep',
+      name: 'Gross Sales',
+      points: [
+        { name: 'Q1', y: 50120  },
+        { name: 'Q2', y: 53465  },
+        { name: 'Q3', y: 62165  },
+        { name: 'Q4', y: 52156  }
+      ]
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        { name: 'Q1', y: 32654  },
+        { name: 'Q2', y: 35645  },
+        { name: 'Q3', y: 42651  },
+        { name: 'Q4', y: 30153  }
+      ]
+    }
+  ],
+  yAxisLabelText: 'USD',
+  titleLabelText: ' Sales by quarter ',
+  yAxisFormatString: 'c'
+});
+
+
+</script>
+	</body>
+</html>

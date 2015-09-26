@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pie Z Val Neg Variations Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Positive and negative z values in pies of varying inner size.
+Learn how to:
+
+  - Draw pie with varying negative and positive slice lengths.
+  - Draw pie with varying innerSize.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeriesType: 'pie',
+  height: 350,
+  titleLabelText: 'Top Populations Countries vs. Net Migration Rate',
+  defaultPointLabelVisible: false,
+  defaultSeries: {
+    angle: {orientation: 110,sweep: 360 },
+    shape: {padding: 0.01 }
+  },
+  yAxisLabelText: 'Population',
+  zAxisLabelText: 'Net Migration Rate',
+  zAxisFormatString: 'n2',
+  defaultAnnotation: {
+    boxVisible: false,
+    labelStyle: {fontSize: '15px' }
+  },
+  annotations: [
+    {position: 'CA:90,40',labelText: 'Pie' },
+    {
+      position: 'CA:235,40',
+      labelText: 'Pie Donut (default)'
+    },
+    {
+      position: 'CA:415,40',
+      labelText: 'Pie Donut (innerSize:60%)'
+    },
+    {
+      position: 'CA:205,5',
+      labelText: 'Same Data with varying options.'
+    }
+  ],
+  series: [
+    {
+      name: 'Series 1',
+      points: [
+        { name: 'China', y: 1349585838, z: -0.32  },
+        { name: 'India', y: 1220800359, z: -0.05  },
+        { name: 'United States', y: 316438601, z: 2.45  },
+        { name: 'Indonesia', y: 251160124, z: -1.18  },
+        { name: 'Brazil', y: 201009622, z: -0.15  },
+        { name: 'Pakistan', y: 193238868, z: -1.69  },
+        { name: 'Nigeria', y: 174507539, z: -0.22  },
+        { name: 'Bangladesh', y: 163654860, z: -0.02  },
+        { name: 'Russia', y: 142500482, z: 1.69  },
+        { name: 'Mexico', y: 118818228, z: -1.64  }
+      ]
+    },
+    {
+      name: 'Series 1',
+      type: 'pieDonut',
+      points: [
+        { name: 'China', y: 1349585838, z: -0.32  },
+        { name: 'India', y: 1220800359, z: -0.05  },
+        { name: 'United States', y: 316438601, z: 2.45  },
+        { name: 'Indonesia', y: 251160124, z: -1.18  },
+        { name: 'Brazil', y: 201009622, z: -0.15  },
+        { name: 'Pakistan', y: 193238868, z: -1.69  },
+        { name: 'Nigeria', y: 174507539, z: -0.22  },
+        { name: 'Bangladesh', y: 163654860, z: -0.02  },
+        { name: 'Russia', y: 142500482, z: 1.69  },
+        { name: 'Mexico', y: 118818228, z: -1.64  }
+      ]
+    },
+    {
+      name: 'Series 1',
+      type: 'pieDonut',
+      shapeInnerSize: '60%',
+      points: [
+        { name: 'China', y: 1349585838, z: -0.32  },
+        { name: 'India', y: 1220800359, z: -0.05  },
+        { name: 'United States', y: 316438601, z: 2.45  },
+        { name: 'Indonesia', y: 251160124, z: -1.18  },
+        { name: 'Brazil', y: 201009622, z: -0.15  },
+        { name: 'Pakistan', y: 193238868, z: -1.69  },
+        { name: 'Nigeria', y: 174507539, z: -0.22  },
+        { name: 'Bangladesh', y: 163654860, z: -0.02  },
+        { name: 'Russia', y: 142500482, z: 1.69  },
+        { name: 'Mexico', y: 118818228, z: -1.64  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

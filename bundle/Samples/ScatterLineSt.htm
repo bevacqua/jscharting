@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Scatter Line St Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A styled scatter line chart without markers.
+Learn how to:
+
+  - Draw a styled scatter line chart without markers.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  defaultSeriesType: 'line',
+  defaultPointLabel: { text: '%xValue, %yValue', offset: '0,-10'  },
+  xAxis: { scaleRange: [2,8 ]  },
+  series: [
+    {
+      name: 'Star Points',
+      defaultPointMarkerType: 'none',
+      lineDashStyle: 'dash',
+      lineWidth: 4,
+      points: [
+        { x: 3, y: 6  },
+        { x: 6, y: 2  },
+        { x: 5, y: 8  },
+        { x: 4, y: 2  },
+        { x: 7, y: 6  },
+        { x: 3.4, y: 6  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

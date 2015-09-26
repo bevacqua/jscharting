@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Treemap Aqua Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A simple treemap with rounded shading.
+Learn how to:
+
+  - Raw a simple treemap chart.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'treemapAqua',
+  titleLabelText: 'Top reps by units in each country',
+  defaultSeriesShape: {
+    label: {
+      text: '%name',
+      color: '#454545',
+      align: 'left',
+      verticalAlign: 'top',
+      style: {  fontSize: 15,  fontWeight: 'bold'}
+    }
+  },
+  series: [
+    {
+      name: 'China',
+      points: [
+        { name: 'Elliot', y: 513  },
+        { name: 'Sebastian', y: 605  },
+        { name: 'Christian', y: 798  },
+        { name: 'Chase', y: 307  },
+        { name: 'Asher', y: 408  },
+        { name: 'Cole', y: 501  },
+        { name: 'Ian', y: 604  },
+        { name: 'Levi', y: 203  },
+        { name: 'Max', y: 202  },
+        { name: 'Eli', y: 194  }
+      ]
+    },
+    {
+      name: 'India',
+      points: [
+        { name: 'Blake', y: 187  },
+        { name: 'Henry', y: 180  },
+        { name: 'Jake', y: 173  },
+        { name: 'Joseph', y: 169  },
+        { name: 'Miles', y: 169  },
+        { name: 'Muhammad', y: 167  },
+        { name: 'James', y: 160  },
+        { name: 'Aiden', y: 167  },
+        { name: 'Camden', y: 169  },
+        { name: 'Samuel', y: 179  }
+      ]
+    },
+    {
+      name: 'European Union',
+      points: [
+        { name: 'Parker', y: 173  },
+        { name: 'Andrew', y: 169  },
+        { name: 'Nicholas', y: 178  },
+        { name: 'Tristan', y: 174  },
+        { name: 'Hunter', y: 166  },
+        { name: 'Nathan', y: 164  },
+        { name: 'Colton', y: 166  },
+        { name: 'Anthony', y: 169  },
+        { name: 'Ethan', y: 174  },
+        { name: 'Lucas', y: 172  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

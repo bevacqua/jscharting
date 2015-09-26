@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Election Years Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<select onchange="dropDownChange(this)">
+
+    <option value="2004Voters">2004</option>
+    <option value="2006Voters">2006</option>
+    <option value="2008Voters">2008</option>
+    <option selected="selected" value="2011Voters">2011</option>
+    <option value="TotalVoters">Total</option>
+    </select>  <input type="checkbox"  value="diff"  checked="true" onchange="checkBoxChanged(this)">show the difference<br>
+    <div id="cc" style="width: 700px; height: 500px"></div>
+	
+<script type="text/javascript">
+/*
+Dynamic tooltips and thematic encoding.
+Learn how to:
+
+  - Map series from mapCodes.
+  - Add maps in real-time.
+*/
+// JS
+var chart,chartConfig = {
+  targetElement: 'cc',
+  titleLabelText: 'Canada Election Voter Turnout',
+  type: 'map',
+  palette: {
+    pointValue: '{%data2011}',
+    colors: [
+      '#f7fcfd',
+      '#e0ecf4',
+      '#bfd3e6',
+      '#9ebcda',
+      '#8c96c6',
+      '#8c6bb1',
+      '#88419d',
+      '#810f7c',
+      '#4d004b'
+    ]
+  },
+  height: 500,
+  legend: {
+    titleLabel: {text: 'Voters' },
+    width: 100,
+    defaultEntryText: '{%value/1000000:n1}M'
+  },
+  defaultPoint: {
+    tooltip: tooltip,
+    outlineColor: 'white',
+    labelText: '%provinceCode'
+  },
+  series: [ {map: 'ca',name: ' 2011, 2008, 2006, 2004',points: [] }  ]
+},selectedYear = '2011',isDiffChecked=true;
+
+function tooltip(point,e2){
+
+    var i=0;
+    console.log('dt')
+    var dt04 = point.tokenValue('%data2004');
+    var dt06 = point.tokenValue('%data2006');
+    var dt08 = point.tokenValue('%data2008');
+    var dt11 = point.tokenValue('%data2011');
+
+
+    var tt = '%name<br/>';
+
+
+    var diffYear;
+    if (selectedYear === "2004") {  diffYear=dt04; }
+    else  if (selectedYear === "2006") {  diffYear = dt06; }
+    else  if (selectedYear === "2008") {  diffYear = dt08; } else  if (selectedYear === "2011") {  diffYear = dt11; }
+
+    tt+= addYear('2004',dt04,dt04-diffYear)+'<br/>';
+    tt+= addYear('2006',dt06,dt06-diffYear)+'<br/>';
+    tt+= addYear('2008',dt08,dt08-diffYear)+'<br/>';
+    tt+= addYear('2011',dt11,dt11-diffYear);
+
+
+
+    return tt;
+
+
+
+    function addYear(year,num,diff){
+        var res = year;
+        if(year===selectedYear){res = '<b>'+res+'</b>';  }
+        res += ' : {'+num+':n0}';
+        if( isDiffChecked){res += ' '+ decorateNum(diff);  }
+
+
+        return res;
+        function decorateNum(num){
+            if(num>0){
+                return '<span style="color:green;">+{'+num+':n0}</span>';
+            }else if (num<0){
+                return '<span style="color:red;">{'+num+':n0}</span>';
+            }else{ return '';}
+        }
+
+    }
+
+
+}
+
+
+var  resultElectorsAndCast=[];
+
+function myCallback(data) {
+
+    console.log('callback')
+
+    var provincesCode= ["NF","PE","NS","NB","QC","ON","MB","SK","AB","BC","YT","NT","NU"];
+
+
+    for(var i=1 ; i < 14;i++) {
+
+        var r1 = [provincesCode[i-1], // Province code
+            parseInt(data.feed.entry[(i * 13) + 1].content.$t, 10),// read Electors 2011 column
+            parseInt(data.feed.entry[(i * 13) + 2].content.$t, 10),// read Electors 2008 column
+            parseInt(data.feed.entry[(i * 13) + 3].content.$t, 10),// read Electors 2006 column
+            parseInt(data.feed.entry[(i * 13) + 4].content.$t, 10),// read Electors 2004 column
+
+            parseInt(data.feed.entry[(i * 13) + 5].content.$t, 10), // read Total Ballets Cast 2011 column
+            parseInt(data.feed.entry[(i * 13) + 6].content.$t, 10), // read Total Ballets Cast 2008 column
+            parseInt(data.feed.entry[(i * 13) + 7].content.$t, 10), // read Total Ballets Cast 2006 column
+            parseInt(data.feed.entry[(i * 13) + 8].content.$t, 10), // read Total Ballets Cast 2004 column
+
+            parseInt(data.feed.entry[(i * 13) + 9].content.$t, 10)+ // read Voters Turnout 2011 column
+            parseInt(data.feed.entry[(i * 13) + 10].content.$t, 10)+// read Voters Turnout 2008 column
+            parseInt(data.feed.entry[(i * 13) + 11].content.$t, 10)+// read Voters Turnout 2006 column
+            parseInt(data.feed.entry[(i * 13) + 12].content.$t, 10) // read Voters Turnout 2004 column
+        ];
+        resultElectorsAndCast.push(r1);
+
+
+    }
+
+
+    setSeriesData(resultElectorsAndCast);
+
+
+
+
+}
+
+function setSeriesData(data){
+
+    var totalProvince;
+    var electionSeries = chartConfig.series[0];
+
+    for (var i = 0, iLen = data.length; i < iLen; i++) {
+        var provinceRes = data[i];
+
+        totalProvince = provinceRes[5] + provinceRes[6] + provinceRes[7] + provinceRes[8];
+        electionSeries.points.push({
+            map: 'CA.' + provinceRes[0],
+            attributes: {data2011: provinceRes[5], data2008: provinceRes[6],data2006: provinceRes[7],data2004: provinceRes[8],
+                dataTotal: totalProvince
+            }
+        })
+
+    }
+
+
+
+    chart = new JSC.Chart(chartConfig);
+}
+
+
+function checkBoxChanged(el){ isDiffChecked = el.checked;};
+function dropDownChange(el) {
+
+
+
+    selectedYear= el.value.replace("Voters","");
+    chartConfig.title.label.text = selectedYear+' Canada Election Voter Turnout',
+
+        chartConfig.legend.titleLabel.text = 'Voters ' +selectedYear;
+    chartConfig.palette.pointValue = "{%data" + selectedYear +"}";
+
+
+   chart = new JSC.Chart(chartConfig);
+
+}
+
+$.get("https://spreadsheets.google.com/feeds/cells/1LIK1IZPSOR9VuhMqv8k_SssfUuXonCEH6x7GPJl1N7A/od6/public/values?alt=json-in-script&callback=myCallback",function(data){})
+
+
+</script>
+	</body>
+</html>

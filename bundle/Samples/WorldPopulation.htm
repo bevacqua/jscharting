@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  World Population Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates using token expressions in axis ticks and tooltips.
+Learn how to:
+
+  - Use token expressions in axis tick labels.
+  - Rotate x axis tick labels.
+  - Use token expressions in tooltips.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'column',
+  height: 400,
+  width: 640,
+  axisToZoom: 'x',
+  xAxis: {
+    labelText: 'Countries',
+    defaultTickLabel: {rotation: -90,offset: '2,18' }
+  },
+  yAxis: {
+    labelText: 'Population',
+    defaultTickLabelText: '{%value/1000000} Mil'
+  },
+  defaultPointTooltip: '<b>%name</b> {%yValue/1000000} Mil<br/>Percentile: <b>%yPercentile%</b>',
+  legend: { visible: false  },
+  title: {
+    label: {text: 'World Population' },
+    position: 'full'
+  },
+  xAxisLabelText: 'Life Expectancy',
+  yAxisLabelText: 'Fertility Rate',
+  series: [
+    {
+      name: 'World Populations',
+      points: JSC.pointsFromArray('name,y',[['China',1349585838],['India',1220800359],['European Union',509365627],['United States',316438601],['Indonesia',251160124],['Brazil',201009622],['Pakistan',193238868],['Nigeria',174507539],['Bangladesh',163654860],['Russia',142500482],['Japan',127253075],['Mexico',118818228],['Philippines',105720644],['Ethiopia',93877025],['Vietnam',92477857],['Egypt',85294388],['Germany',81147265],['Turkey',80694485],['Iran',79853900],['Congo',75507308],['Thailand',67497151],['France',65951611],['United Kingdom',63395574],['Italy',61482297],['Burma',55167330],['Korea South',48955203],['South Africa',48601098],['Tanzania',48261942],['Spain',47370542],['Colombia',45745783],['Ukraine',44573205],['Kenya',44037656],['Argentina',42610981],['Poland',38383809],['Algeria',38087812],['Sudan',34847910],['Uganda',34758809],['Canada',34568211],['Morocco',32649130],['Iraq',31858481],['Afghanistan',31108077],['Nepal',30430267],['Peru',29849303],['Malaysia',29628392],['Uzbekistan',28661637],['Venezuela',28459085],['Saudi Arabia',26939583],['Yemen',25338458],['Ghana',25199609],['Korea North',24720407]])
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

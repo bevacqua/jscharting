@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Time Line Error Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Draw error bars on a time x axis scale.
+Learn how to:
+
+  - Draw error bars on a line series.
+  - Draw error bars with range values.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'line',
+  height: 400,
+  width: 700,
+  xAxisScaleType: 'time',
+  xAxisFormatString: 'MMM dd',
+  yAxis: {
+    labelText: 'Unit Sales',
+    defaultTickLabelText: '%value'
+  },
+  legendVisible: false,
+  title: {
+    label: {
+      text: 'Estimated Unit Sales. [Max: %maxPointName %max, Min: %minPointName %min]'
+    },
+    position: 'full'
+  },
+  series: [
+    {
+      name: 'Sales',
+      points: [
+        {
+          x: '3/8/2014',
+          y: 176,
+          subvalue: {range: [  170,  205] }
+        },
+        {
+          x: '3/9/2014',
+          y: 170,
+          subvalue: {range: [  163,  196] }
+        },
+        {
+          x: '3/10/2014',
+          y: 169,
+          subvalue: {range: [  147,  178] }
+        },
+        {
+          x: '3/11/2014',
+          y: 163,
+          subvalue: {range: [  160,  174] }
+        },
+        {
+          x: '3/12/2014',
+          y: 172,
+          subvalue: {range: [  152,  202] }
+        },
+        {
+          x: '3/13/2014',
+          y: 181,
+          subvalue: {range: [  151,  185] }
+        },
+        {
+          x: '3/14/2014',
+          y: 164,
+          subvalue: {range: [  161,  172] }
+        },
+        {
+          x: '3/15/2014',
+          y: 144,
+          subvalue: {range: [  128,  151] }
+        },
+        {
+          x: '3/16/2014',
+          y: 129,
+          subvalue: {range: [  127,  153] }
+        },
+        {
+          x: '3/17/2014',
+          y: 121,
+          subvalue: {range: [  103,  128] }
+        },
+        {
+          x: '3/18/2014',
+          y: 104,
+          subvalue: {range: [  86,  111] }
+        },
+        {
+          x: '3/19/2014',
+          y: 111,
+          subvalue: {range: [  95,  112] }
+        },
+        {
+          x: '3/20/2014',
+          y: 128,
+          subvalue: {range: [  104,  138] }
+        },
+        {
+          x: '3/21/2014',
+          y: 124,
+          subvalue: {range: [  107,  137] }
+        },
+        {
+          x: '3/22/2014',
+          y: 127,
+          subvalue: {range: [  118,  152] }
+        },
+        {
+          x: '3/23/2014',
+          y: 123,
+          subvalue: {range: [  113,  133] }
+        },
+        {
+          x: '3/24/2014',
+          y: 112,
+          subvalue: {range: [  106,  128] }
+        },
+        {
+          x: '3/25/2014',
+          y: 99,
+          subvalue: {range: [  84,  101] }
+        },
+        {
+          x: '3/26/2014',
+          y: 90,
+          subvalue: {range: [  83,  97] }
+        },
+        {
+          x: '3/27/2014',
+          y: 101,
+          subvalue: {range: [  95,  116] }
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

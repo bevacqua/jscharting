@@ -1,0 +1,25 @@
+<h2>Introduction</h2>
+        <p>
+            Enum settings are predefined text options. Enum chaining allows you to use multiple enum values chained together in a single setting. Each enum option determines the subsequent enum options that can be chained to it. This creates a tree of options and allows expressing settings that would have otherwise required multiple properties in an unchained format. For example the chart type property specifies the main chart type, but an associated default series type can be chained to it in the same setting. The goal of enum chaining is to save developers time and speed utilization of JSCharting in their projects.
+
+</p>
+<span class="tutorialImage">
+<img src="tutorials/images/EnumChaining.png"/>
+<em>Figure 1.</em>
+</span>
+
+        <h2>Defaults</h2>
+<p>
+Enum properties have defaults that are assumed if not specified. For example, a setting for the chart property type with no text: "" is equivalent to the 'vertical' setting.
+ </p>
+<p>
+A setting of  'marker' is equivalent to 'verticalMarker'<br/>
+And vertical is equivalent to verticalLine.
+ </p>
+<p></p>
+Defaults are always implied, so a setting of 'pie' is also equivalent to "pieNormal"
+<h2>Syntax</h2>
+
+<p>
+The settings are not case sensitive and spaces are allowed between chained enum settings.
+</p>

@@ -1,0 +1,128 @@
+﻿<h2>Layout / Position</h2>
+		The legend can be positioned anywhere around the chart area by setting 
+		the  <a href="Types.legend.position">legend.position</a> property. Possible setting include top, left, right,
+		topLeft, and so on.
+		<span class="docsReference">Enums.orientation: A complete list of orientation settings.</span>
+<h3>Orientation</h3>
+		<span class="codeText">json.legendPosition = &#39;topLeft&#39;;</span>
+
+		This positioning can also be used in conjunction with the offset 
+		property to make small adjustments:
+
+		<span class="codeText">json.legendOffset = &#39;5,5&#39;;
+		</span>
+		A margin property is available to specify the distance between the 
+		chartArea and legend:
+
+		<span class="codeText">json.legendMargin = 5;<br />
+		</span>
+    <h3>Absolute Positioning</h3>
+		The legend can use absolute positioning by passing the position property an x,y coordinate 
+		relative to the top left of the chart image:
+
+		<span class="codeText">json.legendPosition = &#39;20,10&#39;;</span>
+    <h3>Relative Positioning</h3>
+		To position the legend relative to the top left corner of the chartArea, 
+		use:
+
+		<span class="codeText">json.legendPosition = &#39;CA:20,10&#39;;</span>
+    <h3>Legend Entry Orientation</h3>
+		When using a position name such as &#39;topLeft&#39; the legend entries are 
+		automatically laid out either vertically or horizontally depending on 
+		the position. However, with absolute or relative positioning, this 
+		setting should be specified with the legend.layout property:
+
+		<span class="codeText">json.legendLayout = &#39;horizontal&#39;;<br />
+		</span>
+		A static width can be specified for the legend:
+
+		<span class="codeText">json.legendWidth = 20;</span>
+
+		<h2>Styling</h2>
+
+		Styling the legendbox is similar to styling the title and annotations. 
+		Properties such as <a href="Types.legend.fill">fill</a>,
+    <a href="Types.legend.outline">outline</a>,
+    <a href="Types.legend.radius">radius</a>,
+    <a href="Types.legend.shadow">shadow</a> are all available.
+
+		<span class="docsReference">Types.legend: Legend object properties.</span>
+
+		<span class="docsSample">LegendStyling</span>
+    <span class="docsTasks">
+            Tasks.Legend.Styling
+        </span>
+		<h2>Entries</h2>
+		Legend entries represent data on the chart. Series have individual 
+		legendEntry properties but the legend object has a defaultLegendEntry 
+		property that specifies the defaults for all entries and is recommended 
+		unless series specific settings are necessary.
+
+		<span class="docsSample">SeriesLegendEntry:
+		Specifies series specific legend entry properties.</span>
+
+		<h2>Labels</h2>
+		Legend entry labels support series tokens providing the ability
+		to describe the data in a robust way without using label callback 
+		functions or series specific legend entry settings.
+
+		<span class="codeText">json.legendDefaultEntryText = &#39;%name (%sum)&#39;;</span>
+
+		<span class="docsSample">LegendTokens</span>
+
+		<span class="docsReference">Tutorials.tokenReference: A complete list of available tokens.</span>
+    <span class="docsTasks">
+            Tasks.Legend.Label
+        </span>
+		<h2>Layout</h2>
+		As mentioned previously, legend entries can be laid out either 
+		vertically or horizontally. A width can be specified for each entry as 
+		well as entry <a href="Types.legendEntry.padding">padding</a> and
+    <a href="Types.legendEntry.iconWidth">iconWidth</a>. This can be used to achieve a
+		multi-column grid layout of entries. When entries lay out horizontally but legend 
+		width is set and not sufficient for all entries, they wrap to the next 
+		line. By setting a static width for each entry, a width for the legend 
+		and using horizontal layout, a grid layout can be achieved as 
+		demonstrated in the following sample:
+
+		<span class="docsSample">LegendBoxGrid</span>
+    <span class="docsTasks">
+            Tasks.Legend.Layout
+        </span>
+		<h2>Sorting</h2>
+		Legend entries are listed in the order their series are added to the chart. 
+		However, setting legend.reverse reverses the order of the entries. A 
+		custom sort order can also be implemented by setting the  <a href="Types.legendEntry.sortOrder">sortOrder</a>
+		property of individual series legend entries.
+
+		<span class="docsSample">LegendEntryOrder</span>
+
+		<h2>Events &amp; Interactivity</h2>
+		By default, legend entries are interactive and provide the ability to 
+		hide/show individual series when clicked. This behavior can also be disabled.
+		<span class="docsSample">LegendEvents:
+		Hooks into the legend entry click and confirms whether the default 
+		show/hide series behavior should be executed.</span>
+
+		<h2>States</h2>
+		Legend entries are clickable and therefore visual states are provided to 
+		indicate when mouse hovers or the entry is disabled. The two entry 
+		states are named &#39;hover&#39; and &#39;hidden&#39;.
+
+		<span class="docsSample">LegendStyling:
+		Demonstrates styling of legend entry states.</span>
+
+		Legend entries support cascading states which means that if a 
+		setting is applied to the normal state, it will affect subsequent states 
+		like hover and hidden. Internally this cascading processes higher level 
+		setting and modifies it to reflect the new state more accurately unless 
+		otherwise specified. This may help reduce the amount of code necessary 
+		to achieve an obviously desired effect. For example, setting a font 
+		propagates that font to subsequent states.
+
+		<span class="docsReference">Tutorials.States:See the Cascading States tutorial for more info.
+		</span>
+<h3>All legend related tasks</h3>
+    <span class="docsTasks">
+            Tasks.Legend
+        </span>

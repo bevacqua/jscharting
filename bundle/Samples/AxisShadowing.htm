@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Shadowing Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Defines multiple axes sharing common gridlines while using different units on each axis.
+Learn how to:
+
+  - Use multiple axes for unit conversion with different formatting.
+  - Draw axis markers.
+  - Use a callback function for axis tick labels.
+  - Use dynamic tooltips with tokens.
+  - Use calculation tokens in the title box label.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'spline',
+  height: 400,
+  width: 640,
+  palette: [ 'crimson', '#03bbfb'  ],
+  legend: {
+    position: 'CA:360,4',
+    layout: 'vertical',
+    boxVisible: false
+  },
+  title: {
+    label: {
+      text: 'Average Temperatures (Chicago)  |  Range %min°F - %max°F    Average: %average°F'
+    },
+    position: 'full'
+  },
+  yAxis: [
+    {
+      id: 'mainY',
+      labelText: '(°F) Fahrenheit',
+      defaultTickLabel: {
+        text: '%value°F',
+        style: { fontWeight: 'bold', fontSize: '12px'  }
+      },
+      markers: [
+        {
+          value: [0,32 ],
+          label: {
+            text: 'Freezing',
+            styleFontSize: 14,
+            align: 'center'
+          },
+          color: ['#65affb',0.5 ]
+        },
+        {
+          value: 72,
+          labelText: 'Perfect (72°F)',
+          labelStyleFontSize: 14,
+          lineWidth: 3,
+          color: ['#fcc348',0.5 ]
+        }
+      ]
+    },
+    {
+      scaleSyncWith: 'mainY',
+      orientation: 'right',
+      formatString: 'n2',
+      labelText: '(°C) Celcius',
+      defaultTickLabel: {
+        text: '{(%Value-32)*5/9:n1}°C',
+        style: { fontWeight: 'bold', fontSize: '12px'  }
+      }
+    }
+  ],
+  xAxis: {
+    formatString: 'MMM',
+    scaleInterval: {unit: 'month' },
+    centerTickMarks: false,
+    defaultTickLabel: {
+      style: {  fontWeight: 'bold',  fontSize: '12px'}
+    }
+  },
+  defaultPointTooltip: '<b>%xValue</b><br/>%seriesName: %yValue°F  ({(%yValue-32)*5/9:n1}°C)',
+  toolbarVisible: false,
+  series: [
+    {
+      name: 'Average High',
+      points: [
+        [ new Date(2010, 0, 1), 30  ],
+        [ new Date(2010, 1, 1), 35  ],
+        [ new Date(2010, 2, 1), 47  ],
+        [ new Date(2010, 3, 1), 60  ],
+        [ new Date(2010, 4, 1), 71  ],
+        [ new Date(2010, 5, 1), 80  ],
+        [ new Date(2010, 6, 1), 83  ],
+        [ new Date(2010, 7, 1), 81  ],
+        [ new Date(2010, 8, 1), 75  ],
+        [ new Date(2010, 9, 1), 63  ],
+        [ new Date(2010, 10, 1), 48  ],
+        [ new Date(2010, 11, 1), 34  ]
+      ]
+    },
+    {
+      name: 'Average Low',
+      points: [
+        [ new Date(2010, 0, 1), 15  ],
+        [ new Date(2010, 1, 1), 18  ],
+        [ new Date(2010, 2, 1), 27  ],
+        [ new Date(2010, 3, 1), 37  ],
+        [ new Date(2010, 4, 1), 46  ],
+        [ new Date(2010, 5, 1), 56  ],
+        [ new Date(2010, 6, 1), 61  ],
+        [ new Date(2010, 7, 1), 60  ],
+        [ new Date(2010, 8, 1), 51  ],
+        [ new Date(2010, 9, 1), 40  ],
+        [ new Date(2010, 10, 1), 30  ],
+        [ new Date(2010, 11, 1), 19  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

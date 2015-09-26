@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Interactive Ranges Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+Axis range variables:
+<textarea id="info" cols="50" rows="3"></textarea>
+	
+<script type="text/javascript">
+/*
+Manipulating the axis scale through clicking the chart area.
+Learn how to:
+
+  - Use events to change axis range by clicking the chartArea.
+  - Use range axis markers.
+*/
+// JS
+
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'line',
+  yAxis: {
+    id: 'yA',
+    scaleRange: [0,500 ],
+    markers: [
+      {
+        id: 'm1',
+        color: [
+          ['red',0.5 ],
+          ['white',1 ],
+          ['white',1 ],
+          ['white',1 ],
+          0
+        ],
+        value: { low: 0, high: 125  },
+        labelText: 'Click to Decrease Minimum'
+      },
+      {
+        id: 'm2',
+        color: [
+          ['green',0.75 ],
+          ['white',1 ],
+          ['white',1 ],
+          ['white',1 ],
+          0
+        ],
+        value: { low: 125, high: 250  },
+        labelText: 'Click to Increase Minimum'
+      },
+      {
+        id: 'm3',
+        color: [
+          ['green',0.65 ],
+          ['white',1 ],
+          ['white',1 ],
+          ['white',1 ],
+          0
+        ],
+        value: { low: 250, high: 375  },
+        labelText: 'Click to Decrease Maximum'
+      },
+      {
+        id: 'm4',
+        color: [
+          ['red',0.5 ],
+          ['white',1 ],
+          ['white',1 ],
+          ['white',1 ],
+          0
+        ],
+        value: { low: 375, high: 500  },
+        labelText: 'Click to Increase Maximum'
+      }
+    ]
+  },
+  events: { click: 'doRangeWork(e);'  },
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales ',
+  series: [
+    {
+      name: 'Saw',
+      id: 's1',
+      points: [
+        [ 'Q1', 230  ],
+        [ 'Q2', 240  ],
+        [ 'Q3', 267  ],
+        [ 'Q4', 238  ]
+      ]
+    },
+    {
+      name: 'Hammer',
+      points: [
+        [ 'Q1', 325  ],
+        [ 'Q2', 347  ],
+        [ 'Q3', 392  ],
+        [ 'Q4', 371  ]
+      ]
+    },
+    {
+      name: 'Grinder',
+      points: [
+        [ 'Q1', 285  ],
+        [ 'Q2', 292  ],
+        [ 'Q3', 327  ],
+        [ 'Q4', 158  ]
+      ]
+    },
+    {
+      name: 'Drill',
+      points: [
+        [ 'Q1', 185  ],
+        [ 'Q2', 192  ],
+        [ 'Q3', 198  ],
+        [ 'Q4', 318  ]
+      ]
+    }
+  ]
+});
+/**
+ * Get axis range and show it in the HTML textbox.
+ */
+function getRange(){
+	var axis = chart.get('yA'),
+		ext = axis.getRange();
+
+	jQuery('#info').val(JSON.stringify(ext).replace(',',',\n'));
+
+}
+
+/**
+ * This method updates the axis markers to be in the same position after the axis range changes.
+ * @param L Axis low value.
+ * @param H Axis high value.
+ */
+function updateMarkers(L,H){
+	var axis = chart.get('yA'),
+		A = L, E = H, C = L+((H-L)/2),
+		B = A+((C-A)/2),D  = C+((E-C)/2);
+	if(chart){
+		axis.removeMarker('m1');
+		axis.removeMarker('m2');
+		axis.removeMarker('m3');
+		axis.removeMarker('m4');
+	}
+	axis.addMarker({id:'m1',color:[['red',.5],['white',1],['white',1],['white',1],0],value:{low:A,high:B},labelText:'Click to Decrease Minimum'});
+	axis.addMarker({id:'m2',color:[['green',.75],['white',1],['white',1],['white',1],0],value:{low:B,high:C},labelText:'Click to Increase Minimum'});
+	axis.addMarker({id:'m3',color:[['green',.65],['white',1],['white',1],['white',1],0],value:{low:C,high:D},labelText:'Click to Decrease Maximum'});
+	axis.addMarker({id:'m4',color:[['red',.5],['white',1],['white',1],['white',1],0],value:{low:D,high:E},labelText:'Click to Increase Maximum'});
+}
+
+/**
+ * Chart area click event handler. Modify the axis range based on where the chart area was clicked.
+ * @param e Chart area click event info.
+ */
+function doRangeWork(e){
+	var axis = chart.get('yA'),
+		yVal=e.yAxis[0].value,
+		ext = axis.getRange(),
+		mid = ext.min+((ext.max-ext.min)/2),
+		midU = mid+((ext.max-mid)/2),
+		tPer = (ext.max-ext.min)/5,
+		midL = ext.min+((mid-ext.min)/2),
+		newL,newH;
+
+		if(yVal > mid){
+			if(yVal > midU){				newL=ext.min;				newH=ext.max+tPer;			}else {				newL=ext.min;				newH=ext.max-tPer;			}
+		} else {
+			if(yVal < midL){				newL=ext.min-tPer;				newH=ext.max;			} else {				newL=ext.min+tPer;				newH=ext.max;			}
+		}
+		axis.setRange(newL,newH);
+		updateMarkers(newL,newH);
+		getRange();
+}
+
+
+</script>
+	</body>
+</html>

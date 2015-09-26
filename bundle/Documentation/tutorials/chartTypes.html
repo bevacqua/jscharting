@@ -1,0 +1,205 @@
+<h2>Introduction</h2>
+
+
+Chart types are constructed using several settings. Among them, the most significant are:
+<ul>
+    <li>Chart Type</li>
+    <li>Series Type</li>
+    <li>Axis Scale</li>
+</ul>
+
+The most fundamental property, <a href="Types.chart.type">chart.type</a>, determines the generic layout of series.
+It can be set with these predefined settings: <a href="Enums.chartType">chartType enum</a>.
+Axis scales further contribute to how elements are laid out, i.e. (Stacked).
+The series type determines how the series are visualized (line, bar, etc.).
+These properties work in concert to provide flexibility in setting up specific chart types.
+
+<h2>Chart Type Settings</h2>
+JSC has a very powerful and flexible chart type setting mechanism. It allows expressing data in
+different arrangements of chart types in a simplified way. The functionality of chart type settings
+is based on Enum chaining and it's recommended to read this short intro to get the basic idea.
+
+<h3>Definitions</h3>
+
+        <ul class="simpleKvpList">
+            <li><em>Chart</em><section>A visualization of multiple data series.  The data a chart can show is also known as a series collection.</section></li>
+            <li><em>Series</em><section>A collection of data points.</section></li>
+            <li><em>Chart Type</em><section>Specifies how multiple series are arranged together to form a visual.</section></li>
+            <li><em>Series Type</em><section>Specifies  how  a set of data points is visualized on a chart.</section></li>
+        </ul>
+<!--Chart - A visualization of multiple data series.  The data a chart can show is also known as a series collection.
+Series - A collection of data points.
+
+Chart Type - Specifies how multiple series are arranged together to form a visual.
+Series Type - Specifies  how  a set of data points is visualized on a chart.-->
+
+
+<h2>Chart Type</h2>
+
+<p>
+The chart types enum provides the root options for this setting.
+However, since default values don't have to be specified, the series type can be set at this level as well. For instance:
+</p>
+<span class="codeText">
+{
+type:'lineStep'
+}
+</span>
+
+Which is the equivalent of:
+<span class="codeText">
+{
+type:'VerticalLineStep'
+}
+</span>
+
+This option defines a chart type, a series type, and the line series type specific option step.
+
+
+<h2>Series Types</h2>
+
+The most important contributor to chart types is the <a href="Types.series.type">series.type</a> property.
+It can be set with these predefined settings: <a href="Enums.seriesType">seriesType enum</a>.
+
+Each series can have a different series type setting.
+<span class="codeText">{
+series:[{
+type:'lineStep'
+}]
+} </span>
+
+
+A series type can also be applied to all series in the chart by setting it for the defaultSeries like so:
+<span class="codeText">{
+defaultSeries:{
+type:'lineStep'
+}
+} </span>
+
+<h2>Chart Type  v.s. Default Series Type</h2>
+
+        <p>
+A series type property can also be set with a chart type value. This implies that the series should be treated as a chart or series collection itself. For example, the chart type of a vertical line chart with a number of series is 'Vertical'. But if one of those series should be a pie, it can be accomplished by setting 'pie' for that series' type property.  Since pie is a chart type, this series is removed from the vertical X Y axis chart area, and shown as its own pie chart.
+</p><p>
+If 'pie' was set for the chart type property, all the series would be combined into a single pie.
+</p>
+<span class="codeText">{
+type:'pie'
+} </span>
+
+
+If pie is applied to default series type, this indicates that each series becomes its own pie producing a number of pies.
+<span class="codeText">{
+defaultSeries:{
+type:'pie'
+}
+} </span>
+<p>
+    The first setting implies that this chart or series collection is a pie and results single pie. The second sitting implies
+    that each series is a pie and results in a pie for each series.
+</p>
+<p>
+Along with pie, this behavior allows specifying a single radar or multiple radars in a single chart.
+</p>
+
+        <h3>More complex scenarios</h3>
+        <h4>Single Pie</h4>
+<p>Consider a chart with 4 series. The following code creates a chart with a single pie:</p>
+<span class="codeText">{
+type:'pie', //The main chart type is a pie
+} </span>
+
+<h4>Multiple Pies</h4>
+<p>Consider a chart with 4 series. The following code creates a chart with four pies:</p>
+<span class="codeText">{
+defaultSeriesType:'pie', //The main chart type for each series a pie
+} </span>
+
+<h4>Mixed Pies</h4>
+<p>Consider a chart with 4 series. The goal is to achieve a complex result where the first 3 series are represented by slices on
+    a single pie. And the fourth series is a pie with slices for each point. This can be achieved with the following setting:</p>
+<span class="codeText">{
+type:'pie', //The main chart type is a pie
+    series:[
+    {},
+    {},
+    {},
+    {type:'pie'//Chart type for the fourth series.
+    }
+    ]
+
+} </span>
+
+
+<h4>Single Radar</h4>
+<p>Radars are similar but different than pies because aside from being a chart type, they also require a series types.
+    Consider a single radar chart with 4 line series. This can be set with:
+</p>
+
+<span class="codeText">{
+type:'radarLine'
+} </span>
+
+<h4>Single Radar with Differing Series Types</h4>
+<p>
+    Consider a single radar chart with 4 different series types. This can be set with:
+</p>
+
+<span class="codeText">{
+type:'radar' , //The main chart type is radar
+    series:[
+    {type:'line' },
+    {type:'column' },
+    {type:'marker' },
+    {type:'lineSpline' },
+    ]
+} </span>
+
+<h4>Multiple Radars</h4>
+<p>
+    Consider a chart with four line series radars. This can be set with:
+</p>
+<span class="codeText">{
+defaultSeriesType:'radarLine'
+} </span>
+
+<h4>Multiple Radars with Differing Series Types</h4>
+<p>
+    Consider a chart with four differing series type radars. This can be set with:
+</p>
+<span class="codeText">{
+defaultSeriesType:'radar',
+     series:[
+    {type:'line' },
+    {type:'column' },
+    {type:'marker' },
+    {type:'lineSpline' },
+    ]
+} </span>
+
+<p></p>
+<p></p>
+
+<!--
+<h3>Pie/Donut Types</h3>
+        Pie series types behave slightly different than other series types like bars or lines. Their placement is
+not affected by the <a href="Types.chart.type">chart.type</a> setting.
+Instead, they float on top of the chart area, and can be positioned through the <a href="Types.series.position">series.position</a> property.
+-->
+
+<h3>Marker Types</h3>
+
+Series types line, area, marker, and other types use the <a href="Types.pointMarker.type">point.marker.type</a> setting.
+It can be set with these predefined settings: <a href="Enums.markerTypes">markerTypes enum</a>.
+        Marker types also affect the chart type to some degree as they control the shape of the point visuals.
+
+
+<h2>Axis Scales</h2>
+
+Further customization is achieved by specifying the <a href="Types.axis.scale">yAxis.scale</a> property.
+It can be set with these predefined settings: <a href="Enums.scale">scale enum</a>.
+Besides controlling the quantitative scale type,
+scales also dictate how series are arranged. For example an axis scale can specify that columns are stacked, or fullStacked.
+
+
+        <br>

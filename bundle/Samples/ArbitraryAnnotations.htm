@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Arbitrary Annotations Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Arbitrarily positioned annotations with a number of shading and gradient fill effects.
+Learn how to:
+
+  - Draw arbitrarily positioned annotations.
+  - Style annotations using a gradient fill.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'marker',
+  height: 400,
+  defaultAnnotation: {
+    radius: 5,
+    labelStyle: {fontFamily: 'verdana',fontSize: 11 }
+  },
+  annotations: [
+    {
+      labelText: 'First Annotation; Absolute Position',
+      position: '235,5'
+    },
+    {
+      labelText: 'Second Annotation, Offset from chart area',
+      position: 'CA:5,5'
+    },
+    {
+      labelText: 'Third Annotation, no box',
+      boxVisible: false,
+      position: 'CA:5,35'
+    },
+    {
+      label: {
+        text: 'Fourth Annotation, Gradient Background',
+        styleColor: 'white'
+      },
+      height: 25,
+      fill: [  'red',  '#83002e',  45],
+      position: 'CA:5,65'
+    },
+    {
+      label: {
+        text: 'Fifth Annotation, Styled Outline, No Fill',
+        styleColor: 'black'
+      },
+      outline: {  color: '#83002e',  width: 3},
+      fill: 'none',
+      position: 'CA:5,95'
+    },
+    {
+      label: {
+        text: 'Sixth Annotation, Gradient with stops',
+        styleColor: 'black'
+      },
+      fill: {
+        angle: 65,
+        stops: [
+          [0,'#900032' ],
+          [0.15,'red' ],
+          [0.25,'red' ],
+          [0.3,'#ff7d7d' ],
+          [0.7,'#ff7d7d' ],
+          [0.75,'red' ],
+          [0.85,'red' ],
+          [1,'#900032' ]
+        ]
+      },
+      height: 50,
+      position: 'CA:5,125'
+    }
+  ],
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales ',
+  series: [
+    {
+      name: 'Saw',
+      id: 's1',
+      points: [
+        [ 'Q1', 230  ],
+        [ 'Q2', 240  ],
+        [ 'Q3', 267  ],
+        [ 'Q4', 238  ]
+      ]
+    },
+    {
+      name: 'Hammer',
+      points: [
+        [ 'Q1', 325  ],
+        [ 'Q2', 347  ],
+        [ 'Q3', 392  ],
+        [ 'Q4', 371  ]
+      ]
+    },
+    {
+      name: 'Grinder',
+      points: [
+        [ 'Q1', 285  ],
+        [ 'Q2', 292  ],
+        [ 'Q3', 327  ],
+        [ 'Q4', 158  ]
+      ]
+    },
+    {
+      name: 'Drill',
+      points: [
+        [ 'Q1', 185  ],
+        [ 'Q2', 192  ],
+        [ 'Q3', 198  ],
+        [ 'Q4', 318  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Scale Breaks Auto Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Automatic scale breaks by specifying a limit.
+Learn how to:
+
+  - Use smart axis scale breaks.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  chartAreaShadow: true,
+  yAxis: {
+    labelText: 'Sales (USD)',
+    formatString: 'c',
+    scaleBreaksLimit: 2
+  },
+  titleLabelText: 'Sales By Representative',
+  series: [
+    {
+      type: 'area',
+      name: 'William',
+      points: [
+        { name: 'Jan', y: 1196  },
+        { name: 'Feb', y: 178  },
+        { name: 'Mar', y: 169  },
+        { name: 'Apr', y: 166  },
+        { name: 'May', y: 172  },
+        { name: 'Jun', y: 162  },
+        { name: 'Jul', y: 155  },
+        { name: 'Aug', y: 156  },
+        { name: 'Sep', y: 167  },
+        { name: 'Oct', y: 182  },
+        { name: 'Nov', y: 188  },
+        { name: 'Dec', y: 197  }
+      ]
+    },
+    {
+      name: 'Elliot',
+      points: [
+        { name: 'Jan', y: 286  },
+        { name: 'Feb', y: 4278  },
+        { name: 'Mar', y: 286  },
+        { name: 'Apr', y: 271  },
+        { name: 'May', y: 280  },
+        { name: 'Jun', y: 266  },
+        { name: 'Jul', y: 256  },
+        { name: 'Aug', y: 256  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

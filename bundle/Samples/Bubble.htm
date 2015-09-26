@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bubble Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Bubble series type.
+Learn how to:
+
+  - Draw bubble series type.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'bubble',
+  height: 400,
+  width: 640,
+  defaultSeries: { sizeMax: 100  },
+  defaultPoint: { label: {text: '%code',color: 'black' }  },
+  legend: { layout: 'vertical', visible: false  },
+  title: {
+    label: {
+      text: 'Correlation between life expectancy, fertility rate, and population.'
+    },
+    position: 'full'
+  },
+  xAxisLabelText: 'Life Expectancy',
+  yAxisLabelText: 'Fertility Rate',
+  yAxisFormatString: 'n2',
+  zAxisLabelText: 'Population',
+  series: [
+    {
+      name: 'Countries',
+      points: [
+        {
+          name: 'China',
+          x: 74.99,
+          y: 1.55,
+          z: 1349585838,
+          attributes: {code: 'CHN' }
+        },
+        {
+          name: 'India',
+          x: 67.48,
+          y: 2.55,
+          z: 1220800359,
+          attributes: {code: 'IND' }
+        },
+        {
+          name: 'United States',
+          x: 78.62,
+          y: 2.06,
+          z: 316438601,
+          attributes: {code: 'USA' }
+        },
+        {
+          name: 'Indonesia',
+          x: 71.9,
+          y: 2.2,
+          z: 251160124,
+          attributes: {code: 'IDN' }
+        },
+        {
+          name: 'Brazil',
+          x: 73.02,
+          y: 1.81,
+          z: 201009622,
+          attributes: {code: 'BRA' }
+        },
+        {
+          name: 'Pakistan',
+          x: 66.71,
+          y: 2.96,
+          z: 193238868,
+          attributes: {code: 'PAK' }
+        },
+        {
+          name: 'Bangladesh',
+          x: 70.36,
+          y: 2.5,
+          z: 163654860,
+          attributes: {code: 'BGD' }
+        },
+        {
+          name: 'Russia',
+          x: 69.85,
+          y: 1.61,
+          z: 142500482,
+          attributes: {code: 'RUS' }
+        },
+        {
+          name: 'Japan',
+          x: 84.19,
+          y: 1.39,
+          z: 127253075,
+          attributes: {code: 'JPN' }
+        },
+        {
+          name: 'Mexico',
+          x: 76.86,
+          y: 2.25,
+          z: 118818228,
+          attributes: {code: 'MEX' }
+        },
+        {
+          name: 'Philippines',
+          x: 72.21,
+          y: 3.1,
+          z: 105720644,
+          attributes: {code: 'PHL' }
+        },
+        {
+          name: 'Vietnam',
+          x: 72.65,
+          y: 1.87,
+          z: 92477857,
+          attributes: {code: 'VNM' }
+        },
+        {
+          name: 'Egypt',
+          x: 73.19,
+          y: 2.9,
+          z: 85294388,
+          attributes: {code: 'EGY' }
+        },
+        {
+          name: 'Germany',
+          x: 80.32,
+          y: 1.42,
+          z: 81147265,
+          attributes: {code: 'DEU' }
+        },
+        {
+          name: 'Turkey',
+          x: 73.03,
+          y: 2.1,
+          z: 80694485,
+          attributes: {code: 'TUR' }
+        },
+        {
+          name: 'Iran',
+          x: 70.62,
+          y: 1.86,
+          z: 79853900,
+          attributes: {code: 'IRN' }
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

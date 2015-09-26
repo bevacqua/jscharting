@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Area Point M Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	<a href="AreaPointM.htm">Javascript</a> | Silverlight
+<script type="text/javascript">
+/*
+An area line series with missing points.
+Learn how to:
+
+  - Draw area line chart with missing points.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode : 'Silverlight',
+  type: 'area',
+  titleLabelText: 'Missing Point',
+  legendVisible: false,
+  series: [
+    {
+      name: 'Transactions',
+      points: [
+        {
+          x: 2,
+          y: 32165
+        },
+        {
+          x: 5,
+          y: 28651
+        },
+        {
+          x: 8,
+          y: 35698
+        },
+        {
+          x: 10,
+          y: null
+        },
+        {
+          x: 15,
+          y: 27659
+        },
+        {
+          x: 18,
+          y: 28684
+        },
+        {
+          x: 22,
+          y: 25684
+        },
+        {
+          x: 23,
+          y: 38654
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

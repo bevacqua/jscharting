@@ -1,0 +1,116 @@
+<h3>Map Data Visualization</h3>
+
+There are a number of ways visualize data using map charts. Some examples include:
+
+<ul class="simpleKvpList">
+	<li><em><a href="Samples.mapWeather">MapWeather</a></em><section>Plotting POI points on maps</section></li>
+	<li><em><a href="Samples.MapThematicSales">MapThematicSales</a></em><section>Thematic Mapping</section></li>
+	<li><em><a href="Samples.MapLinePoints">MapLinePoints</a></em><section>Line plots to show relative distances</section></li>
+	<li><em><a href="Samples.MapBubbleDynamic">MapBubbleDynamic</a></em><section>Map bubbles</section></li>
+</ul>
+
+<h3>Series and types</h3>
+<p>Standard marker, line, and bubble series can be added to maps. The build-in maps support GPS based lat/long coordinates and these can be specified in point x,y properties.
+</p>
+
+<h3>Data Binding Tools</h3>
+<h4>JSC.pointsFromArray</h4>
+
+<p>A <a href="iObject.JSC.pointsFromArray">pointsFromArray</a> utility function is built into JSCharting that simplifies mapping arrays to objects.</p>
+
+<span class="codeText">
+	var arrayOfPoints = JSC.pointsFromArray('name,y', [ ['Jan', 196], ['Feb', 178], ['Mar', 169] ]);
+</span>
+
+<p>The above example creates an array of objects where each object has a name property mapped to values like 'Jan' and a y property mapped to the numeric values.
+</p>
+<p>The benefit of this method is that array elements can be mapped to deep property paths in objects such as:
+</p>
+
+<span class="codeText">
+	var arrayOfPoints = JSC.pointsFromArray('name,attributes.sales', [ ['Jan', 196], ['Feb', 178], ['Mar', 169] ]);
+</span>
+
+<p>The above generates objects such as:
+</p>
+<span class="codeText">
+{
+	name:'Jan',
+	attributes:{
+		sales:196
+	}
+}
+</span>
+
+<h3>Array.prototype.map & jQuery.map
+</h3>
+<p>The native array prototype or jQuery map functions are also useful when converting arrays or objects into different object structures.
+</p>
+<p>The key benefit in this case is that values can be modified when mapping them to objects.
+</p>
+<span class="codeText">
+var redStates = 'WV,NC,SC,IN,KY,TN,HA,AL,GA,MS,LA,AR,MO,TX,OK,KS,NE,SD,ND,WY,MT,ID,UT,AZ,AK';
+var points = $.map(redStates.split(','),function(val){  return {map:'US.'+val}; });
+</span>
+<span class="docsTip">
+Notice the use of a string which is then split into an array above. This approach can reduce the size of the data in HTML pages.
+</span>
+<span class="docsTip">
+It is worth noting that writing a for loop to generate objects is generally more efficient. The native array map function is also not supported by some older browsers such as IE8.
+</span>
+
+<h3>Binding Data to Maps
+</h3>
+
+
+<p>The above methods can be used to generate points from arrays. For mapping, points are created the same way as for any chart type except, a point.map property is set to indicate the map feature the point binds to.
+</p>
+<p>Internal JSCharting maps can be referenced in <a href="Types.point.map">point.map</a> properties by mapCodes or by map feature properties.
+</p>
+
+<ul class="simpleKvpList">
+	<li><em>MapCodes</em><section><span class="example">&#39;'us.il'&#39;</span></section></li>
+	<li><em>State/Province codes</em><section><span class="example">&#39;'us.stateCode:il'&#39;</span></section></li>
+	<li><em>Fips (if applicable)</em><section><span class="example">&#39;'us.fips:US08'&#39;</span></section></li>
+</ul>
+
+
+
+<h2>Custom map files data binding</h2>
+
+<p>Consider being tasked to create a map of weather info for specific cities in the U.S. The available
+	resources are a geoJSON point layer of cities, and a dataTable with city names and weather info
+	for cities in your 50 mile radius. The goal is to plot weather icons on these cities over a U.S. Map of your 50 mile radius.
+</p>
+<p>First we load the geoJSON city points map layer as a reference layer
+</p>
+<span class="codeText">{
+	mapping:{
+		referenceLayer:'mapData/usCapitals.js'
+	}
+}</span>
+
+
+<p>Next, points are generated for each city in the weather data.
+	<span class="codeText">
+	var dataTable=[["Augusta","cloud"],["Montpelier","cloud_dark"]/*,...*/]
+	points = $.map(dataTable, function(data){
+		 return {
+        	map:'UsCapitals.'+data[0],
+        	markerType:'url(images/'+data[1]+'.png)',
+        	labelText:'<b>%name</b> <br/>'+weatherDesc[data[1]]
+    	}
+	})
+
+	</span>
+</p>
+<p>Now the weather data is plotted but without a background map. A U.S. Map series can be added to the chart.  But this is not a
+	data driven mapping layer, and we don't want to see the entire U.S. Map. it's is just a background for context,
+	therefore, we can skip making a new series, and styling it, this can be done by simply setting.
+</p>
+<span class="codeText">{
+	mapping:{
+		baseLayer:'us'
+	}
+}</span>
+

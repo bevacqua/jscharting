@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Data Click Events Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Set a default point click event handler.
+Learn how to:
+
+  - Use data point click events to enable interactivity.
+  - Specify a data point hover cursor.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  defaultSeries: { type: 'column', cursor: 'pointer'  },
+  defaultPointEvents: { click: function(){ alert(this.name);}  },
+  series: [
+    {
+      palette: 'default',
+      name: 'Representatives',
+      points: [
+        { name: 'Angie', y: 3  },
+        { name: 'Chris', y: 8  },
+        { name: 'Arthur', y: 5  },
+        { name: 'David', y: 6  }
+      ]
+    }
+  ],
+  annotations: [
+    {
+      position: 'CA:5,5',
+      labelText: 'Click a bar to invoke the default click event.',
+      boxVisible: false
+    }
+  ],
+  yAxisLabelText: 'Unit Count',
+  titleLabelText: 'Unit Sales by Representative'
+});
+
+
+</script>
+	</body>
+</html>

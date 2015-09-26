@@ -1,0 +1,259 @@
+<h2>Introduction</h2>
+<p>The gauges are represented by series where each point of the series represents a gauge needle. The point z values represent the needle lengths.</p>
+<p>Multiple series can also be combined into a single gauge where each needle is represented by
+ the sum of a series y values. In such a case, the series default point can be used to define the z value indicating needle length.</p>
+
+
+<h3>Single Gauge</h3>
+<p>A single gauge chart is achieved by setting the chart config  <a href="Types.chart.type">type property</a> to 'gauge' defined by the <a href="Enums.chartType">chartType enum</a>.</p>
+<span class="codeText">
+{
+    type:'gauge'
+}
+</span>
+
+<p>When the chart has only one series, each point of that series is shown as a gauge needle.</p>
+<p>When the chart has multiple series, the sum of each series y values is represented by a needle.</p>
+<h3>Multiple Gauges</h3>
+<p>Multiple gauge charts are achieved by setting the chart config <a href="Types.chart.defaultSeries">defaultSeries</a> <a href="Types.series.type">type property</a> to 'gauge' defined by the <a href="Enums.chartType">chartType enum</a>.</p>
+<span class="codeText">
+{
+    defaultSeriesType:'gauge'
+}
+</span>
+<p></p>
+<p></p>
+
+<h2>Axis Settings</h2>
+<p></p>
+        <h3>Single Gauge Axes</h3>
+<p>In a single gauge chart, the main chart config property <a href="Types.chart.yAxis">chart.yAxis</a> defines the gauge axis settings.</p>
+<p>The following code specifies scale ranges for the y axis on the gauge chart.</p>
+<span class="codeText">
+{/*Single Gauge Chart*/
+    type:'gauge',
+    yAxis:{
+        scaleRange:[0,100]
+    }
+}
+</span>
+<p></p>
+<h3>Multiple Gauge Axes</h3>
+<p>Each gauge can have its own y axis. However, if an axis is not specified for the series, the main axis
+    or the first axis in the yAxis array is used.</p>
+<span class="codeText">
+{
+    defaultSeriesType:'gauge',
+ yAxis:[
+    {
+        scaleRange: [0, 80],
+        defaultTickLabelColor:'orange'
+    },{
+        id:'y2',
+        scaleRange:[0,200],
+        defaultTickLabelColor:'blue'
+    }],
+    series:[
+    {
+        points:[
+            {
+                y:65,
+    z:.8
+        }
+        ]
+        },
+        {
+        yAxis:'y2',
+        points:[
+        {
+        y:45,
+            z:.8
+                }
+                ]
+                }
+                ]
+}
+</span>
+<p>The above code creates the following multiple gauge chart.</p>
+<span class="tutorialImage">
+<img src="tutorials/images/GaugeAxes.png"/>
+<em>Figure 1.</em><section>Multiple gauges using different axes.</section>
+</span>
+<p></p>
+<h3>Axis Markers</h3>
+
+
+<h2>Z Value (Needle Length)</h2>
+<p>The z value specifies the needle length. However, with gauge charts, the z value must be
+    between 0 and 1 where 0 has no length, and 1 is the max possible needle length.</p>
+<p>If the z value is not specified or is greater than 1, the needle lengths default to .9.</p>
+<p>The following code and image demonstrate the needle length behaviors:</p>
+<span class="codeText">
+{
+type:'gauge',
+     yAxisScaleRange:[0,80],
+      series:[
+    {
+        palette:'default',
+        points:[
+            {
+                y:40,
+    z:.2
+        }, {
+                y:45,
+    z:.5
+        }, {
+                y:50,
+    z:1
+        }
+    ]
+    }
+    ]
+
+}
+</span>
+<span class="tutorialImage">
+<img src="tutorials/images/GaugeNeedleLengths.png"/>
+<em>Figure 2.</em><section>Gauge with needles of varying lengths</section>
+</span>
+
+<h2>Styling</h2>
+<p></p>
+        <h3>Angles And Arcs</h3>
+<p>
+    Starting and ending angles can be used together to define the gauge arcs as with the following example.</p>
+<span class="codeText">
+{
+ defaultSeriesAngle:{
+            start:80,
+            end:100
+}
+</span>
+<p></p>
+The <a href="Types.angleArc">angleArc</a> object also provides properties for orientation and sweep. Orientation is the center angle between start and end angles.</p>
+<p>The following has the same effect as the above start and end angle settings, however,
+    it is given in orientation and sweep which makes it easier to think about.</p>
+<span class="codeText">
+{
+ defaultSeriesAngle:{
+           orientation:90,
+            sweep:20
+}
+</span>
+<p>
+    Sweep can be given in numeric degrees or as a percentage string such as <span class="example">&#39;50%&#39;</span> which is equivalent to 180 degrees.
+  <!--  If a string is provided, tokens can also be used. For example, consider a series of pie data split into two series.
+    One series can be set with an orientation of <span class="example">-90</span> degrees (facing left) and the other with <span class="example">90</span> degrees (facing right).-->
+
+</p>
+
+<span class="docsTip">
+With gauge charts, using orientation and sweep may be the most convenient approach.
+</span>
+
+
+<h3>Clipping</h3>
+<p>Gauges utilize a clipping algorithm to maximize gauge sizes. The following sample illustrates clipping of different arc sweeps.
+
+</p>
+<span class="codeText">
+{
+    defaultSeriesType:'gauge',
+series:[
+    {
+
+        points:[
+            {
+                y:65
+    }
+    ]
+    },
+    {angleSweep:180,
+    points:[
+    {
+    y:45
+        }
+        ]
+        },
+        {angleSweep:100,
+        points:[
+        {
+        y:45
+            }
+            ]
+            }
+            ]
+}
+</span>
+<p></p>
+
+<span class="tutorialImage">
+<img src="tutorials/images/GaugeArcs.png"/>
+<em>Figure 3.</em><section>Default gauge clipping and scaling.</section>
+</span>
+<p> This clipping behavior is the default but can be disabled to produce a standard circular gauge despite the gauge arcs.
+    This option is defined within the <a href="Enums.chartType">chart type enum</a> chain.</p>
+<span class="codeText">
+{
+defaultSeriesType:'gaugeCircle',
+}
+</span>
+<span class="tutorialImage">
+<img src="tutorials/images/GaugeArcsCircle.png"/>
+<em>Figure 4.</em><section>Gauges with no clipping.</section>
+</span>
+
+<h3>Backgrounds</h3>
+<p></p>
+<p>The series shape property allows setting the fill of the individual gauges the series is plotted on.</p>
+<p>The following example shows how to specify the background shading of 3 different gauges.</p>
+
+<span class="codeText">
+{
+
+  series:[{
+
+    shapeFill:'#fff0f0',
+
+}, {
+
+    shapeFill:'#f0fff1',
+
+}, {
+
+    shapeFill:['#a0f1ff','white',45],
+
+}]
+}
+</span>
+<span class="tutorialImage">
+<img src="tutorials/images/GaugeBackgrounds.png"/>
+<em>Figure 5.</em><section>Gauges with different backgrounds.</section>
+</span>
+<h2>Layout</h2>
+<h3>Scaling</h3>
+<p>Depending on gauge arc angles, gauges are overall smaller in size than they would be as a full circle.
+    JSC scales these up to match the width or height of all other gauges as seen in figure 3.</p>
+<h3>Default Layout</h3>
+<p>Gauge layout uses an algorithm that determines the most efficient number of columns and rows to maximize gauge sizes.</p>
+<h3>Padding Gauges</h3>
+<p>In cases where gauges or other similar series are too crowded, a general padding value can be applied for all gauges on the chart.</p>
+
+<span class="codeText">
+{
+defaultSeries:{
+        shapePadding:.2
+    }
+}
+</span>
+
+<p></p>
+<p></p>
+
+<h2></h2>
+<p></p>
+<p></p>
+
+<h2></h2>
+<p></p>
+<p></p>

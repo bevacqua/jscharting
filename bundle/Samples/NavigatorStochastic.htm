@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Navigator Stochastic Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 500px">
+</div>
+	Javascript | <a href="NavigatorStochastic_SL.htm">Silverlight</a>
+<script type="text/javascript">
+/*
+A finance navigator chart with stochastic indicator.
+Learn how to:
+
+  - Use indicators with navigator.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  type: 'navigator',
+  renderMode: 'JavaScript',
+  height: 500,
+  navigator: {
+    toolbar: {visible: true },
+    xScrollbarEnabled: true
+  },
+  series: [
+    {
+      name: 'price',
+      points: [
+        [ new Date(2001, 7, 1), 27.44, 27.88, 26.97, 27.18  ],
+        [ new Date(2001, 7, 2), 27.83, 28.5, 27.8, 28.43  ],
+        [ new Date(2001, 7, 3), 28.27, 28.36, 27.9, 28.07  ],
+        [ new Date(2001, 7, 6), 27.51, 27.95, 27.43, 27.84  ],
+        [ new Date(2001, 7, 7), 27.64, 28.33, 27.45, 27.71  ],
+        [ new Date(2001, 7, 8), 27.61, 27.89, 26.27, 26.64  ],
+        [ new Date(2001, 7, 9), 26.6, 27.12, 26.22, 26.64  ],
+        [ new Date(2001, 7, 10), 26.61, 27.18, 25.9, 26.91  ],
+        [ new Date(2001, 7, 13), 27.03, 27.35, 26.48, 27.02  ],
+        [ new Date(2001, 7, 14), 27.09, 27.26, 26.56, 26.57  ],
+        [ new Date(2001, 7, 15), 26.18, 26.37, 25.14, 25.5  ],
+        [ new Date(2001, 7, 16), 25.08, 25.49, 24.41, 25.38  ],
+        [ new Date(2001, 7, 17), 24.01, 24.1, 22.7, 23  ],
+        [ new Date(2001, 7, 20), 22.93, 23.6, 22.37, 22.72  ],
+        [ new Date(2001, 7, 21), 22.76, 23, 21.97, 22.01  ],
+        [ new Date(2001, 7, 22), 22.42, 22.63, 21.9, 22.15  ],
+        [ new Date(2001, 7, 23), 22.16, 22.81, 21.7, 21.83  ],
+        [ new Date(2001, 7, 24), 22.12, 23.2, 21.52, 23.12  ],
+        [ new Date(2001, 7, 27), 23.06, 23.82, 22.52, 23.05  ],
+        [ new Date(2001, 7, 28), 23.06, 23.12, 21.86, 22.65  ],
+        [ new Date(2001, 7, 29), 22.79, 22.98, 21.38, 21.8  ],
+        [ new Date(2001, 7, 30), 21, 21.35, 20.02, 21.13  ],
+        [ new Date(2001, 7, 31), 20.74, 21.4, 20.31, 21.38  ],
+        [ new Date(2001, 8, 4), 21.86, 23.26, 21.8, 22.31  ],
+        [ new Date(2001, 8, 5), 22.39, 23.21, 21.41, 22.38  ],
+        [ new Date(2001, 8, 6), 22.02, 22.8, 21.4, 21.5  ],
+        [ new Date(2001, 8, 7), 21.29, 22.11, 21.15, 21.55  ],
+        [ new Date(2001, 8, 10), 21.25, 22.74, 21.22, 22.57  ],
+        [ new Date(2001, 8, 17), 20.5, 21.9, 20.3, 20.7  ],
+        [ new Date(2001, 8, 18), 20.87, 21.38, 19.63, 19.79  ],
+        [ new Date(2001, 8, 19), 19.69, 20.1, 16.9, 19.08  ],
+        [ new Date(2001, 8, 20), 18.16, 18.5, 17.15, 17.48  ],
+        [ new Date(2001, 8, 21), 16.15, 17.43, 16.01, 16.63  ],
+        [ new Date(2001, 8, 24), 17.12, 19.05, 17.1, 18.6  ],
+        [ new Date(2001, 8, 25), 18.73, 19.75, 18.69, 19.16  ],
+        [ new Date(2001, 8, 26), 19.37, 19.52, 17.87, 18.16  ],
+        [ new Date(2001, 8, 27), 18.14, 18.59, 17.3, 18.04  ],
+        [ new Date(2001, 8, 28), 18.34, 19.07, 18.2, 18.53  ]
+      ]
+    },
+    {
+      name: 'volume',
+      points: [
+        [ new Date(2001, 7, 1), 23541000  ],
+        [ new Date(2001, 7, 2), 28433400  ],
+        [ new Date(2001, 7, 3), 18530500  ],
+        [ new Date(2001, 7, 6), 15478100  ],
+        [ new Date(2001, 7, 7), 15598400  ],
+        [ new Date(2001, 7, 8), 29923600  ],
+        [ new Date(2001, 7, 9), 20534600  ],
+        [ new Date(2001, 7, 10), 14605100  ],
+        [ new Date(2001, 7, 13), 14169400  ],
+        [ new Date(2001, 7, 14), 18532100  ],
+        [ new Date(2001, 7, 15), 25236800  ],
+        [ new Date(2001, 7, 16), 28676300  ],
+        [ new Date(2001, 7, 17), 47871000  ],
+        [ new Date(2001, 7, 20), 27784100  ],
+        [ new Date(2001, 7, 21), 20587500  ],
+        [ new Date(2001, 7, 22), 24911800  ],
+        [ new Date(2001, 7, 23), 19452800  ],
+        [ new Date(2001, 7, 24), 22656400  ],
+        [ new Date(2001, 7, 27), 15680800  ],
+        [ new Date(2001, 7, 28), 23939700  ],
+        [ new Date(2001, 7, 29), 28668200  ],
+        [ new Date(2001, 7, 30), 33880600  ],
+        [ new Date(2001, 7, 31), 23744000  ],
+        [ new Date(2001, 8, 4), 44616300  ],
+        [ new Date(2001, 8, 5), 37897100  ],
+        [ new Date(2001, 8, 6), 29956300  ],
+        [ new Date(2001, 8, 7), 28461900  ],
+        [ new Date(2001, 8, 10), 29222400  ],
+        [ new Date(2001, 8, 17), 35406400  ],
+        [ new Date(2001, 8, 18), 28423300  ],
+        [ new Date(2001, 8, 19), 45132100  ],
+        [ new Date(2001, 8, 20), 41360100  ],
+        [ new Date(2001, 8, 21), 63337700  ],
+        [ new Date(2001, 8, 24), 36214700  ],
+        [ new Date(2001, 8, 25), 40050000  ],
+        [ new Date(2001, 8, 26), 28219800  ],
+        [ new Date(2001, 8, 27), 23640300  ],
+        [ new Date(2001, 8, 28), 31534500  ]
+      ]
+    },
+    {
+      name: 'kFast',
+      points: [
+        [ new Date(2001, 7, 15), 49.23  ],
+        [ new Date(2001, 7, 16), 97.92  ],
+        [ new Date(2001, 7, 17), 92.66  ],
+        [ new Date(2001, 7, 20), 91.3  ],
+        [ new Date(2001, 7, 21), 89.6  ],
+        [ new Date(2001, 7, 22), 78.89  ],
+        [ new Date(2001, 7, 23), 86.97  ],
+        [ new Date(2001, 7, 24), 92.21  ],
+        [ new Date(2001, 7, 27), 94.34  ],
+        [ new Date(2001, 7, 28), 87.98  ],
+        [ new Date(2001, 7, 29), 82.06  ],
+        [ new Date(2001, 7, 30), 97.32  ],
+        [ new Date(2001, 7, 31), 73.04  ],
+        [ new Date(2001, 8, 4), 71.05  ],
+        [ new Date(2001, 8, 5), 52.37  ],
+        [ new Date(2001, 8, 6), 56.05  ],
+        [ new Date(2001, 8, 7), 47.63  ],
+        [ new Date(2001, 8, 10), 81.58  ],
+        [ new Date(2001, 8, 17), 79.74  ],
+        [ new Date(2001, 8, 18), 81.17  ],
+        [ new Date(2001, 8, 19), 59.78  ],
+        [ new Date(2001, 8, 20), 66.51  ],
+        [ new Date(2001, 8, 21), 70.44  ],
+        [ new Date(2001, 8, 24), 86.9  ],
+        [ new Date(2001, 8, 25), 88.47  ],
+        [ new Date(2001, 8, 26), 80.85  ],
+        [ new Date(2001, 8, 27), 82.32  ],
+        [ new Date(2001, 8, 28), 97.47  ]
+      ]
+    },
+    {
+      name: 'DStochastic',
+      points: [
+        [ new Date(2001, 7, 21), 86.86  ],
+        [ new Date(2001, 7, 22), 82.11  ],
+        [ new Date(2001, 7, 23), 83.01  ],
+        [ new Date(2001, 7, 24), 86.16  ],
+        [ new Date(2001, 7, 27), 88.82  ],
+        [ new Date(2001, 7, 28), 87  ],
+        [ new Date(2001, 7, 29), 83.3  ],
+        [ new Date(2001, 7, 30), 88.95  ],
+        [ new Date(2001, 7, 31), 79.56  ],
+        [ new Date(2001, 8, 4), 73.83  ],
+        [ new Date(2001, 8, 5), 61.72  ],
+        [ new Date(2001, 8, 6), 57.61  ],
+        [ new Date(2001, 8, 7), 51.1  ],
+        [ new Date(2001, 8, 10), 65.2  ],
+        [ new Date(2001, 8, 17), 71.36  ],
+        [ new Date(2001, 8, 18), 75.45  ],
+        [ new Date(2001, 8, 19), 66.74  ],
+        [ new Date(2001, 8, 20), 65.88  ],
+        [ new Date(2001, 8, 21), 66.89  ],
+        [ new Date(2001, 8, 24), 75.64  ],
+        [ new Date(2001, 8, 25), 80.79  ],
+        [ new Date(2001, 8, 26), 79.89  ],
+        [ new Date(2001, 8, 27), 80.06  ],
+        [ new Date(2001, 8, 28), 87.67  ]
+      ]
+    }
+  ]
+};
+
+var volData= function(){
+    var result = {points:[]};
+    for(var i = 0,iLen=json.series[0].points.length;i<iLen;i++){
+        var p = json.series[0].points[i];
+        result.points.push([p[0],p[5]]);
+    }
+    result.type='column';
+    return result;
+}();
+json.chartArea = [
+    {height:.4},
+    {series:[json.series[1]],yAxis:{label:{text:'Volume'}}},
+    {series:[json.series[2],json.series[3]],
+        yAxis:{scaleRangeMax:100,label:{text:'Stochastic'}}
+
+    }
+];
+json.yAxis = {formatString:'C',label:{text:'Price'}};
+json.chartArea[1].series[0].type='column';
+json.series =[ json.series[0]];
+json.series[0].yAxis=0;
+json.series[0].type='ohlc';
+//json.series = generateData(1,50,'time');
+var chart = new JSC.Chart(json);
+
+
+</script>
+	</body>
+</html>

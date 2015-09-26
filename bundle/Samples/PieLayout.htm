@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pie Layout Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates different  pie layout options and interactivity.
+Learn how to:
+
+  - Interact with pie slices making them clickable.
+  - Modify Pies/Donuts layout.
+  - Offset pie labels.
+  - Specify pie center position.
+  - Adjust pie layout with size percentage.
+  - Modify pie layout by applying an offset percentage.
+  - Adjust pie layout with inner size percentage.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeries: {
+    pointSelection: true,
+    explodeOffset: 10,
+    type: 'pie donut'
+  },
+  series: [
+    {
+      
+/*Labels*/
+      defaultPoint: {
+        labelVisible: true,
+        labelOffset: 25,
+        labelLine: { color: '#dc143c', width: 2  }
+      },
+      
+/*Positions*/
+      shape: {
+        center: '20%,50%',
+        size: '40%',
+        innerSize: '20%',
+        offset: '5%,5%'
+      },
+      name: 'Gross Sales',
+      points: [
+        [ 'Q1', 50120  ],
+        [ 'Q2', 53465  ],
+        [ 'Q3', 62165  ],
+        [ 'Q4', 52156  ]
+      ]
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        [ 'Q1', 32654  ],
+        [ 'Q2', 35645  ],
+        [ 'Q3', 42651  ],
+        [ 'Q4', 30153  ]
+      ]
+    }
+  ],
+  width: 600,
+  height: 350,
+  yAxisLabelText: 'USD',
+  titleLabelText: 'Sales by quarter ',
+  yAxisFormatString: 'c'
+});
+
+
+</script>
+	</body>
+</html>

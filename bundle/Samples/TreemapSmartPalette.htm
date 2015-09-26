@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Treemap Smart Palette Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Treemap of top 20 country populations with a smartPalette.
+Learn how to:
+
+  - Draw a treemap chart with a smartPalette.
+*/
+// JS
+var chart =  new JSC.Chart({
+  targetElement: 'cc',
+  type: 'treemap',
+  defaultPointTooltip: '%name<br/>Population: %yvalue',
+  titleLabelText: 'Top 20 country populations',
+  defaultPointLabelText: '%code<br/>{%yValue/1000000}M',
+  palette: {
+    pointValue: '%yValue',
+    colors: ['blue','aqua','green','#fdfd60','red' ]
+  },
+  legend: {
+    defaultEntryText: '{%value/1000000000}',
+    titleLabelText: '(Billions)'
+  },
+  series: [
+    {
+      name: 'Countries',
+      points: [
+        {
+          name: 'China',
+          y: 1349585838,
+          attributes: {code: 'CHN' }
+        },
+        {
+          name: 'India',
+          y: 1220800359,
+          attributes: {code: 'IND' }
+        },
+        {
+          name: 'European Union',
+          y: 509365627,
+          attributes: {code: 'EU' }
+        },
+        {
+          name: 'United States',
+          y: 316438601,
+          attributes: {code: 'USA' }
+        },
+        {
+          name: 'Indonesia',
+          y: 251160124,
+          attributes: {code: 'IDN' }
+        },
+        {
+          name: 'Brazil',
+          y: 201009622,
+          attributes: {code: 'BRA' }
+        },
+        {
+          name: 'Pakistan',
+          y: 193238868,
+          attributes: {code: 'PAK' }
+        },
+        {
+          name: 'Nigeria',
+          y: 174507539,
+          attributes: {code: 'NGA' }
+        },
+        {
+          name: 'Bangladesh',
+          y: 163654860,
+          attributes: {code: 'BGD' }
+        },
+        {
+          name: 'Russia',
+          y: 142500482,
+          attributes: {code: 'RUS' }
+        },
+        {
+          name: 'Japan',
+          y: 127253075,
+          attributes: {code: 'JPN' }
+        },
+        {
+          name: 'Mexico',
+          y: 118818228,
+          attributes: {code: 'MEX' }
+        },
+        {
+          name: 'Philippines',
+          y: 105720644,
+          attributes: {code: 'PHL' }
+        },
+        {
+          name: 'Ethiopia',
+          y: 93877025,
+          attributes: {code: 'ETH' }
+        },
+        {
+          name: 'Vietnam',
+          y: 92477857,
+          attributes: {code: 'VNM' }
+        },
+        {
+          name: 'Egypt',
+          y: 85294388,
+          attributes: {code: 'EGY' }
+        },
+        {
+          name: 'Germany',
+          y: 81147265,
+          attributes: {code: 'DEU' }
+        },
+        {
+          name: 'Turkey',
+          y: 80694485,
+          attributes: {code: 'TUR' }
+        },
+        {
+          name: 'Iran',
+          y: 79853900,
+          attributes: {code: 'IRN' }
+        },
+        {
+          name: 'Congo',
+          y: 75507308,
+          attributes: {code: 'COD' }
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

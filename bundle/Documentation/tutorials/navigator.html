@@ -1,0 +1,59 @@
+﻿
+
+<h2>Introduction</h2>
+
+		<p>The navigator is a chart mode that enables interactivity and exploration of stock data in real-time.
+		More advanced time scale zooming and navigation are the hallmarks of 
+		this feature. It is similar to charts often seen on popular finance 
+		websites.</p>
+		<p>The navigator mode can be set through the chart type property as follows:</p>
+		<span class="codeText">{
+            type:'navigator'
+            }</span>
+
+	<span class="docsTip">The Silverlight version of navigator is one of
+		the most advanced versions of such a finance chart in existence. This
+		can be enabled when chartJson.renderMode is set to &#39;Silverlight&#39; in 
+		conjunction with the above setting. The advancements of this component 
+		are mainly in the UI and its ability to smoothly move data around as you 
+		scroll or resize.</span>
+		<table >
+			<tr>
+				<td  valign="top"><strong>Terminology</strong><br />
+				This image can be used as a reference for the naming used to
+				identify different parts of a navigator chart.<br />
+				<br />
+				Control of these elements outside of ChartArea is achieved 
+				through the <a href="Types.navigator">navigator</a> object in the chart configuration.<br />
+
+				</td>
+				<td style="text-align: left">
+				<img height="312" src="tutorials/images/navigator.png" width="659" /><br />
+				Figure 1</td>
+			</tr>
+		</table>
+
+		<h2>Finance Series Types</h2>
+		All standard series types are supported, with the addition of some 
+		finance specific types including:
+		<ul>
+			<li>Candlestick</li>
+			<li>OHLC</li>
+		</ul>
+				Regular
+		bar and line types are supported with the navigator, however, with candlestick or ohlc, points don&#39;t have the usual y values. They have
+		4 new values: open, high, low, and close.
+		<h2>Populating Data</h2>
+		When not using the finance specific series types, the general
+		<a href="Tutorials.populateData">data population</a> applies. With
+		finance types, all data points are defined as arrays of values in the 
+		following format:
+		<span class="docsSyntax">[xDateTime, open, high, low, close]</span>
+		<h2>UI Interface Options</h2>
+		Any part of the interface shown in figure 1 can be disabled.
+		<span class="docsSample"> NavigatorNaked:
+		Disables all UI elements.</span>
+
+<span class="docsTasks">
+            Tasks.Navigator
+        </span>

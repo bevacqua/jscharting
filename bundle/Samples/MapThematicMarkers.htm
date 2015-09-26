@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Thematic Markers Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Thematic point map layer markers.
+Learn how to:
+
+  - Make thematic maps.
+  - Map points from mapCodes.
+  - Show a SmartPalette in the legend.
+  - Set Default Map Padding.
+  - Standard bubble series on maps.
+  - Map points from mapFiles.
+*/
+// JS
+var capitalNames = ["Montpelier", "Dover", "Annapolis", "Carson City", "Little Rock", "Jefferson City", "Hartford", "Providence", "Springfield", "Frankfort", "Madison", "Trenton", "Lansing", "Lincoln", "Concord", "Columbus", "Albany", "Harrisburg", "Olympia", "Salem", "Topeka", "Baton Rouge", "Austin", "Montgomery", "Tallahassee", "Columbia", "Indianapolis", "Richmond", "Charleston", "Augusta", "Helena", "Bismarck", "Boise", "Sacramento", "Santa Fe", "Salt Lake City", "Cheyenne", "Des Moines", "Oklahoma City", "Pierre", "Jackson", "Raleigh", "Nashville", "Phoenix", "Boston", "Denver", "Atlanta"];
+
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  toolbarPosition: 'bottomRight',
+  titleLabelText: 'State Capitals & Populations',
+  height: 400,
+  mapping: {
+    referenceLayers: 'resources/UsCapitals.json.txt',
+    base: {layers: 'us' }
+  },
+  defaultSeriesShapePadding: 0.23,
+  legendVisible: false,
+  zAxisLabelText: 'Population',
+  series: [
+    {
+      id: 'bubbleSer',
+      name: 'Capitals',
+      type: 'marker',
+      transparency: 0.4,
+      defaultPointMarkerSize: 8,
+      palette: {
+        pointValue: '{%zValue}',
+        invert: true,
+        colors: [
+          '#8b0000',
+          '#ff0000',
+          '#ffa500',
+          '#fefe20',
+          '#00e700'
+          /*,'#00008b','#4b0082','#ee82ee'*/
+        ]
+      }
+    }
+  ]
+};
+
+chartConfig.series[0].points=getPoints();
+var chart = new JSC.Chart(chartConfig);
+
+
+
+
+function getPoints(){
+    var serPoints = $.map(getRandomCapitalValues(),function(data){
+        return {map:'UsCapitals.'+data[0],z:data[1]  }
+    });
+    return serPoints;
+    function getRandomCapitalValues(){
+        var result = [];
+        for (var i = 0, iLen = capitalNames.length; i < iLen; i++) {
+            var name = capitalNames[i];
+            result[i] = [capitalNames[i],Math.random()*1000];
+
+        }
+        return result;
+    }
+}
+
+
+</script>
+	</body>
+</html>

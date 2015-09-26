@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Legend Entry Order Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	Javascript | <a href="LegendEntryOrder_SL.htm">Silverlight</a>
+<script type="text/javascript">
+/*
+Specifies a custom sort order for legend entries.
+Learn how to:
+
+  - Apply a custom legend entry sort order.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'column',
+  defaultPointLabelVisible: true,
+  titleLabelText: 'Custom sort order of legend entries.',
+  series: [
+    {
+      name: 'Z1 Saw',
+      legendEntrySortOrder: 2,
+      id: 's1',
+      points: [
+        { name: 'Q1', y: 230  },
+        { name: 'Q2', y: 240  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 238  }
+      ]
+    },
+    {
+      name: 'Z1 Hammer',
+      legendEntrySortOrder: 3,
+      points: [
+        { name: 'Q1', y: 325  },
+        { name: 'Q2', y: 367  },
+        { name: 'Q3', y: 382  },
+        { name: 'Q4', y: 371  }
+      ]
+    },
+    {
+      name: 'Z1 Grinder',
+      legendEntrySortOrder: 1,
+      points: [
+        { name: 'Q1', y: 285  },
+        { name: 'Q2', y: 292  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 218  }
+      ]
+    },
+    {
+      name: 'Z1 Drill',
+      legendEntrySortOrder: 0,
+      points: [
+        { name: 'Q1', y: 185  },
+        { name: 'Q2', y: 192  },
+        { name: 'Q3', y: 198  },
+        { name: 'Q4', y: 248  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+﻿
+
+
+            <h2>Introduction</h2>
+                    Color settings in JSCharting support transparency, can be set in different ways, and can also indicate shading settings.
+                    Linear gradients can be used to fill shapes. Gradients can be set with a simple list of colors and an angle, or a more
+                    complex gradient with specific stops can be used.
+
+
+
+		<h2>Colors</h2>
+		Colors can be set with a hex color value, a color name, RGB, and RGBA values.
+                    API definition of <a href="Types.color">JSON color setting</a>.
+
+                    <span class="codeText">
+                        {
+                        //...
+                        //Color Name
+                        titleLabelColor: 'red',
+                        //Hex color values
+                        yAxisLabelColor: '#FF0000',
+                        //rgb(red,green,blue) to specify RGB values individually.
+                        yAxisDefaultTickLabelColor: 'rgb(20,20,20)',
+                        //rgba(red,green,blue,alpha) to specify RGB values individually and alpha transparency from 0 (transparent) to 1 (opaque).
+                        legendDefaultEntryStyleColor: 'rgba(20,20,20,.2)'
+                        //...
+                        }
+                    </span>
+
+
+		Transparency can also be specified with any of these settings by using an array like so:
+            <span class="codeText">
+                        {
+                        //...
+                        //Color Name
+                        titleLabelColor: ['red',0.2],
+                        //Hex color values
+                        yAxisLabelColor: ['#FF0000',0.2],
+                        //...
+                        }
+                    </span>
+
+                    <span class="docsNote">Please note that the array transparency setting [color,transparency] is the inverse of alpha used with rgba(R,G,B,Alpha).</span>
+
+
+
+		<h2>Gradient Fills</h2>
+		Colors can be used with lines and shapes, however, shapes also support linear gradient fills.
+            API definition of <a href="Types.fill">JSON fill setting</a>.
+		<h3>Simple linear gradient</h3>
+		Simple linear gradients can be specifies by using an array with a list of colors and an angle using the following syntax:
+		<span class="output">Syntax: [ color1, color2, colorN, angle ]</span>
+
+            <span class="codeText">
+                        {
+                        //...
+                        //Two color linear gradient at 90 degrees.
+                        titleFill: ['red', 'white', 90],
+                        //Three color linear gradient at 45 degrees.
+                        legendFill: ['red', 'white', 'blue', 45],
+                        //...
+                        }
+                    </span>
+
+
+		<h3>Linear Gradients with Stops</h3>
+		More complex linear gradients where each color defines position along 
+		the line are achieved by using gradient stops. This is achieved by using 
+		an object with an angle property and a stops array property. Each stop
+		consists of an array of [stop position (0-1), color]. For example:
+                    <span class="codeText">
+                        {
+                        //...
+                        titleFill: {<br />
+		stops:[<br />
+		[0,&#39;red&#39;],<br />
+		[0.33,[&#39;blue&#39;,0.2]],<br />
+		[1,&#39;white&#39;] <br />
+		],<br />
+		angle:90<br />
+		}
+                        //...
+                        }
+
+
+
+            </span>
+<span class="docsSample">ArbitraryAnnotations</span>
+		<h2>Shading Effects	</h2>
+            Virtually all areas of the chart utilize internal processing to
+		apply a subtle shading effect. A more pronounced example of this is 
+		<a href="Types.axis.alternateGridFill">axis.alternateGridFill</a>.
+		When a simple color is specified for this setting, the chart applies the 
+		effect based on the specified color. This can be disabled so a solid
+		color is used by setting the color using an array like [color,false]. 
+		The false indicating the default effect should not be used.<br />
+&nbsp;<br />
+		For example:<br />
+		fill: [&#39;red&#39;,false]<br />
+		<br />
+                    <h2>Image Fill</h2>
+		The <a href="Types.chartArea.fill">chartArea.fill</a> property is a variation that supports an image.<br />
+		<span class="codeText">{<br />
+		chartAreaFill: {image:&#39;url(image.png)&#39;}<br />
+		}</span>
+		<span class="docsSample">ChartAreaImage</span>
+
+            <span class="docsTasks">
+            Tasks.Styling
+        </span>

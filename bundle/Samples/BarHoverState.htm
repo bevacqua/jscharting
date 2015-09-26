@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bar Hover State Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Column series type hover and select states.
+Learn how to:
+
+  - Modify a bar data point appearance on hover and select states.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  legendVisible: false,
+  toolbarVisible: false,
+  type: 'columnSolid',
+  yAxisLabelText: 'Sales',
+  yAxisFormatString: 'c',
+  title: { label: {text: 'Sales by Representative' }  },
+  defaultSeriesPointSelection: true,
+  annotations: [
+    {
+      position: 'CA:1,1',
+      boxVisible: false,
+      labelText: 'Hover bars to see style change. Click to select.<br/>Notice the select state only applies outline width.<br/>But hover state settings persist.'
+    }
+  ],
+  defaultPointStates: {
+    hover: {
+      outlineWidth: 4,
+      outlineColor: '#ffa500',
+      fill: 'red'
+    },
+    select: {outlineWidth: 6 }
+  },
+  series: [
+    {
+      name: 'Representatives',
+      points: [
+        { name: 'Angie', y: 32165  },
+        { name: 'Chris', y: 28651  },
+        { name: 'Arthur', y: 18563  },
+        { name: 'David', y: 35698  },
+        { name: 'Mike', y: 27659  },
+        { name: 'Laura', y: 28684  },
+        { name: 'Michelle', y: 25684  },
+        { name: 'Joseph', y: 38654  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

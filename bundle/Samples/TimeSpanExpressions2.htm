@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Time Span Expressions 2 Chart</title>
+		  <style type="text/css">.expr:{ font-weight: bold;}</style>
+	</head>
+	<body>
+	Calculate series time span in days.
+<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates using token expressions to calculate time spans in days.
+Learn how to:
+
+  - Use token expressions in labels to calculate time spans.
+  - Format label token expression results.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'line',
+  yAxisLabelText: 'Usage (MB)',
+  marginRight: 20,
+  toolbarVisible: false,
+  legend: {
+    position: 'CA:5,5',
+    defaultEntryText: '%name <b>{days(%xmax-%xmin):n1}</b> days, Total: <b>{%sum/1000:n2}</b> GB'
+  },
+  xAxisFormatString: 'MMM dd',
+  titleLabelText: 'Usage Over Time (2014)',
+  xAxisScaleType: 'time',
+  series: [
+    {
+      name: 'China',
+      points: JSC.pointsFromArray('x,y',[['3/8/2014',1180],['3/9/2014',1138],['3/10/2014',1105],['3/11/2014',1121],['3/12/2014',1129],['3/13/2014',1128],['3/14/2014',1167],['3/15/2014',1118],['3/16/2014',1064],['3/17/2014',1030],['3/18/2014',1043],['3/19/2014',1108],['3/20/2014',1095],['3/21/2014',1164],['3/22/2014',1112],['3/23/2014',1098],['3/24/2014',1135],['3/25/2014',1182],['3/26/2014',1179],['3/27/2014',1186]])
+    },
+    {
+      name: 'India',
+      points: JSC.pointsFromArray('x,y',[['3/19/2014',931],['3/20/2014',946],['3/21/2014',980],['3/22/2014',991],['3/23/2014',1047],['3/24/2014',1082],['3/25/2014',1072],['3/26/2014',1090],['3/27/2014',1105]])
+    },
+    {
+      name: 'Europe',
+      points: JSC.pointsFromArray('x,y',[['3/15/2014',1122],['3/16/2014',1144],['3/17/2014',1148],['3/18/2014',1148],['3/19/2014',1153],['3/20/2014',1145],['3/21/2014',1200],['3/22/2014',1170],['3/23/2014',1159],['3/24/2014',1133],['3/25/2014',1107],['3/26/2014',1054],['3/27/2014',1038]])
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

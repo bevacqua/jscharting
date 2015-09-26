@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Zoom To Chart</title>
+		  <style type="text/css">/*CSS*/
+        .warned{ border-color:red}</style>
+	</head>
+	<body>
+	Map Code: <input type="text" id="tb" value="US.region:Midwest"> <input type="button" id="zoomToBtn" value="Zoom" onClick="doZoom()">
+    <input type="button"  value="Zoom Out" onClick="chart.zoom(1)">
+        <div style="width: 640px;">Examples: 'US', 'MX', 'US.IL', 'CA.BC', 'US.region:Midwest',</div>
+    <div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Zoom based on mapCodes or property filters.
+Learn how to:
+
+  - Mapping base layers from mapCodes.
+  - Zoom map using mapCodes and propertyFilters.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  mappingBase: {
+    layers: 'Americas,US,CA,MX',
+    series: {defaultPoint: {  color: '#d1eedd'} }
+  }
+},tbwId;
+var chart = new JSC.Chart(chartConfig);
+var $tb = $("#tb");
+
+function doZoom(){
+    var val = $tb.val();
+    var obj;
+    chart.zoom(val)
+   /* if(obj= chart.get(val)){  obj.zoomTo(); }
+    else{  tbWarning(); }*/
+}
+
+$tb.keyup(function(event){
+    (event.keyCode == 13) && $("#zoomToBtn").click();
+
+});
+
+function tbWarning(){
+    clearTimeout(tbwId);
+    $tb.addClass('warned');
+    tbwId = setTimeout(function(){  $tb.removeClass('warned'); },2500);
+}
+
+
+</script>
+	</body>
+</html>

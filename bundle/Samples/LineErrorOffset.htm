@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Line Error Offset Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Line series with default offset error bars.
+Learn how to:
+
+  - Draw error bars with default offset.
+  - Draw error bars on line series.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'line',
+  titleLabelText: 'Projected Sales [2016]',
+  legendVisible: false,
+  annotations: [
+    {
+      labelText: 'Data Accuracy: +/- 5',
+      position: 'CA:5,5',
+      boxVisible: false
+    }
+  ],
+  series: [
+    {
+      defaultPoint: {  subvalue: { offset: 5  }},
+      name: 'Projected Sales',
+      points: [
+        { name: 'Jan', y: 84  },
+        { name: 'Feb', y: 97  },
+        { name: 'Mar', y: 98  },
+        { name: 'Apr', y: 114  },
+        { name: 'May', y: 101  },
+        { name: 'Jun', y: 99  },
+        { name: 'Jul', y: 117  },
+        { name: 'Aug', y: 114  },
+        { name: 'Sep', y: 106  },
+        { name: 'Oct', y: 89  },
+        { name: 'Nov', y: 95  },
+        { name: 'Dec', y: 81  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

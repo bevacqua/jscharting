@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Label Data Attributes Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	These data points contain additional information. Point labels show the industry attributes specified through <br/>
+the point label text as tokens. In this case, the '%industry' token is used.<br/> Hover elements for more info.
+
+<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Uses data point attributes and displays them in labels with tokens.
+Learn how to:
+
+  - Show custom attributes in data labels with tokens.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  width: 600,
+  height: 350,
+  defaultPointLabelText: '%industry',
+  defaultPointTooltip: '<b>%name</b><br/>%phone<br/>Sector: %industry',
+  defaultSeries: { type: 'column'  },
+  series: [
+    {
+      points: [
+        {
+          attributes: [[  'industry',  'IT'],[  'phone',  '(630)555-1234'] ],
+          name: 'Angie',
+          y: 3
+        },
+        {
+          attributes: [
+            [  'industry',  'Automotive'],
+            [  'phone',  '(630)555-1235']
+          ],
+          name: 'Chris',
+          y: 8
+        },
+        {
+          attributes: [[  'industry',  'Media'],[  'phone',  '(630)555-1236'] ],
+          name: 'Arthur',
+          y: 5
+        },
+        {
+          attributes: [
+            [  'industry',  'Agricultural'],
+            [  'phone',  '(630)555-1237']
+          ],
+          name: 'David',
+          y: 6
+        }
+      ],
+      name: 'Representatives'
+    }
+  ],
+  yAxisLabelText: 'Unit Count',
+  titleLabelText: 'Unit Sales by Representative'
+});
+
+
+</script>
+	</body>
+</html>

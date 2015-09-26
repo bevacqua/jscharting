@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Palette Designer Chart</title>
+		  <style type="text/css">/*CSS*/
+        .swatchItem{
+    height:25px; display: table-cell; cursor:pointer;
+}
+.numInput{width:40px}
+.step{ font-weight: bold; padding: 5px;}
+.selectedItem{ stroke:red;}</style>
+	</head>
+	<body>
+	<br/>
+
+<div style="740px">
+    <!--Left,Up,Right,Down*/-->
+
+<span class="step">Step 1.</span>
+Select colors from predefined palettes:
+    <br/>
+&nbsp;&nbsp;&nbsp; Palette:
+    <select id="Palettes" onchange="drawPaletteSwatch();">
+    <option value="default">default</option>
+<option value="spreadsheet">spreadsheet</option>
+    <option value="oceanMidtones">oceanMidtones</option>
+    <option value="mutedRainbow">mutedRainbow</option>
+    <option value="pastelContrast">pastelContrast</option>
+    <option value="rainforest">rainforest</option>
+    <option value="random">random</option>
+    <option value="autumn">autumn</option>
+    <option value="bright">bright</option>
+    <option value="lavender">lavender</option>
+    <option value="midTones">midTones</option>
+    <option value="mixed">mixed</option>
+    <option value="pastel">pastel</option>
+    <option value="poppies">poppies</option>
+    <option value="spring">spring</option>
+    <option value="warmEarth">warmEarth</option>
+    <option value="waterMeadow">waterMeadow</option>
+    <option value="darkRainbow">darkRainbow</option>
+    <option value="midRange">midRange</option>
+    <option value="vividDark">vividDark</option>
+    <option value="fiveColor1">fiveColor1</option>
+    <option value="fiveColor2">fiveColor2</option>
+    <option value="fiveColor3">fiveColor3</option>
+    <option value="fiveColor4">fiveColor4</option>
+    <option value="fiveColor5">fiveColor5</option>
+    <option value="fiveColor6">fiveColor6</option>
+    <option value="fiveColor7">fiveColor7</option>
+    <option value="fiveColor8">fiveColor8</option>
+    <option value="fiveColor9">fiveColor9</option>
+    <option value="fiveColor10">fiveColor10</option>
+    <option value="fiveColor11">fiveColor11</option>
+    <option value="fiveColor12">fiveColor12</option>
+    <option value="fiveColor13">fiveColor13</option>
+    <option value="fiveColor14">fiveColor14</option>
+    <option value="fiveColor15">fiveColor15</option>
+    <option value="fiveColor16">fiveColor16</option>
+    <option value="fiveColor17">fiveColor17</option>
+    <option value="fiveColor18">fiveColor18</option>
+    <option value="fiveColor19">fiveColor19</option>
+    <option value="fiveColor20">fiveColor20</option>
+    <option value="fiveColor21">fiveColor21</option>
+    <option value="fiveColor22">fiveColor22</option>
+    <option value="fiveColor23">fiveColor23</option>
+    <option value="fiveColor24">fiveColor24</option>
+    <option value="fiveColor25">fiveColor25</option>
+    <option value="fiveColor26">fiveColor26</option>
+    <option value="fiveColor27">fiveColor27</option>
+    <option value="fiveColor28">fiveColor28</option>
+    <option value="fiveColor29">fiveColor29</option>
+    <option value="fiveColor30">fiveColor30</option>
+    <option value="fiveColor31">fiveColor31</option>
+    <option value="fiveColor32">fiveColor32</option>
+    <option value="fiveColor33">fiveColor33</option>
+    <option value="fiveColor34">fiveColor34</option>
+    <option value="fiveColor35">fiveColor35</option>
+    <option value="fiveColor36">fiveColor36</option>
+    <option value="fiveColor37">fiveColor37</option>
+    <option value="fiveColor38">fiveColor38</option>
+    <option value="fiveColor39">fiveColor39</option>
+    <option value="fiveColor40">fiveColor40</option>
+    <option value="fiveColor41">fiveColor41</option>
+    <option value="fiveColor42">fiveColor42</option>
+    <option value="fiveColor43">fiveColor43</option>
+    <option value="fiveColor44">fiveColor44</option>
+    <option value="fiveColor45">fiveColor45</option>
+    <option value="fiveColor46">fiveColor46</option>
+    </select>
+    <br/>
+
+
+    <span class="step">Step 2.</span>
+Choose a color:
+    <div id="swatches" style="height:25px;border-spacing: 1px;"></div>
+    <div>
+    <div id="pickedColor" style="width:100px;height:20px; margin: 7px;" id="swatches">Chosen Color</div>
+
+
+<span class="step">Step 3.</span>
+Set palette generator options:
+    <div class="swatches">Variations (0-1):
+Saturation:
+    <input type="text" class="numInput" id="saturation" value=".10"/>
+    Hue:
+<input type="text" class="numInput" id="hue" value=".1"/>
+    Lightness:
+<input type="text" class="numInput" id="lightness" value=".10"/>
+    Sort:
+<select id="sort">
+    <option value="-1">Random</option>
+    <option value="0">Linear</option>
+    <option value="1">Seeded</option>
+    </select>
+
+    <input type="button" value="Update" onClick="makePalette();"/>
+    </div>
+
+
+    <span class="step">Result</span>
+    <div id="outSwatches" style="height:20px"></div>
+    </div>
+
+
+    <div id="cc" style="width: 740px; height: 480px"></div>
+    <p>Code</p>
+    <textarea id="codeOutput" style="width:730px; height:40px"></textarea>
+    <p>Colors</p>
+    <textarea id="colorsOutput" style="width:730px; height:80px"></textarea>
+
+    </div>
+	
+<script type="text/javascript">
+/*
+A UI wrapping the JSC.colorToPalette() method.
+Learn how to:
+
+  - Generate tuned palettes.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'map',
+  height: 480,
+  legendVisible: false,
+  series: [
+    {
+      name: 'Map',
+      id: 'states',
+      defaultPointLabelText: '%stateCode',
+      palette: 'default',
+      map: 'US'
+    }
+  ]
+});
+var currentSettings = {color:'red'};
+var $Palettes = $('#Palettes');
+$('#swatches').bind('click',function(e){
+    var $target =  $(e.target);
+
+    $target.addClass('selectedItem')
+
+    currentSettings.color = $target.css('background-color');
+    $('#pickedColor').css('background-color',currentSettings.color);
+    makePalette();
+});
+drawPaletteSwatch();
+function zoom(val){
+
+    if(val.length){  val = [val[0]*100000,val[1]*100000]; }
+    chart.zoom(val);
+}
+
+function drawPaletteSwatch(){
+    var pal = $Palettes.val();
+    var colors = JSC.getPalette(pal);
+    drawSwatch(colors);
+
+}
+function drawSwatch(colors){ $('#swatches').html(getSwatchHtm(colors));}
+function getSwatchHtm(colors){
+    var swatchesWidth=600;
+
+    var widthPer = swatchesWidth/colors.length;
+
+    var outHtm = [];
+    for (var i = 0, iLen = colors.length; i < iLen; i++) {
+        var color = colors[i];
+        outHtm.push('<span class="swatchItem" style="background-color:' + color + '; width:' + widthPer + 'px; "> </span>');
+    }
+    return outHtm.join('');
+}
+
+function makePalette(){
+    var code = '';
+
+    currentSettings.s = parseFloat($('#saturation').val());
+    currentSettings.h = parseFloat($('#hue').val());
+    currentSettings.l = parseFloat($('#lightness').val());
+    var linear = jQuery('#linear').is(':checked')===true;
+    var sort = parseInt($('#sort').val());
+    var variations = {hue:currentSettings.h,saturation:currentSettings.s,lightness:currentSettings.l};
+    code = 'var colors = JSC.colorToPalette("'+currentSettings.color+'",'+JSON.stringify(variations)+',50,'+sort+');';
+    if(linear){  code = code.replace(');',', true);') }
+    $('#codeOutput').val(code);
+
+    var newPalette = JSC.colorToPalette(currentSettings.color,{hue:currentSettings.h,saturation:currentSettings.s,lightness:currentSettings.l},50,sort);
+    $('#outSwatches').html(getSwatchHtm(newPalette));
+    chart.get('states').setPalette(newPalette);
+    $('#colorsOutput').val(JSON.stringify(newPalette));
+
+}
+
+function selectPalette(){
+    var pal = $Palettes.val();
+    chart.get('states').setPalette(pal);
+}
+
+
+</script>
+	</body>
+</html>

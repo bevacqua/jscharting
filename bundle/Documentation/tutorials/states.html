@@ -1,0 +1,95 @@
+﻿<h2>State Behaviors</h2>
+		A number of objects have state settings that define their appearance  when
+		in a particular state such as a button&#39;s hover appearance.
+		<h2>Cascading States
+		</h2>States of an object are interpreted as having an order in which
+		they occur, for example, a button has states such as Normal, Hover, Clicked and they occur in that
+		order. JSC implements functionality that considers this order and helps 
+		cascade the settings from one state to the next. For example, if a font 
+		is specified for the normal state, it will propagate to subsequent 
+		states automatically and not require the user to specify the same setting
+		for each state. If a setting is specified for the hover state, it will 
+		propagate to the clicked state, but not back to the normal state.<br />
+		<br />
+		Cascading state settings don&#39;t just propagate through states, settings of the previous state are used as a starting point, and then
+        they are modified so that the visual difference between states is still obvious.
+		For example, setting a button&#39;s fill color to orange will propagate that 
+		color to the hover state but will darken it slightly to indicate the
+		button is in a different state.
+		<span class="docsNote">This type of behavior also exists in other 
+		scenarios such as when setting a button&#39;s fill property, a similar color will 
+		automatically propagate to the button&#39;s outline color  
+		unless otherwise specified.</span>
+		This functionality is highly tuned to give the best visual results with 
+		the least amount of settings and let the developer focus on other core 
+		requirements. <br />
+		<br />
+		The following table lists objects that implement states and the states
+		available for each.
+
+		<span class="docsNote">These objects all include a Normal state which is 
+		implied but not specified below. The API for these normal settings are 
+		at the objects root like obj.color whereas setting properties for states 
+		listed below require setting similar to obj.states.hover.color.</span>
+
+		<table  class="useDocsTable">
+			<tr class="gridHeadCell">
+				<th style="width:150px">Object</th>
+				<th style="width:100px">States</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td><a href="Types.legendEntry">legendEntry</a></td>
+				<td>Hover, Hidden</td>
+				<td>Legend entry states.</td>
+			</tr>
+			<tr>
+				<td><a href="Types.series">series</a></td>
+				<td>Hover Select</td>
+				<td>Series States. Applicable mainly to line/area series types.</td>
+			</tr>
+			<tr>
+				<td><a href="Types.button">button</a></td>
+				<td>Hover, Select</td>
+				<td>States for resetZoom, print,export buttons include only 
+				hover. Select state applies to navigator quickZoom buttons.</td>
+			</tr>
+			<tr>
+				<td><a href="Types.point">point</a></td>
+				<td>Hover, Select</td>
+				<td>Data point states.</td>
+			</tr>
+			<tr>
+				<td><a href="Types.pointMarker">pointMarker</a></td>
+				<td>Hover, Select</td>
+				<td>Data point marker states.</td>
+			</tr>
+		</table>
+
+		<h2>Data Object States</h2>
+		<span class="docsNote">Data point&#39;s &#39;Select&#39; state requires that its 
+		parent series pointSelection property is set to true.
+		</span>
+		Data objects including series, point, and pointMarker have the most 
+		complex sequence and architecture of state property propagation because 
+		points include point markers. However, this complexity is there working 
+		behind the scenes and reduces the need to think about all the states and 
+		settings. The intention of this functionality is to simply work as 
+		expected despite having a complicated API architecture. For example, 
+		with a marker series type, the setting point.hover.outline.color setting 
+		can also be set through point.marker.states.hover.outline.color or 
+		point.states.marker.outline.color. Each of these should work and the 
+		approach is up to the developer, however, using setting 
+		point.hover.outline.color is ideal because it will affect the data 
+		point&#39;s outline whether it&#39;s a marker, bar, or any other type that uses 
+		an outline. This API is there for when bars and other series types 
+		support markers.<br />
+        <span class="docsReference">
+            Samples.BarHoverState | Samples.LegendStyling |
+            Samples.ToolbarStyling |
+            Samples.NavigatorToolbar
+        </span>
+<!--
+<span class="docsTasks">
+            Tasks.States
+        </span>-->

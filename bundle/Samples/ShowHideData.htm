@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Show Hide Data Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px"></div>
+
+<input id="btn" type="button" value="Hide Gross Sales" onclick="showHide();"/>
+	
+<script type="text/javascript">
+/*
+Demonstrates toggling a series visibility programmatically.
+Learn how to:
+
+  - Hide a data series programmatically by calling the series.hide() function.
+  - Show a data series programmatically by calling the series.show() function.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'column',
+  series: [
+    {
+      id: 's1',
+      name: 'Gross Sales',
+      points: [
+        [ 'Q1', 50120  ],
+        [ 'Q2', 53465  ],
+        [ 'Q3', 62165  ],
+        [ 'Q4', 52156  ]
+      ]
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        [ 'Q1', 32654  ],
+        [ 'Q2', 35645  ],
+        [ 'Q3', 42651  ],
+        [ 'Q4', 30153  ]
+      ]
+    }
+  ],
+  width: 600,
+  height: 350,
+  yAxisLabelText: 'USD',
+  titleLabelText: 'Sales by quarter ',
+  yAxisFormatString: 'c'
+});
+function showHide(){
+	if(chart){
+		var v = jQuery('#btn').val(),
+			s = chart.get('s1');
+
+		if(v === 'Hide Gross Sales'){
+			jQuery('#btn').val('Show Gross Sales');
+			s.show(false);
+
+		} else {
+			jQuery('#btn').val('Hide Gross Sales');
+			s.show(true);
+		}
+	}
+}
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Htm Data Headers Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	This is a standard HTML table with values.
+    The sample examines the table data and charts it.
+<table id="dataTable" style="margin:0px auto;">
+    <tr><td>States</td><td></td></tr>
+    <tr><td>Illinois</td><td>4324</td></tr>
+    <tr><td>Indiana</td><td>5564</td></tr>
+    <tr><td>California</td><td>9453</td></tr>
+    <tr><td>Florida</td><td>7645</td></tr>
+    <tr><td>Nevada</td><td>12143</td></tr>
+    <tr><td>Colorado</td><td>3342</td></tr>
+</table>
+
+<div id="cc" style="width: 640px; height: 400px"></div>
+	
+<script type="text/javascript">
+/*
+Read an HTML Table with a header and chart the data.
+Learn how to:
+
+  - Convert HTML table with headers to a chart.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'column',
+  titleLabelText: 'Take HTML and Chart it.',
+  defaultPointLabelVisible: true
+};
+$(document).ready(function () {
+    json.series = getData('dataTable');
+    var chart = new JSC.Chart(json);
+});
+function getData(tableId){
+    var series = {points:[]};
+    $('#dataTable tr').each(function(){
+        var tds = $(this).find('td');
+
+        if($(tds[1]).text().length === 0){series.name = $(tds[0]).text();  } else {
+            var point = [$(tds[0]).text(),parseInt($(tds[1]).text())];
+            series.points.push(point);
+        }
+
+
+
+    });
+    return [series];
+}
+
+
+</script>
+	</body>
+</html>

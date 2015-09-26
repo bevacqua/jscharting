@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bar 3D Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Bar chart in 3D.
+Learn how to:
+
+  - Draw stacked bar series.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'column',
+  margin: 45,
+  chartAreaView: { type: '3d', tilt: 12, rotation: 20  },
+  legendPosition: 'ca:100,20',
+  series: [
+    {
+      name: 'Team',
+      palette: 'default',
+      points: [
+        { name: 'Julian', y: 11  },
+        { name: 'Jeremiah', y: 118  },
+        { name: 'Eli', y: 136  },
+        { name: 'Tyler', y: 130  },
+        { name: 'Ryan', y: 123  }
+      ]
+    }
+  ]
+});
+
+function atLabel(val){ return 'Working';}
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Chart Box Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	<a href="ChartBox.htm">Javascript</a> | Silverlight
+<script type="text/javascript">
+/*
+Specifies chart box and background visual settings.
+Learn how to:
+
+  - Style the chart background.
+  - Style a box around the chart.
+  - Style the chart box radius.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendPosition: 'CA:15,15',
+  renderMode : 'Silverlight',
+  type: 'column',
+  box: {
+    outline: {
+      color: '#5B9AE3',
+      width: 2
+    },
+    radius: 5,
+    fill: '#D1E7FF'
+  },
+  width: 600,
+  height: 350,
+  yAxisLabelText: 'USD',
+  titleLabelText: 'Sales by quarter ',
+  yAxisFormatString: 'c',
+  series: [
+    {
+      name: 'Gross Sales',
+      points: [
+        [
+          'Q1',
+          50120
+        ],
+        [
+          'Q2',
+          53465
+        ],
+        [
+          'Q3',
+          62165
+        ],
+        [
+          'Q4',
+          52156
+        ]
+      ]
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        [
+          'Q1',
+          32654
+        ],
+        [
+          'Q2',
+          35645
+        ],
+        [
+          'Q3',
+          42651
+        ],
+        [
+          'Q4',
+          30153
+        ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

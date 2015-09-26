@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Combo Pareto Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A traditional Pareto chart with bar and line series.
+Learn how to:
+
+  - Draw a combo chart with different series types.
+  - Draw a Pareto chart.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  toolbarVisible: false,
+  marginTop: 30,
+  series: [
+    {
+      id: 's1',
+      yAxis: 'a1',
+      type: 'column',
+      points: [
+        { name: 'Customer Service', y: 25  },
+        { name: 'Support', y: 15  },
+        { name: 'Sales Support', y: 8  },
+        { name: 'Refunds', y: 2  }
+      ]
+    },
+    {
+      defaultPointLabel: {
+        visible: true,
+        text: '%yValue%',
+        offset: '0,-10',
+        verticalAlign: 'bottom'
+      },
+      type: 'line',
+      yAxis: 'a2',
+      points: [
+        { name: 'Customer Service', y: 50  },
+        { name: 'Support', y: 80  },
+        { name: 'Sales Support', y: 96  },
+        { name: 'Refunds', y: 100  }
+      ]
+    }
+  ],
+  width: 600,
+  height: 350,
+  yAxis: [
+    {id: 'a1',scaleRange: [  0,  50] },
+    {
+      id: 'a2',
+      orientation: 'right',
+      scale: {  range: [ 0, 100  ],  interval: 20},
+      defaultTickLabelText: '%value%'
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+﻿
+
+
+        <h2>Introduction</h2>
+				The chart is equipped with interactive features that allow users to modify the data display in real-time by clicking the legend entry to hide/show series.
+        When series.pointSelection is set to true, users can select one or more data points of that series. The chart can
+then return the info on the selected points programmatically.
+
+&nbsp;
+<h3>Visual States</h3>
+Interactive elements such as points, labels, buttons, and legend entries include state properties that control the visual appearance of those
+objects in certain states. For example when a mouse hovers a data point, its color may change.
+                    <span class="docsReference">
+                        Tutorials.states : Visual states tutorial.
+                    </span>
+&nbsp;
+
+		
+<h2>Events</h2>
+Events provide a way to execute code when specific interactions occur with the chart, or during certain stages of the chart rendering process. The
+click event is used as an example below to demonstrate the API ease of use. 
+&nbsp;
+<h3>Intro with Click Event as example</h3>
+JSCharting has some convenient API features built in to improve working with events. The traditional way to setup say a point click event looks like:
+&nbsp;
+<span class="codeText">
+Points:[
+{
+/*...*/
+events:{
+click:  function(e){ 
+// event code
+alert(this.name);
+}
+},
+statesHover:{
+cursor:&#39;poiner&#39;
+},{/*...*/}
+]</span>
+
+However, a string can be used in place of a function to achieve the same result. Note that with strings, tokens such as <span class="example">&#39;%name&#39;</span> can be used instead of
+object properties like  <span class="example">&#39;this.name&#39;</span>. The advantage to using strings is that is makes it much faster to implement simple cases and reduces the amount of code
+        necessary to achieve similar goals and will suffice for most scenarios while using functions is still available if necessary.
+
+<span class="codeText">
+Points:[
+{
+/*...*/
+events:{
+click: &#39;Javascript:alert(&quot;%name&quot;);&#39;
+},
+statesHoverCursor:&#39;poiner&#39;
+},
+{/*...*/}
+]</span>
+
+Another simplification of this feature is to use the point URL property. This wraps the click event and cursor management automatically. The final and 
+easiest approach can be:
+
+<span class="codeText">Points:[
+{
+/*...*/
+url: &#39;alert(&quot;%name&quot;);&#39;
+},
+{/*...*/}
+]</span>
+
+<h3>Event API</h3>
+        Please see the following event API references:
+
+        <span class="docsReference">
+            Types.chart.events: Chart related events |
+            Types.point.events: Data point related events |
+            Types.series.events: Data series related events |
+            </span>
+
+        <h3>Get Selected Points</h3>
+
+        <span class="docsReference">
+
+    Samples.GetSelectedData : Demonstrates how to use let users select points and gather this information programmatically.
+</span>
+
+<!--<h3>UI Events</h3>-->
+
+        <span class="docsTasks">
+            Tasks.Interactivity
+        </span>
+
+                <!--
+
+...
+<h3>State Changes</h3>
+...
+		<pre>
+<h2>Commands</h2>
+Commands are used to manipulate the chart and data in realtime. Some features include:
+Data 
+Add / Remove 
+Update existing data properties
+Select 
+Show/Hide
+Axis 
+Change axis range
+Add/Remove markers
+Update axis label.
+Chart 
+Export chart image
+Print chart.
+</pre>-->

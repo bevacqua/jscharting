@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map US Election Basic Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 700px; height: 500px">
+</div>
+	
+<script type="text/javascript">
+/*
+Two map series, each with a specific set of map features.
+Learn how to:
+
+  - Map points from mapFiles.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  titleLabelText: '2012 Presidential Election Results',
+  type: 'map',
+  height: 500,
+  toolbarVisible: false,
+  legend: { position: '440,15', layout: 'horizontal'  },
+  defaultPoint: {
+    outlineColor: 'white',
+    labelText: '%stateCode',
+    tooltip: '%name<br/><b>Winner:</b> %seriesName'
+  },
+  series: [
+    {name: 'Romney',color: '#bb4e55' },
+    {name: 'Obama',color: '#40698b' }
+  ]
+};
+
+var redStates = 'WV,NC,SC,IN,KY,TN,AL,GA,MS,LA,AR,MO,TX,OK,KS,NE,SD,ND,WY,MT,ID,UT,AZ,AK';
+var blueStates = 'WA,OR,CA,NV,CO,NM,MN,IA,WI,IL,MI,OH,PA,VA,NY,ME,NH,VT,MA,CT,RI,NJ,DE,MD,DC,FL,HI';
+
+chartConfig.series[0].points = $.map(redStates.split(','),function(val){  return {map:'US.'+val}; })
+chartConfig.series[1].points = $.map(blueStates.split(','),function(val){  return {map:'US.'+val}; })
+
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

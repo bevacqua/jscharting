@@ -1,0 +1,201 @@
+
+<h2>Introduction</h2>
+        <p>Expressions extend label tokens to allow mathematical manipulation of those values.
+            This in effect removes the need for label callback functions and is a much simpler alternative.
+            Expressions can be a powerful technique with functionality that can be written in a short string
+            that would otherwise require a lot of code writing label callback functions.
+        </p>
+<p> Expressions within a string much be surrounded with <span class="example">&#39;{ }&#39;</span> characters.</p>
+
+<p>The basic syntax for an expression is:</p>
+
+<span class="output">
+    {(expression)}
+</span>
+<p> Expression with format string.</p>
+
+<span class="output">
+    {(expression):(formatString)}
+</span>
+
+        Expressions can contain tokens and numbers included in the calculations.
+<h4>Default Formatting</h4>
+<p>When an expression like <span class="example">&#39;{%yValue/%percentOfSeries}&#39;</span> is used, the default formatting of the first token is applied to the result.
+    In this case the formatting of the yAxis would apply.  <br>
+</p>
+<h2>Calculations</h2>
+
+<h3>Basic Calculation Features</h3>
+        Standard calculation operators such as / * - + can be used within the label expression.
+        For example:
+
+        <h4>Examples</h4>
+<table class="useDocsTable">
+
+    <tr >
+        <th style="width: 187px"><strong>Expression</strong></th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%value/1000}K&#39;</span></td>
+        <td>Converts numbers such as '56,000' into '56K'.</td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%value/1000000:n1}M&#39;</span></td>
+        <td>Converts numbers such as '56,500,000' into '56.5M'.</td>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%value*5}&#39;</span></td>
+        <td> If the token represents a value such as '20', this label will result in '100'   </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%yValue/%percentOfSeries}&#39;</span></td>
+        <td> Multiple tokens can be used within an expression.  </td>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{(%value+5)*5}&#39;</span></td>
+        <td> Parathesees can also be used in expressions.   </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%yValue*100/%percentOfSeries:n}&#39;</span></td>
+        <td>This calculates the series y value total at the data point label level.</td>
+    </tr>
+
+
+</table>
+
+
+<h3>Date Calculations</h3>
+<p>
+    Tokens which represent dates like with date axis ticks, <span class="example">&#39;{%value}&#39;</span> will result in a date,
+    but if expressions are used, the dates are converted to numbers.<br/>
+    Formatting can be specified within the expression which will convert the value back to a date.
+
+<h4>Explicit Data Type Formatting
+</h4>
+<p>
+    Generally since the formatting of the first token in the expression is used for the resulting format,
+    if the first token is associated with dates, it will automatically be converted back to a date.
+    In cases where this is not done automatically, the following syntax can be used for force the values to become either numbers or dates.
+
+    <span class="output">
+    {(expression):Date (formatString)}
+</span>
+    <span class="output">
+    {(expression):Number (formatString)}
+</span>
+
+
+</p>
+<h4>Date Expression Methods</h4>
+<p>
+Several date related helper functions are available to use in date calculations. These functions are listed below.
+
+    <ul>
+    <li>days()</li>
+    <li>weeks()</li>
+    <li>years()</li>
+    <li>hours()</li>
+    <li>minutes()</li>
+    <li>seconds()</li>
+    </ul>
+
+<h4>Examples</h4>
+<table class="useDocsTable">
+
+    <tr >
+        <th style="width: 187px"><strong>Expression</strong></th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%value+days(5):Date d}&#39;</span></td>
+        <td>Adds 5 days to the date represented by the %value token.</td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%value-years(1):Date d}&#39;</span></td>
+        <td>Subtracts 1 year from the date represented by the %value token.</td>
+    </tr>
+
+
+</table>
+
+</p>
+<h4>Time Spans</h4>
+<p>
+    The date functions can also be utilized to calculate date ranges. For instance consider two tokens: 'xMin', and 'xMax'.
+    <br/>
+    These represent the minimum and maximum x axis date ranges.
+<table class="useDocsTable">
+    <tr >
+        <th style="width: 187px"><strong>Expression</strong></th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{days(%xMax-%xMin)}:Number n}&#39;</span></td>
+        <td>The number of days between the max and min x axis time span.</td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{months(%xMax-%xMin)}:Number n2}&#39;</span></td>
+        <td>The number of months between the max and min x axis time span formatted with two decimal points.</td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{years('+Date.now()+'-%since):number n1}&#39;</span></td>
+        <td>Calculates how many years have lapsed since the date represented by the %since token.</td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;{%total/years('+Date.now()+'-%since):number n1}&#39;</span></td>
+        <td>Calculates the how many years have lapsed since the date represented by the %since token. Then shows the average per year based on the %total token.</td>
+    </tr>
+</table>
+<span class="docsTip">
+By including Date.now() within a string, the current date can be used with calculations. For example:
+
+    <span class="example">  '{years('+Date.now()+'-%since)}'</span>
+</span>
+
+</p>
+
+
+
+<p></p>
+
+
+
+
+
+
+
+
+
+</p>
+
+
+
+
+
+<h2>PercentOf__ Calculations
+</h2>
+<p>Percentages are calculated based on current value / sum. However, the sum in this calculation is the points range from yStart or 0 to y. And the absolute values are used. So to sum up y values the following calculation is used:
+    <span class="codeText"> Sum += Math.abs(y - (yStart||0));</span>
+
+</p>
+
+<h2></h2>
+<p></p>
+
+
+<h3></h3>
+<p></p>
+
+
+<h4></h4>
+<p></p>
+
+
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>

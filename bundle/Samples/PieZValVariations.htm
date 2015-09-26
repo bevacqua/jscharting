@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pie Z Val Variations Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Differing positive and negative pie z values.
+Learn how to:
+
+  - Draw pie with varying positive and negative slice lengths.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  height: 350,
+  titleLabelText: 'Differing positive and negative pie z values',
+  defaultPointLabelVisible: false,
+  defaultSeries: {
+    type: 'pieDonut',
+    shape: {
+      innerSize: '30%',
+      padding: 0.03,
+      offset: '0,30'
+    }
+  },
+  defaultAnnotation: {
+    boxVisible: false,
+    labelStyle: {fontSize: '15px' }
+  },
+  annotations: [
+    {
+      position: 'CA:50,40',
+      labelText: 'Positive Values'
+    },
+    {
+      position: 'CA:240,40',
+      labelText: 'Negative Values'
+    },
+    {
+      position: 'CA:395,40',
+      labelText: 'Positive and Negative Values'
+    },
+    {
+      position: 'CA:195,5',
+      labelText: 'Same Data with varying options.'
+    }
+  ],
+  series: [
+    {
+      name: 'Positive Z Values',
+      points: [
+        { name: 'Alexander', y: 22, z: 152  },
+        { name: 'Chase', y: 22, z: 137  },
+        { name: 'Isaiah', y: 23, z: 114  },
+        { name: 'Anthony', y: 23, z: 97  },
+        { name: 'Liam', y: 22, z: 85  }
+      ]
+    },
+    {
+      name: 'Positive Z Values',
+      points: [
+        { name: 'Alexander', y: 22, z: -152  },
+        { name: 'Chase', y: 22, z: -137  },
+        { name: 'Isaiah', y: 23, z: -114  },
+        { name: 'Anthony', y: 23, z: -97  },
+        { name: 'Liam', y: 22, z: -85  }
+      ]
+    },
+    {
+      name: 'Positive Z Values',
+      points: [
+        { name: 'Alexander', y: 22, z: 152  },
+        { name: 'Chase', y: 22, z: 107  },
+        { name: 'Isaiah', y: 23, z: 54  },
+        { name: 'Anthony', y: 23, z: -44  },
+        { name: 'Liam', y: 22, z: -131  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

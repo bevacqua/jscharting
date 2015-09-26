@@ -1,0 +1,687 @@
+﻿<h2>Introduction</h2>
+Text string settings allow tokens prefixed with a percentage sign to be replaced by actual data when the chart is rendered.
+                                        This is particularly useful for default level settings. For example, the following setting
+will result in each point's label showing the point's name.
+<span class="codeText">
+{
+    defaultPointLabelText:'%name'
+}</span>
+
+        <p>Virtually all labels and some other string properties support the use of tokens.
+            For example, point configuration supports tokens in label text, tooltips and url properties.</p>
+ <p>Different sets of tokens are available based on the type of data the parent objects
+     represent such as a series, point, seriesCollection and so on.
+     </p>
+
+<span class="docsNote">
+A <span class="example">&#39;&lt;br&gt;&#39;</span> tag can be used in label text to specify labels with
+				multiple lines.
+</span>
+
+
+
+<h2>PercentOf* Token Calculations
+</h2>
+<p>Percentages are calculated based on the given value / sum of all series.
+    However, the sum in this calculation is based on the absolute value of the points range from yStart to y or from 0 to y.
+    To sum up y values, the following calculation is used:
+    <span class="codeText"> Sum += Math.abs(y - (yStart||0));</span>
+
+</p>
+
+<h2>Reference</h2>
+
+
+<h3>Point Tokens</h3>
+Used by: Point Labels, Point Tooltips, Point URLs, Point
+Text Events
+
+		<table class="useDocsTable">
+			<tr >
+				<th style="width: 187px"><strong>Token Name</strong></th>
+				<th>Description</th>
+			</tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Identification</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+			<tr>
+				<td style="width: 187px"><span class="example">'%name'</span></td>
+				<td>Point&#39;s Name</td>
+			</tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%parentName'</span></td>
+                <td>The parent point's name or the series name. Used with tree data where points have parent points.</td>
+            </tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%seriesName'</span></td>
+				<td>Series name point belongs to.</td>
+			</tr>
+
+			<tr>
+				<td style="width: 187px"><span class="example">'%color'</span></td>
+				<td>Point color</td>
+			</tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%id'</span></td>
+				<td>Point&#39;s ID</td>
+			</tr>
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%yAxisLabel'</span></td>
+                <td>Label text of the y axis this point is plotted on.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xAxisLabel'</span></td>
+                <td>Label text of the x axis this point is plotted on.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Values</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%yValue'</span></td>
+                <td>Point&#39;s Y value.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%yStart'</span></td>
+                <td>Point&#39;s yStart value.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xValue'</span></td>
+                <td>Point&#39;s X value</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zValue'</span></td>
+                <td>Point&#39;s Z value</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%__'</span></td>
+                <td>Custom point attribute key values can be used to retrieve
+                    additional point data. This data can be defined through <a href="Types.point.attributes">point.attributes</a>.
+                    <span class="docsReference">Types.point.attributes | Samples.LabelDataAttributes</span></td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%seriesPointCount'</span></td>
+                <td>Number of points in series.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (Y Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%percentile'</span></td>
+                <td>The y value percentile calculation of this point in relation to other points within the parent series.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%percentOfTotal'</span></td>
+                <td>The percentage of all the series on the chart this point represents. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%percentOfSeries'</span></td>
+                <td>The percentage of the series this point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%percentOfGroup'</span></td>
+                <td>The percentage of all the elements with the same name this
+                    point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%percentOfSeriesMax'</span></td>
+                <td>The point's y value percentage of the maximum point value on the chart.
+                    point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%percentOfSeriesRange'</span></td>
+                <td>The point's y value percentage of the range between the parent series minimum and maximum point. </td>
+            </tr>
+
+            <tr>
+                                                 <td style="width: 187px; background-color: #F3F3F3;">Calculations (X Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentile'</span></td>
+                <td>The x value percentile calculation of this point in relation to other points within the parent series.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfTotal'</span></td>
+                <td>The percentage of x values of all the series on the chart this point represents. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfSeries'</span></td>
+                <td>The percentage of x values of the series this point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfGroup'</span></td>
+                <td>The percentage of x values of all the elements with the same name this
+                    point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfSeriesMax'</span></td>
+                <td>The point's x value percentage of the maximum point value on the chart.
+                    point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfSeriesRange'</span></td>
+                <td>The point's x value percentage of the range between the parent series minimum and maximum point. </td>
+            </tr>
+
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (Z Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentile'</span></td>
+                <td>The z value percentile calculation of this point in relation to other points within the parent series.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfTotal'</span></td>
+                <td>The percentage of z values of all the series on the chart this point represents. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfSeries'</span></td>
+                <td>The percentage of z values of the series this point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfGroup'</span></td>
+                <td>The percentage of z values of all the elements with the same name this
+                    point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfSeriesMax'</span></td>
+                <td>The point's z value percentage of the maximum point value on the chart.
+                    point represents.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfSeriesRange'</span></td>
+                <td>The point's z value percentage of the range between the parent series minimum and maximum point. </td>
+            </tr>
+
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%yPercentOfAxisRange'</span></td>
+                <td>(v1.2) Percentage of y axis range. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfAxisRange'</span></td>
+                <td>(v1.2) Percentage of x axis range. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%PercentOfDataMax'</span></td>
+                <td>(v1.2) Percentage of the max y value of all series. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfDataMax'</span></td>
+                <td>(v1.2) Percentage of the max x value of all series. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfDataMax'</span></td>
+                <td>(v1.2) Percentage of the max z value of all series. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%PercentOfDataRange'</span></td>
+                <td>(v1.2) Percentage of the range of y values in all series. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xPercentOfDataRange'</span></td>
+                <td>(v1.2) Percentage of the range of x values in all series. </td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zPercentOfDataRange'</span></td>
+                <td>(v1.2) Percentage of the range of z values in all series. </td>
+            </tr>
+
+			<tr>
+				<td style="width: 187px; background-color: #F3F3F3;">Finance / 
+				Navigator Only</td>
+				<td style="background-color: #F3F3F3">&nbsp;</td>
+			</tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%open'</span></td>
+				<td>Open price value.</td>
+			</tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%high'</span></td>
+				<td>High price value.</td>
+			</tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%low'</span></td>
+				<td>Low price value.</td>
+			</tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%close'</span></td>
+				<td>Close price value.</td>
+			</tr>
+			</table>
+
+
+
+
+
+
+
+
+
+
+
+<h3>Series Tokens</h3>
+Used by: Legend Entry Text
+		<table class="useDocsTable">
+            <tr >
+                <th style="width: 187px"><strong>Token Name</strong></th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Identification</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+
+			<tr>
+				<td style="width: 186px"><span class="example">'%name'</span></td>
+				<td>Series name.</td>
+			</tr>
+			<tr>
+				<td style="width: 186px"><span class="example">'%id'</span></td>
+				<td>Series ID</td>
+			</tr>
+			<tr>
+				<td style="width: 186px"><span class="example">'%color'</span></td>
+				<td>Series color.</td>
+			</tr>
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%yAxisLabel'</span></td>
+                <td>Label text of the y axis this point is plotted on.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xAxisLabel'</span></td>
+                <td>Label text of the x axis this point is plotted on.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Point Specific</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%pointCount'</span></td>
+                <td>Number of points in series.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%lastY'</span></td>
+                <td>Y value of the last point in the series</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%lastX'</span></td>
+                <td>X value of the last point in the series</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%lastZ'</span></td>
+                <td>Z value of the last point in the series</td>
+            </tr>
+
+            <tr>
+                <td style="width: 186px"><span class="example">'%maxPointName'</span></td>
+                <td>Name of the point with the largest y value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%minPointName'</span></td>
+                <td>Name of the point with the smallest y value.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 186px"><span class="example">'%xMaxPointName'</span></td>
+                <td>Name of the point with the largest x value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xMinPointName'</span></td>
+                <td>Name of the point with the smallest x value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%zMaxPointName'</span></td>
+                <td>Name of the point with the largest z value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%zMinPointName'</span></td>
+                <td>Name of the point with the smallest z value.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (Y Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+			<tr>
+				<td style="width: 186px"><span class="example">'%sum'</span></td>
+				<td>Sum of series point y values.</td>
+			</tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%max'</span></td>
+                <td>Largest point y value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%min'</span></td>
+                <td>Smallest point y value</td>
+            </tr>
+			<tr>
+				<td style="width: 186px"><span class="example">'%average'</span></td>
+				<td>Average of series point y values.</td>
+			</tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%median'</span></td>
+                <td>Mode of series point y values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%mode'</span></td>
+                <td>Mode of series point y values.</td>
+            </tr>
+			<!--<tr>
+				<td style="width: 186px"><span class="example">'%range'</span></td>
+				<td>Difference between the largest and smallest point y value.</td>
+			</tr>-->
+            <tr>
+                <td style="width: 186px"><span class="example">'%rangeSum'</span></td>
+                <td>Sums of differences between point y and yStart values.</td>
+            </tr>
+
+			<tr>
+				<td style="width: 186px"><span class="example">'%percentOfTotal'</span></td>
+				<td>Percentage of all series on the chart this series 
+				represents.</td>
+			</tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (X Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+            <tr>
+                <td style="width: 186px"><span class="example">'%xSum'</span></td>
+                <td>Sum of series point x values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xMax'</span></td>
+                <td>Largest point x value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xMin'</span></td>
+                <td>Smallest point x value</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xAverage'</span></td>
+                <td>Average of series point x values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xMedian'</span></td>
+                <td>Mode of series point x values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xMode'</span></td>
+                <td>Mode of series point x values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xPercentOfTotal'</span></td>
+                <td>The x value percentage of all series on the chart this series
+                    represents.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (Z Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+            <tr>
+                <td style="width: 186px"><span class="example">'%zSum'</span></td>
+                <td>Sum of series point z values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%zMax'</span></td>
+                <td>Largest point z value.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%zMin'</span></td>
+                <td>Smallest point z value</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%zAverage'</span></td>
+                <td>Average of series point z values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'zMedian'</span></td>
+                <td>Mode of series point z values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%zMode'</span></td>
+                <td>Mode of series point z values.</td>
+            </tr>
+            <tr>
+                <td style="width: 186px"><span class="example">'%xPercentOfTotal'</span></td>
+                <td>The z value percentage of all series on the chart this series
+                    represents.</td>
+            </tr>
+
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+<h3>Series Collection Tokens</h3>
+Used by: Title Label
+		<table class="useDocsTable">
+            <tr >
+                <th style="width: 187px"><strong>Token Name</strong></th>
+                <th>Description</th>
+            </tr>
+
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Basic Data</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%pointCount'</span></td>
+                <td>Number of points in all series..</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Identify Points/Series</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%maxSeriesName'</span></td>
+                <td>Name of the series with the largest y value point.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%minSeriesName'</span></td>
+                <td>Name of the series with the smallest y value point.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%maxPointName'</span></td>
+                <td>Name of the point with the largest y value.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%minPointName'</span></td>
+                <td>Name of the point with the smallest y value.</td>
+            </tr>
+
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMaxSeriesName'</span></td>
+                <td>Name of the series with the largest x value point.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMinSeriesName'</span></td>
+                <td>Name of the series with the smallest x value point.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMaxPointName'</span></td>
+                <td>Name of the point with the largest x value.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMinPointName'</span></td>
+                <td>Name of the point with the smallest x value.</td>
+            </tr>
+
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMaxSeriesName'</span></td>
+                <td>Name of the series with the largest z value point.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMinSeriesName'</span></td>
+                <td>Name of the series with the smallest z value point.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMaxPointName'</span></td>
+                <td>Name of the point with the largest z value.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMinPointName'</span></td>
+                <td>Name of the point with the smallest z value.</td>
+            </tr>
+
+
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (Y Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+
+
+			<tr>
+				<td style="width: 187px"><span class="example">'%sum'</span></td>
+				<td>Sum of all y values on the chart.</td>
+			</tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%max'</span></td>
+                <td>Maximum y value of the chart data.</td>
+            </tr>
+			<tr>
+				<td style="width: 187px"><span class="example">'%min'</span></td>
+				<td>Minimum y value of the chart data.</td>
+			</tr>
+
+			<tr>
+				<td style="width: 187px"><span class="example">'%average'</span></td>
+				<td>Average y value of chart data.</td>
+			</tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%median'</span></td>
+                <td>Median y value of chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%mode'</span></td>
+                <td>Mode y value of chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%rangeSum'</span></td>
+                <td>Sums of differences between point y and yStart values.</td>
+            </tr>
+		<!--	<tr>
+				<td style="width: 187px"><span class="example">'%range'</span></td>
+				<td>Difference between the largest and smallest point y value.</td>
+			</tr>-->
+
+
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (X Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%xSum'</span></td>
+                <td>Sum of all x values on the chart.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMax'</span></td>
+                <td>Maximum x value of the chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMin'</span></td>
+                <td>Minimum x value of the chart data.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%xAverage'</span></td>
+                <td>Average x value of chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMedian'</span></td>
+                <td>Median x value of chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%xMode'</span></td>
+                <td>Mode x value of chart data.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px; background-color: #F3F3F3;">Calculations (Z Values)</td>
+                <td style="background-color: #F3F3F3">&nbsp;</td>
+            </tr>
+
+
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%zSum'</span></td>
+                <td>Sum of all z values on the chart.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMax'</span></td>
+                <td>Maximum z value of the chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMin'</span></td>
+                <td>Minimum z value of the chart data.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 187px"><span class="example">'%zAverage'</span></td>
+                <td>Average z value of chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMedian'</span></td>
+                <td>Median z value of chart data.</td>
+            </tr>
+            <tr>
+                <td style="width: 187px"><span class="example">'%zMode'</span></td>
+                <td>Mode z value of chart data.</td>
+            </tr>
+		</table>
+
+
+
+
+
+
+
+<h3>Value Tokens</h3>
+Used by: Axis Tick labels
+		<table class="useDocsTable">
+            <tr >
+                <th style="width: 187px"><strong>Token Name</strong></th>
+                <th>Description</th>
+            </tr>
+
+			<tr>
+				<td style="width: 188px"><span class="example">'%value'</span></td>
+				<td>Represents the value.</td>
+			</tr>
+		</table>
+

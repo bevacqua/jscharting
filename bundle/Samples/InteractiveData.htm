@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Interactive Data Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<table style="width: 150px">
+	<tr>
+		<td style="text-align: center" colspan="3">Axis Range Adjuster</td>
+	</tr>
+	<tr>
+		<td style="text-align: center">&nbsp;</td>
+		<td style="text-align: center"><input type="Button" value="Up" onclick="makeRoom('up')"/></td>
+		<td style="text-align: center">&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="text-align: center"><input type="Button" value="Left" onclick="makeRoom('left')"/></td>
+		<td style="text-align: center">Push Edges</td>
+		<td style="text-align: center"><input type="Button" value="Right" onclick="makeRoom('right')"/></td>
+	</tr>
+	<tr>
+		<td style="text-align: center">&nbsp;</td>
+		<td style="text-align: center"><input type="Button" value="Down" onclick="makeRoom('down')"/></td>
+		<td style="text-align: center">&nbsp;</td>
+	</tr>
+</table>
+<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Allows adding and removing data points interactively by clicking on the chart.
+Learn how to:
+
+  - Add data points dynamically by using click events.
+  - Remove data points dynamically by using click events.
+  - Adjust axis range interactively.
+  - Interact with the chart to add data points.
+*/
+// JS
+
+function makeRoom(side){
+	var xAxis = chart.get('xA'),
+	yAxis = chart.get('yA'),
+	yInf=yAxis.getRange(),
+	xInf=xAxis.getRange(),
+	yR = yInf.max-yInf.min,
+	xR = xInf.max-xInf.min;
+	switch(side){
+		case 'left':
+			xAxis.setRange(xInf.min-(xR/5),xInf.max);
+			break;
+		case 'right':
+			xAxis.setRange(xInf.min,xInf.max+(xR/5));
+			break;
+		case 'up':
+			yAxis.setRange(yInf.min,yInf.max+(yR/5));
+			break;
+		case 'down':
+			yAxis.setRange(yInf.min-(yR/5),yInf.max);
+			break;
+	}
+}
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'line',
+  legendPosition: 'CA:15,15',
+  titleLabel: {
+    style: {fontWeight: 'normal' },
+    text: 'Click the chart to add points, click points to remove them.<br/>Sum: <b>%sum</b>  |  Average:  <b>%average</b>   |  Y Range:  (<b>%min - %max</b>) '
+  },
+  events: {
+    click: function(e){chart.get("s1").addPoint({x:e.xAxis[0].value, y:e.yAxis[0].value});}
+  },
+  series: [
+    {
+      id: 's1',
+      name: 'Downloads',
+      points: [
+        { x: 2, y: 32165  },
+        { x: 5, y: 28651  },
+        { x: 8, y: 18563  },
+        { x: 10, y: 35698  },
+        { x: 15, y: 27659  },
+        { x: 18, y: 28684  },
+        { x: 22, y: 25684  },
+        { x: 23, y: 38654  }
+      ]
+    }
+  ],
+  yAxis: { id: 'yA'  },
+  xAxis: { id: 'xA'  },
+  defaultPointEventsClick: function(e){if (this.calculations.seriesPointCount > 1) this.remove();}
+});
+
+
+</script>
+	</body>
+</html>

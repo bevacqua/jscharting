@@ -1,0 +1,19 @@
+{
+  "name": "jscharting",
+  "version": "1.0.0",
+  "authors": [
+    "Nicolas Bevacqua <nicolasbevacqua@gmail.com>"
+  ],
+  "description": "JSCharting library visualization examples using the GitHub API",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "2.10.6"
+  }
+}

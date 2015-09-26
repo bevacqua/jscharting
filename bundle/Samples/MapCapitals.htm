@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Capitals Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px"></div> <br/>
+    <!--Left,Up,Right,Down*/-->
+<input type="button" value=" &#8592;" onclick="chart.zoom([-5.055,0]);"/>
+    <input type="button" value=" &#8593;" onclick="chart.zoom([0,5.055]);"/>
+    <input type="button" value=" &#8594;" onclick="chart.zoom([5.055,0]);"/>
+    <input type="button" value=" &#8595;" onclick="chart.zoom([0,-5.055]);"/>
+    &nbsp;
+<input type="button" value=" + " onclick="chart.zoom('+150');"/>
+    <input type="button" value=" - " onclick="chart.zoom('-50');"/>
+    &nbsp;&nbsp;
+<input type="button" value=" 100%" onclick="chart.zoom(1)"/>
+    <input type="button" value=" 200%" onclick="chart.zoom(2)"/>
+    <input type="button" value=" 500%" onclick="chart.zoom(5)"/>
+	
+<script type="text/javascript">
+/*
+A simple series from a geoJSON file.
+Learn how to:
+
+  - Map series from point layer map files.
+  - Mapping base layers from mapCodes.
+  - Zoom map chart.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  titleLabelText: 'State Capitals',
+  height: 380,
+  legendVisible: false,
+  mappingBaseLayers: 'us',
+  series: [
+    {
+      name: 'State Capitals',
+      map: 'resources/usCapitals.json.txt',
+      defaultPointTooltip: '%name',
+      defaultPointLabelText: '%name'
+    }
+  ]
+};
+var chart = new JSC.Chart(chartConfig,function(c){
+    this.zoom([-118.8099594271294,25.267,46,25]);
+
+});
+
+
+</script>
+	</body>
+</html>

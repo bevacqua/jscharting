@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Htm Data Headers Multi Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<pre>
+This is a standard HTML table with two columns of data.
+The first row is used to get series names.
+The sample examines the table data and charts it.</pre>
+<table id="dataTable" style="margin:0px auto;">
+    <tr><td></td><td>Inquiries</td><td>Sales</td></tr>
+    <tr><td>Illinois</td><td>4324</td><td>6852</td></tr>
+    <tr><td>Indiana</td><td>5564</td><td>4865</td></tr>
+    <tr><td>California</td><td>9453</td><td>3156</td></tr>
+    <tr><td>Florida</td><td>7645</td><td>8679</td></tr>
+    <tr><td>Nevada</td><td>12143</td><td>8654</td></tr>
+    <tr><td>Colorado</td><td>3342</td><td>5436</td></tr>
+</table>
+
+<div id="cc" style="width: 640px; height: 400px"></div>
+	
+<script type="text/javascript">
+/*
+Read an HTML Table with multiple series and headers. Then chart the data.
+Learn how to:
+
+  - Convert HTML table with multiple headers to a chart.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'column',
+  titleLabelText: 'Take HTML and Chart it.',
+  defaultPointLabelVisible: true
+};
+$(document).ready(function () {
+    json.series = getData('dataTable');
+    var chart = new JSC.Chart(json);
+});
+function getData(tableId){
+    var series = [{points:[]},{points:[]}];
+
+    $('#dataTable tr').each(function(){
+        var tds = $(this).find('td'),txt,count=0,serInfo=[];
+        // If the row has no content in first cell, use the rest to populate series names.
+        if($(tds[0]).text().length === 0){
+            tds.each(function(){
+                if((txt = $(this).text()).length){  series[count++].name = txt; }
+            });
+        } else {
+            series[0].points.push([$(tds[0]).text(),parseInt($(tds[1]).text())]);
+            series[1].points.push([$(tds[0]).text(),parseInt($(tds[2]).text())]);
+        }
+    });
+    return series;
+}
+
+
+</script>
+	</body>
+</html>

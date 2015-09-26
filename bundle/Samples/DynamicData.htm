@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Dynamic Data Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<table style="width: 640px">
+    <tr>
+        <td colspan="2" style="height: 400px">
+            <div id="cc" style="width: 635px; height: 400px"></div>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 400px">
+            <div id="cc2" style="width: 395px; height: 400px"></div>
+        </td>
+        <td valign="top"><br/><br/><br/>
+            <div id="cc3"></div>
+        </td>
+    </tr>
+</table>
+	
+<script type="text/javascript">
+/*
+Generates a chart based on data calculations from a different chart.
+Learn how to:
+
+  - Populate chart data based on calculations from another chart.
+  - Queries a chart data point to populate a template with tokens.
+*/
+// JS
+
+
+    function hoverEvent(point){
+    var tmpHtm='',i,
+        oSeries = chart.get(this.config.attributes.parentID);
+
+    $.each(oSeries.config.points,function(i,point){
+        tmpHtm += chart.get(point.id).replaceTokens(entryTemplate);
+    })
+
+    $('#cc3').html(tableTemplate.replace('%entries%',tmpHtm));
+}
+function tooltipFormatter(point){
+    var txt='<b>%name</b> %yValue<br/>%percentOfTotal% of Total<br/>Per Quarter:<br/>',
+        oSeries = chart.get(point.config.attributes.parentID);
+    $.each(oSeries.config.points,function(i,point){
+        txt += chart.get(point.id).replaceTokens('<b>%name</b> %yValue<br/>');
+    })
+    return txt;
+}
+
+var chart2,
+    json2 = {
+        targetElement: 'cc2',
+        defaultSeries:{shape:{padding:.5,offset:'8,0'},type: 'pie'  }, titleLabelText:'Dynamic sums.',
+            defaultPoint:{
+            label:{text:'<b>%name</b> <br/>%yValue - %percentOfTotal%',offset:15},
+                tooltip:tooltipFormatter,
+            eventsMouseOver:hoverEvent
+        },
+        height:350,
+        annotations:[{
+            position:'CA:1,1',boxVisible:false,
+            labelText:'Generated automatically from above data.<br/>Hover a pie slice to get details from above chart.',
+            transparency:.5
+        }],
+        series:[  { points:[] } ]
+    },
+
+    // Generate the chart and pass a callback for when the chart is rendered.
+    chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'column',
+  xAxisLabelText: 'Quarters',
+  legendVisible: false,
+  height: 400,
+  yAxisFormatString: 'c',
+  titleLabelText: 'Original hardcoded data.',
+  series: [
+    {
+      name: 'Z1 Saw',
+      id: 's1',
+      points: [
+        { name: 'Q1', y: 230  },
+        { name: 'Q2', y: 240  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 238  }
+      ]
+    },
+    {
+      name: 'Z1 Hammer',
+      points: [
+        { name: 'Q1', y: 325  },
+        { name: 'Q2', y: 367  },
+        { name: 'Q3', y: 382  },
+        { name: 'Q4', y: 371  }
+      ]
+    },
+    {
+      name: 'Z1 Grinder',
+      points: [
+        { name: 'Q1', y: 285  },
+        { name: 'Q2', y: 292  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 218  }
+      ]
+    },
+    {
+      name: 'Z1 Drill',
+      points: [
+        { name: 'Q1', y: 185  },
+        { name: 'Q2', y: 192  },
+        { name: 'Q3', y: 198  },
+        { name: 'Q4', y: 248  }
+      ]
+    }
+  ]
+}, function(){
+            // When the first chart is ready, this will generate the pie chart based on its data.
+            // Try to get data calculations from the main chart.
+            var calc = this.getCalculations();
+
+            // Add series sums as a new series. Also, include the original series ID as attributes for each point so it can be used to build the table on hover..
+            for(var i = 0;i<calc.sumList.length;i++){
+                json2.series[0].points[i] = {name:calc.sumNames[i], y:calc.sumList[i], attributes:{parentID:calc.sumIDs[i]}}
+            }
+
+            // Generate the new chart.
+            chart2 = new JSC.Chart(json2);
+
+        });
+
+
+var entryTemplate='<tr><td style="width: 77px">%name</td><td>%yValue</td></tr>',
+    tableTemplate='	<table style="width: 100%"><tr><td style="width: 77px; background-color: #E9E9E9"><strong>Quarter</strong></td><td style="background-color: #E9E9E9"><strong>Value</strong></td></tr>%entries%</table>';
+
+
+</script>
+	</body>
+</html>

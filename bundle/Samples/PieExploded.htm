@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pie Exploded Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A pie chart with labels and specific pie slices exploded.
+Learn how to:
+
+  - Draw a pie chart.
+  - Explode pie slices.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeries: {
+    type: 'pie',
+    pointSelection: true,
+    shapePadding: 0.45
+  },
+  defaultPointLabelText: '<b>%name</b> %yValue [%percentOfTotal%]',
+  yAxisFormatString: 'n',
+  series: [
+    {
+      points: [
+        { name: 'United States', y: 5452500  },
+        { exploded: true, name: 'Canada', y: 786052  },
+        {
+          exploded: true,
+          name: 'United Kingdom',
+          y: 477338
+        },
+        { exploded: true, name: 'Mexico', y: 155313  }
+      ],
+      name: 'Countries'
+    }
+  ],
+  yAxisLabelText: 'GDP',
+  titleLabelText: ' Countries GDP'
+});
+
+
+</script>
+	</body>
+</html>

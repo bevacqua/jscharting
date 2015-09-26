@@ -1,0 +1,83 @@
+<h4>Using custom map files directly.</h4>
+<p>Map files can be used to populate series points like so</p>
+<span class="codeText">{
+	series:[{
+		map:'mapData/usCapitals.json.txt'
+	}]
+}</span>
+<span class="docsCaution">
+Please note that in samples we use usCapitals.json.txt text file extension as a workaround for json mime types not being included by default with many server setups. In order to use this file, use the .txt extension or rename it.
+</span>
+
+<h4>Custom map file reference.</h4>
+
+<p>Custom map files can be used in their entirety, or just specific map features defined in those files can be used on a chart.</p>
+
+<p>In order to use only some map features from a custom map file, the map file must be made available to the chart through the <a href="Types.chart.mapping">mapping.referenceLayers</a> property.
+
+</p>
+<span class="codeText">{
+	mapping:{
+		referenceLayers:'mapData/usCapitals.json.txt'
+	}
+}</span>
+
+<p>Now, series and points can refer to map features defined in this reference layer using mapCodes or propertyFilters.
+</p>
+<span class="docsTip">
+Both geoJSON and topoJSON file formats are supported. They can be specified using a relative path. When a custom map file is specified for a series, a point is generated for each feature in that map file.
+</span>
+
+<h3>Reference layer mapCodes</h3>
+
+<h4>Using in a series</h4>
+<p>When a map file path is specified in a referenceLayer, this file can be subsequently be referred to by its filename without extension. In this example it is "usCapitals".
+</p>
+<p>The following code creates a series with points for each map feature in the usCapitals.json file.
+</p>
+<span class="codeText">{
+	series:[{
+		map:'usCapitals'
+	}]
+}</span>
+<p>The above example has the same effect as the first snippet on this page.</p>
+
+<h4>By map feature IDs</h4>
+
+<p>The following code creates a point based on a map feature defined in the usCapitals file that has the ID of 'springfield'. </p>
+<span class="codeText">{
+	series:[{
+		//indicates a map feature in the usCapitals map with an id of 'springfield'
+		points:[{map:'usCapitals.springfield'}]
+	}]
+}</span>
+
+<span class="docsCaution">
+If a filename contains multiple periods, the part before the first period becomes the id.
+</span>
+
+<h3>Reference layer propertyFilters</h3>
+<h4>Series from propertyFilters</h4>
+<p>A series can also be created from all map features with a property matching a specific value.</p>
+<span class="codeText">{
+	series:[{
+		map:'usCapitals.region:west'
+	}]
+}</span>
+<p>In this example, points are created for each map feature in the usCapitals file where the region property matches 'west'.</p>
+<p>Similarly, points for specific map features can be defined to modify those points or to add additional points to a series.
+
+</p>
+<span class="codeText">{
+	series:[{
+		map:'usCapitals.region:west',
+		points:[{
+			map:'usCapitals.springfield',
+			color:'red'
+		}]
+	}]
+}</span>
+
+For more information on binding data to custom map files, see the following tutorial.
+<span class="docsReference">Tutorials.mappingData</span>
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Multi Y Stack Mixing Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates using multiple Y Axes using regular and stacked scales.
+Learn how to:
+
+  - Using Multiple Axes.
+  - Use stacked axis scale.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  type: 'column',
+  toolbarVisible: false,
+  yAxis: [
+    {
+      id: 'nomralAxis',
+      defaultTickLabelStyleColor: 'blue',
+      labelText: 'Normal axis',
+      formatString: 'C'
+    },
+    {
+      id: 'stackedAxis',
+      labelText: 'Stacked Axis',
+      orientation: 'right',
+      scaleType: 'stacked'
+    }
+  ],
+  series: [
+    {
+      yAxis: 'nomralAxis',
+      defaultPointLabel: {
+        visible: true,
+        color: 'blue',
+        rotation: -90,
+        align: 'left',
+        offset: '0,-3'
+      },
+      name: 'Saw',
+      id: 's1',
+      points: [
+        { name: 'Q1', y: 530  },
+        { name: 'Q2', y: 740  },
+        { name: 'Q3', y: 667  },
+        { name: 'Q4', y: 838  }
+      ]
+    },
+    {
+      yAxis: 'stackedAxis',
+      name: 'Hammer',
+      points: [
+        { name: 'Q1', y: 325  },
+        { name: 'Q2', y: 367  },
+        { name: 'Q3', y: 382  },
+        { name: 'Q4', y: 371  }
+      ]
+    },
+    {
+      yAxis: 'stackedAxis',
+      name: 'Grinder',
+      points: [
+        { name: 'Q1', y: 285  },
+        { name: 'Q2', y: 292  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 218  }
+      ]
+    },
+    {
+      yAxis: 'stackedAxis',
+      name: 'Drill',
+      points: [
+        { name: 'Q1', y: 185  },
+        { name: 'Q2', y: 192  },
+        { name: 'Q3', y: 198  },
+        { name: 'Q4', y: 248  }
+      ]
+    }
+  ],
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales '
+};
+delete json.yAxisLabelText;
+var chart = new JSC.Chart(json);
+
+
+</script>
+	</body>
+</html>

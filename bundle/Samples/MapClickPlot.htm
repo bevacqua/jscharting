@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Click Plot Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 350px">
+</div>
+    <textarea id="textOut" style="width: 533px; height: 208px"></textarea>
+	
+<script type="text/javascript">
+/*
+Dynamically plot Lat/Long points on a map.
+Learn how to:
+
+  - Mapping base layers from propertyFilters.
+  - Map series from mapCodes.
+  - Interact with map click events.
+  - Update map series in real-time.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  annotations: [
+    {
+      labelText: 'Click a US state to place points.',
+      fill: 'rgba(222,222,222,.8)',
+      outlineColor: 'none',
+      position: 'CA:0,0'
+    }
+  ],
+  mappingBaseLayers: 'americas.continent:North America',
+  defaultPointEvents: { click: mapClick  },
+  series: [
+    {map: 'US' },
+    {
+      id: 'PoiMarkers',
+      name: 'Points Of Interest',
+      type: 'marker'
+    }
+  ]
+};
+var POIs=[];
+var chart = new JSC.Chart(chartConfig);
+
+function mapClick(data){
+    var newPoint;
+    var markerSeries = chart.get('PoiMarkers');
+    newPoint={
+        x:data.xAxis[0].value,
+        y:data.yAxis[0].value
+    };
+    markerSeries.addPoint(newPoint);
+
+    POIs.push({x:newPoint.x,
+        y:newPoint.y,stateName:data.currentTarget.name})
+
+    $('#textOut').val(JSON.stringify(POIs));
+}
+
+
+</script>
+	</body>
+</html>

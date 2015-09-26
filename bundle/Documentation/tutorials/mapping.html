@@ -1,0 +1,260 @@
+<h2>Mapping Overview</h2>
+<p>The JSMapping component is designed to be simple to use for all users; no mapping technology or mapping file format experience is required!
+	JSMapping ships with specially designed and optimized maps for all world countries, included at no additional charge,
+	including state and province level maps. For a comprehensive list of supported maps, please see:
+</p>
+	<span class="docsReference">Tutorials.MapList:country, state and province summary list</span>
+
+<p>The API lets users focus on data rather than map files and layers. Intuitive map codes such as <span class="example">&#39;us.ca&#39;</span> meaning
+	California are used to specify map features to
+	associate them with standard data points or series that are the same as those   used for any other chart types.
+	The files that contain these maps are automatically loaded in the background.
+	The <a href="Types.chart.mapping">chart.mapping</a> config options
+	offer a number of helpful features such as base layers that allow defining a mapping context that surround the
+	specific data point maps without the need of creating data series and styling them. For example, if a chart of
+	<span class="example">&#39;us.ca&#39;</span> is used, the baseLayers can be set to <span class="example">&#39;us&#39;</span> and will show the surrounding states with a grayed out hue and
+	will not affect the chart in any other way.
+
+</p>
+<p>With the advanced functionality of JSMapping, many complex internal map data optimizations automatically take place behind the scenes to ensure the smallest files for your usage case are automatically selected (which minimizes download times and makes your site more responsive). In addition to file selection, JSMapping also automatically optimizes map resolution. The end result: maps that look and work better than you would expect with fewer lines of code and less work.
+</p>
+
+
+<h2>First Map</h2>
+<p>Loading a map in a chart is simple and can be accomplished by setting the <a href="Types.series.map">series.map</a> property with a map code.</p>
+<span class="codeText">
+{
+	type:'map',
+    targetElement: 'idOfChartDiv',
+	Series:[{ map:'us'}]
+}
+</span>
+
+<p>For a list of map codes and maps see this  <a href="Tutorials.mapList">map codes reference</a>.</p>
+
+
+
+
+
+<h2>Map Layers</h2>
+<p>All built in maps are available for use with map charts and referenced by mapCodes. It is not necessary to be aware of the actual map files used internally.
+	Custom map files are also supported, in both geoJSON and topoJSON formats.
+</p>
+<span class="docsReference">
+	Tutorials.mapCustomFiles
+	</span>
+<h3>Series and Points from map layers</h3>
+<p>The <a href="Types.series.map">series.map</a> property can specify map codes that represent multiple map features
+	and <a href="Types.point.map">point.map</a> property can specify map codes with single map features.
+	When using the <a href="Types.series.map">series.map</a> property, data points are created for each map feature. For example, series[0].map='us'will generate a point for each U.S. state.
+</p>
+
+
+<p>In order to style a specific point of this series, a point with a map property set to 'us.il' can be specified and this point object and its settings will be used.
+	<span class="codeText">
+{
+	type:'map',
+    targetElement: 'idOfChartDiv',
+	Series:[{ map:'us',
+		points:[{map:'us.il',color:'blue'}]
+
+		}
+		]
+}
+</span>
+
+</p>
+<p>If <a href="Types.series.map">series.map</a> property is set to a single feature such as 'us.il' a series with a single point is created. Similarily, If a point with map property set to 'us' is created, the point will contain only the U.S. Country as a single map feature.
+
+</p>
+<h4>Series from map queries (propertyFilters)</h4>
+<p>Maps don't have to be specified using these map feature codes. They can also be specified using property filters. For example, the following indicates that the series should be based on map features in the americas map where the region property is 'North America'.
+
+</p>
+<span class="codeText">{
+	series:[{
+		map:'americas.region:North America'
+	}]
+}</span>
+
+<p>This will create a series of points where each point is a North American country outline.
+</p>
+
+
+
+<p></p>
+
+
+
+
+<h2>Second Map</h2>
+<p>Map layers that are loaded for context can be specified through the mapping.base.layers property.</p>
+<span class="codeText">
+{
+	type:'map',
+    targetElement: 'idOfChartDiv',
+    mapping:{baseLayers:'americas'},
+	Series:[{ map:'us'}]
+}
+</span>
+
+<h3>Base Layers</h3>
+<p>Base layers can be specified through a list of country codes. This creates internal series with specialized behavior. These series do not influence the view bounds, and are not included in the legend. The purpose of these layers is to create context for maps and shows a continuation of landmasses.  It can also be used to load custom map files which can then be used to build a series of points that refer to specific features of that custom map data. For example a map file with all us state capitals can be loaded as a base layer, then a series of just a few points that refer to specific capitals through the point.map property and include weather info. This will create a map that zooms in on only these few points.
+</p>
+<span class="docsReference">Samples.mapWeatherAU</span>
+<p>When using built in maps, baseLayers do not have to be used in order to reference them in series and point map properties. Loading these maps is automatic.
+</p>
+<p>Styling and settings for these base layers can be set through the mapping.base.series property.
+</p>
+
+
+
+
+<h2>Interactivity</h2>
+<h3>Zoom and Pan</h3>
+<p>An intuitive API is provided for use with zooming operations through the chart.zoom() method.
+</p>
+
+<h4>Zoom depth
+</h4>
+<p>Zoom in a chart to 100% can be accomplished using the following code
+</p>
+<span class="codeText">chart.zoom(1);</span>
+
+<h4>Pan by</h4>
+<p>The current view can be panned by using an array of x and y values in map coordinates to pan the view by
+</p>
+<span class="codeText">chart.zoom([1,1]);</span>
+
+<h4>Center and zoom</h4>
+<p>A map can be centered on a specific coordinate at a specific zoom level by using an array of three items; x, y, and zoom level like so:</p>
+<span class="codeText">chart.zoom([-91,51,1]);</span>
+
+<h4>Zoom to bbox</h4>
+<p>A four item array can be used to specify a bbox to zoom in on.</p>
+<span class="codeText">chart.zoom([-91,51,10,15])
+</span>
+
+<h4>Get Current view bbox</h4>
+<p>Calling chart.zoom without any parameters returns the current view bbox and can be used to calculate the amount of the view to pan or restore a map view.</p>
+<span class="codeText">var bbox = chart.zoom();</span>
+
+<h4>Zoom features into view</h4>
+<p>By passing a map code to the zoom method, the chart will zoom in on that feature.</p>
+<span class="codeText">chart.zoom('us');</span>
+
+<h4>Zoom features based on propertyFilters</h4>
+<p>By passing a property filter to the zoom method, the chart will zoom in on all matching map features.</p>
+<span class="codeText">chart.zoom('us.region:Midwest');</span>
+
+<h3>Events</h3>
+<h4>Click Events</h4>
+<p>Map click events can be bound to the chart and will have access to clicked lat/long coordinates.</p>
+<span class="docsReference">Samples.MapClickPlot</span>
+
+<h3>Map Properties</h3>
+
+<p>Map data properties are loaded as point attributes and are accessible in point related strings through tokens.
+</p>
+<span class="docsReference">Tutorials.usingLabels:Label and token tutorial</span>
+<h3>Built-in Map Properties and Tokens</h3>
+
+
+<p>A number of standard attribute properties are provided with the native JSCharting maps.
+	These attribute tokens can be used with all maps that include such data. They can be used in label as tokens or in propertyFilters.</p>
+
+<ul class="simpleKvpList">
+	<li><em><span class="example">&#39;'%name'&#39;</span></em><section>The name of the map feature.</section></li>
+	<li><em><span class="example">&#39;'%mapCode'&#39;</span></em><section>The map code of a map feature.</section></li>
+	<li><em><span class="example">&#39;'%country'&#39;</span></em><section>Name of the country a map feature relates to.</section></li>
+	<li><em><span class="example">&#39;'%state'&#39;</span></em><section>Name of the state or province if this map feature is one.</section></li>
+	<li><em><span class="example">&#39;'%province'&#39;</span></em><section>Name of the state or province if this map feature is one.</section></li>
+	<li><em><span class="example">&#39;'%countryCode'&#39;</span></em><section>ISO A2 country code of the map feature or its parent</section></li>
+	<li><em><span class="example">&#39;'%stateCode '&#39;</span></em><section>The state or province postal code such as 'IL' for Illinois.</section></li>
+	<li><em><span class="example">&#39;'%provinceCode '&#39;</span></em><section>The state or province postal code such as 'IL' for Illinois.</section></li>
+	<li><em><span class="example">&#39;'%worldRegion'&#39;</span></em><section>World region such as americas or europe this map feature belongs to.</section></li>
+	<li><em><span class="example">&#39;'%countryRegion'&#39;</span></em><section>The region of a country this state or province is part of.</section></li>
+	<li><em><span class="example">&#39;'%region'&#39;</span></em><section>The world or country region depending on the map feature type.</section></li>
+	<li><em><span class="example">&#39;'%mapType'&#39;</span></em><section>The map feature type such as Province or Country.</section></li>
+
+</ul>
+
+<p>Country Specific properties</p>
+<ul class="simpleKvpList">
+	<li><em><span class="example">&#39;'%continent'&#39;</span></em><section>The continent the country resides in.</section></li>
+	<li><em><span class="example">&#39;'%iso_a3'&#39;</span></em><section>ISO alpha-2 code. </section></li>
+	<li><em><span class="example">&#39;'%iso_n3'&#39;</span></em><section>ISO numeric-3 code.</section></li>
+
+</ul>
+
+<p>State/Province Specific properties</p>
+
+<ul class="simpleKvpList">
+	<li><em><span class="example">&#39;'%fips'&#39;</span></em><section>Fips code where applicable</section></li>
+</ul>
+
+<p></p>
+
+<span class="docsReference">Samples.mapProvinceAttributes</span>
+
+<p></p>
+<p></p>
+<p></p>
+<!--
+
+<p>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; THE REST IS OBSOLETED &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>
+
+<h3>Point filters</h3>
+<p>Point filters can be used to specify points based on a criteria. The point filter object contains a set of properties and values that are matched to determine if the criteria is met. An array of values can be used to specify a number of values that will meet the filter criteria. A function can also be used to qualify each point as meeting the criteria by returning true or false.</p>
+
+<p>When passing a point filter to the chart.zoom property, the chart will zoom in on all points that meet the criteria.</p>
+
+
+
+<h2>Third Map</h2>
+<p>A series of points that reference specific map features can be build as shown below.</p>
+<span class="codeText">
+{
+	type:'map',
+    targetElement: 'idOfChartDiv',
+    mapping:{baseLayers:'us'},
+	Series:[{ points:[{map:'us.il'},{map:'us.in'},{map:'us.wi'},{map:'us.mi'}]}]
+}
+</span>
+
+<h3>Series map layers</h3>
+<p>Series that use map layers can be built by specifying map codes in the series map properties or point map properties. Internally points are created for each feature in the map specified for a series. If a point is defined for a specific feature in the series map, styling and setting can be specified for that specific map feature.</p>
+
+<h2>Fourth Map</h2>
+
+<p>Custom map files can be loaded and associated with points as shown below</p>
+
+<span class="codeText">
+{
+	type:'map',
+    targetElement: 'idOfChartDiv',
+    mapping:{baseLayers:'mapData/usCapitals.json'},
+	Series:[{ type:'bubble' points:[{map:'usCapitals.Montpelier',z:1324},{map:'usCapitals.Hartford',z:2423}]}]
+}
+</span>
+<h3>Custom map files</h3>
+<p>Custom map files can be used similarly to the built in map codes. When the map file is first defined, a path to the map file is used. When referring to features in the custom map file, the filename.featureID syntax can be used. Features in custom map files must have IDs in order to reference them. This allows loading a map layer with geographic data and utilizing this geography when loading data from different sources containing only a geographic map code and other data such as sales.</p>
+<p></p>
+<p></p>
+
+
+
+
+
+<h3>Binding data</h3>
+
+
+<p>One way of binding data to map features is by creating points that refer to map features by the point.map properties. If series points must be bound to different map properties such as fips codes the following format can be used
+	Fips:US05
+	This is equivalent to Us.Az map codes. However, since the chart is not aware of which map contains matching properties, this map must be in memory. Chart.mapping.memoryLayers can be used to specify maps to load
+</p>
+
+-->
+
+
+

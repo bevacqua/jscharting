@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Weather AU Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 600px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A weather map with markers where the weather marker points have specific x,y coordinates.
+Learn how to:
+
+  - Draw a simple country map.
+*/
+// JS
+
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  mapping: {
+    base: {
+      layers: 'au',
+      series: {  defaultPoint: { color: '#ead78b'  }}
+    }
+  },
+  defaultSeriesShapePadding: 0.4,
+  titleLabelText: 'Australia Weather',
+  height: 390,
+  series: [
+    {
+      type: 'marker',
+      legendEntryVisible: false,
+      color: '#ead78b',
+      defaultPoint: {  tooltip: '%name'},
+      points: [
+        {
+          x: 118.14993851823061,
+          y: -24.782684974059542,
+          name: 'Western Australia',
+          markerType: 'url(images/cloud_dark.png)'
+        },
+        {
+          x: 132.59241720736841,
+          y: -15.05154376351808,
+          name: 'Northern Territory',
+          markerType: 'url(images/cloud_rain.png)'
+        },
+        {
+          x: 146.10312307785219,
+          y: -23.5073395218311,
+          name: 'Queensland',
+          markerType: 'url(images/cloud_sun.png)'
+        },
+        {
+          x: 132.82536041203193,
+          y: -29.547303276282829,
+          name: 'South Australia',
+          markerType: 'url(images/cloud_sun.png)'
+        },
+        {
+          x: 150.99493037578594,
+          y: -30.354629503037064,
+          name: 'New South Wales',
+          markerType: 'url(images/sun.png)'
+        },
+        {
+          x: 142.14308859857246,
+          y: -35.721166745408659,
+          name: 'Victoria',
+          markerType: 'url(images/sun.png)'
+        },
+        {
+          x: 147.38431070350151,
+          y: -41.886413593848594,
+          name: 'Tasmania',
+          markerType: 'url(images/cloud_sun.png)'
+        }
+      ]
+    }
+  ]
+};
+
+
+var weatherData = JSC.pointsFromArray("id,icon",
+    [["Augusta",'cloud'],["Montpelier",'cloud_dark'],["Concord",'cloud_rain'],["Albany",'cloud_sun'],["Boston",'sun'],["Providence",'sun'],["Hartford",'cloud_sun']]);
+
+var serPoints = $.map(weatherData,function(data){
+    return {
+        map:'usCapitals.'+data.id,
+        markerType:'url(images/'+data.icon+'.png)'
+    }
+});
+
+
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

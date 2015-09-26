@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Live Data Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+The shift option determines whether the first point in the series is removed when adding a new point.</br>
+<input id="shift_btn" type="button" value="Do not Shift Values" onclick="shift_btnClick();"/>
+<input type="button" value="Stop" onclick="clearInterval(siId);"/>
+	
+<script type="text/javascript">
+/*
+Dynamically updates chart data in real-time.
+Learn how to:
+
+  - Add time data points to the chart in realtime.
+  - Use label tokens in the title.
+  - Use label tokens in the legend.
+  - Update chart data dynamically.
+*/
+// JS
+var dt = new Date(2014,0,10).getTime(),
+	chart = new JSC.Chart({
+  targetElement: 'cc',
+  height: 350,
+  legendPosition: 'CA:380,-20',
+  yAxisFormatString: 'c',
+  defaultSeries: { type: 'line'  },
+  titleLabelText: 'Data Total: %sum Average: %average',
+  legendDefaultEntryText: '%name %sum',
+  defaultPointLabelText: '%yValue',
+  series: [
+    {
+      id: 's1',
+      name: 'Purchases',
+      points: [
+        [ new Date(2014, 0, 1), 29.9  ],
+        [ new Date(2014, 0, 2), 71.5  ],
+        [ new Date(2014, 0, 3), 106.4  ],
+        [ new Date(2014, 0, 6), 129.2  ],
+        [ new Date(2014, 0, 7), 144.0  ],
+        [ new Date(2014, 0, 8), 176.0  ]
+      ]
+    }
+  ],
+  toolbarVisible: false,
+  marginRight: 40
+},start),
+	cnt=0,
+    useShift=true;
+
+/**
+ * Adds a data point to the chart series.
+ */
+function addData(){
+	var ser = chart.get('s1');
+	ser.addPoint({  y:Math.random()*200,  x:new Date(dt) },
+        {shift: useShift});
+	dt = dt + (24 * 3600000) * 2
+}
+
+
+
+function shift_btnClick(){
+    useShift=!useShift;
+    if(useShift){
+        jQuery('#shift_btn').val('Do not Shift Values');
+    }else
+    {  jQuery('#shift_btn').val('Shift Values');}
+}
+
+function start(){
+    siId = setInterval(function () {
+        if(cnt>40 ){clearInterval(siId);  }
+        if (chart) {addData();cnt++;  }
+    }, 2000);
+}
+
+
+</script>
+	</body>
+</html>

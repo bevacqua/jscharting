@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting Cooking Dashboard Chart</title>
+		  <style type="text/css">.mainWrapper{
+    width:890px;
+    height:1359px;
+    background:  url('images/food.gif')  ;
+    background:  rgba(255,255,255,0) url('images/food.svg') ;/*url('images/svgz/food.svgz')*/
+    background-size: cover;
+    background-repeat:no-repeat;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    left:-25px;
+}
+
+#cc1{
+    position:absolute;
+    margin-top:220px;
+    margin-left:60px;
+    width:240px;
+}
+#cc2{
+    position:absolute;
+    margin-top:400px;
+    margin-left:405px;
+    width:210px;
+}
+#cc3{
+    position:absolute;
+    margin-top:400px;
+    margin-left:657px;
+    width:210px;
+}
+#cc4{
+    position:absolute;
+    margin-top:685px;
+    margin-left:625px;
+    width:260px;
+}
+#cc5{
+    position:absolute;
+    margin-top:1055px;
+    margin-left:129px;
+    width:60px;
+}
+#cc6{
+    position:absolute;
+    margin-top:1065px;
+    margin-left:567px;
+    width:60px;
+}</style>
+	</head>
+	<body>
+	<div class="mainWrapper">
+    <div id="cc1"></div>
+
+    <div id="cc2"></div>
+    <div id="cc3"></div>
+    <div id="cc4"></div>
+    <div id="cc5"></div>
+    <div id="cc6"></div>
+</div>
+	
+<script type="text/javascript">
+/*
+Cooking dashboard using JavaScript charts.
+Learn how to:
+
+  - Create a dashboard with overlaying charts.
+  - Use template for charts on the same page.
+*/
+// JS
+/*Shared settings for all charts.*/
+var template={
+    boxFill:'#c2b59b',
+
+
+    legendVisible:false,
+    toolbarVisible:false,
+    chartAreaFill:'none',/*['white',1],*/
+    chartAreaOutlineColor:'none',/*['white',1],*/
+    xAxis:{
+        defaultTickGridLineColor:'none',
+        alternateGridFill:'none'
+    },
+    yAxis:{
+        defaultTickGridLineColor:'none',
+        alternateGridFill:'none'
+    }
+};
+var chart1 = new JSC.Chart({
+    targetElement: 'cc1',
+    type: 'horizontalcolumnRounded',
+    height:135,
+    marginBottom:-1,
+    template:template,
+    palette:['#f5bd8c'],
+    xAxisSpacingPercentage:.1,
+    xAxisDefaultTick:{
+        label:{
+            align:'left',
+            offset:'10,6',
+            style:{
+                color:'white',
+                fontSize:14,
+                fontWeight:'bold'
+            }
+        }
+
+    },
+    series:[{
+
+        name:'Total',
+        points:[
+            {name:'Home',y:45},
+            {name:'Restaurant',y:30},
+            {name:'Gifts',y:20},
+            {name:'Production',y:30},
+            {name:'Sustenance',y:40}
+        ]}]
+
+});
+var chart2 = new JSC.Chart({
+    targetElement: 'cc2',
+    defaultSeriesType: 'pie',
+    palette:['#ed6d4b','#f29854','#f5bd8c','#fffcd9'],
+    height:145,
+    width:145,
+    marginBottom:-1,
+    template:template,
+
+    xAxisSpacingPercentage:.1,
+    xAxisDefaultTick:{
+
+        labelStyle:{fontSize:14,fontWeight:'bold'  }
+    },
+    type:'horizontal',
+    series:[{
+        name:'Total',
+
+        shape: {
+            center: '50%,45%',
+            size: '95%',
+
+            offset: '5%,5%'
+        },
+        points:[
+            {name:'Gifts',y:15},
+            {name:'Home',y:20},
+            {name:'Restaurant',y:25},
+            {name:'Grown',y:30}
+        ]}]
+
+});
+var chart3 = new JSC.Chart({
+    targetElement: 'cc3',
+    defaultSeriesType: 'pie',
+    palette:['#ed6d4b','#f29854','#f5bd8c','#fffcd9'],
+    height:145,
+    width:145,
+    marginBottom:-1,
+    template:template,
+
+    xAxisSpacingPercentage:.1,
+    xAxisDefaultTick:{
+
+        labelStyle:{fontSize:14,fontWeight:'bold'  }
+    },
+
+    series:[{
+
+        name:'Total',
+        shape: {
+            center: '50%,45%',
+            size: '95%',
+
+            offset: '5%,5%'
+        },
+        points:[
+            {name:'Gifts',y:15},
+            {name:'Home',y:20},
+            {name:'Restaurant',y:25},
+            {name:'Grown',y:30}
+        ]}]
+
+});
+
+var chart4 = new JSC.Chart({
+    targetElement: 'cc4',
+    type: 'horizontalcolumnRounded',
+    palette:['#ed6d4b','#f29854','#f5bd8c','#fffcd9'],
+    height:245,
+    marginBottom:-1,
+    marginLeft:0,
+    template:template,
+    palette:['#f5bd8c'],
+    xAxisSpacingPercentage:.1,
+    xAxisDefaultTick:{
+        label:{
+            align:'left',
+            offset:'10,5',
+            style:{
+                color:'white',
+                fontSize:14,
+                fontWeight:'bold'
+            }
+        }
+    },
+yAxisScaleRange:[0,40],
+    defaultPoint:{
+        label:{
+            text:'%yValue',
+            visible:true,
+
+            offset:'5,0',
+            styleFontSize:15,
+            styleFontWeight:'bold'
+        }},
+    series:[{
+
+        name:'Total',
+        points:[
+            {name:'Gifts',y:10},
+            {name:'Home Baking',y:35},
+            {name:'Restaurants',y:16}
+        ]}]
+
+});
+
+var chart5 = new JSC.Chart({
+    targetElement: 'cc5',
+    defaultSeriesType: 'pie',
+    boxFill:'#b5a485',
+    palette:['#ed6d4b','#f29854','#f5bd8c','#fffcd9'],
+    height:60,
+    defaultTooltip:{enabled:false},
+    defaultPointLabel:{  text:'%yValue',  offset:-15 },
+    marginBottom:-1,
+    template:template,
+    marginLeft:4,marginTop:0,
+    xAxisSpacingPercentage:.1,
+    xAxisDefaultTick:{
+
+        labelStyle:{fontSize:14,fontWeight:'bold'  }
+    },
+    type:'horizontal',
+    series:[{
+
+        shape: {
+            center: '50%,45%',
+            size: '125%',
+
+            offset: '5%,5%'
+        },
+        points:[{name:'15',y:15},{name:'20',y:20}  ]}]
+
+});
+var chart6 = new JSC.Chart({
+    targetElement: 'cc6',
+    defaultSeriesType: 'pie',
+    defaultTooltip:{enabled:false},
+    defaultPointLabel:{  text:'%yValue',  offset:-15 },
+    height:60,
+    palette:['#f5bd8c','#fffcd9'],
+    marginBottom:-1,
+    template:template,
+    marginLeft:4,marginTop:0,
+    xAxisSpacingPercentage:.1,
+    xAxisDefaultTick:{
+
+        labelStyle:{fontSize:14,fontWeight:'bold'  }
+    },
+    type:'horizontal',
+    series:[{
+
+        shape: {
+            center: '50%,45%',
+            size: '125%',
+
+            offset: '5%,5%'
+        },
+        points:[{name:'45',y:45},{name:'20',y:20}  ]}]
+
+});
+
+
+</script>
+	</body>
+</html>

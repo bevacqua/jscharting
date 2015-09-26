@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pyramids Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 500px">
+</div>
+	
+<script type="text/javascript">
+/*
+Multiple pyramids.
+Learn how to:
+
+  - Draw multiple pyramids.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  titleLabelText: 'Cost of Operation 2014 - 2015',
+  
+/*These y axis settings  describe the point y values.*/
+  yAxisLabelText: 'Cost',
+  yAxisFormatString: 'c',
+  defaultSeries: {
+    type: 'pyramid',
+    shape: {innerPadding: 4,padding: 0.4 },
+    defaultPoint: {labelText: '%name (%percentOfSeriesMax%)' }
+  },
+  series: [
+    {
+      name: '2014',
+      points: [
+        { name: 'R&D', y: 203  },
+        { name: 'Shipping', y: 90  },
+        { name: 'Marketing', y: 56  },
+        { name: 'Manufacturing', y: 50  },
+        { name: 'Retail', y: 40  }
+      ]
+    },
+    {
+      name: '2015',
+      points: [
+        { name: 'R&D', y: 183  },
+        { name: 'Shipping', y: 140  },
+        { name: 'Marketing', y: 136  },
+        { name: 'Manufacturing', y: 80  },
+        { name: 'Retail', y: 50  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

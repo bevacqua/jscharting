@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map US Regions Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A US map layer with a series created for each region. Also, map point specific styling.
+Learn how to:
+
+  - Series from propertyFilters. Map point feature.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  height: 400,
+  legendVisible: false,
+  toolbarPosition: 'bottomRight',
+  title: {
+    position: 'full',
+    labelText: 'US Regions & Illinois'
+  },
+  palette: 'FiveColor8',
+  series: [
+    {map: 'US.region:Northeast' },
+    {
+      map: 'region:Midwest',
+      points: [  { map: 'us.il', color: '#C0F191'  }]
+    },
+    {map: 'region:West' },
+    {map: 'region:South' }
+  ]
+};
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

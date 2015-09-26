@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Thematic Sales Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 740px; height: 480px">
+</div>
+	
+<script type="text/javascript">
+/*
+Thematic mapping bound to a dataSet.
+Learn how to:
+
+  - Make thematic maps.
+  - Map points from mapCodes.
+  - Show a SmartPalette in the legend.
+  - Set Default Map Padding.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  height: 480,
+  zAxisLabelText: 'Sales',
+  palette: {
+    pointValue: '{%zValue}',
+    invert: true,
+    colors: ['#006400','#00ff00','#ffff00','#ff0000','#8b0000' ]
+  },
+  legend: {
+    titleLabelText: 'Sales',
+    defaultEntryText: '%value'
+  },
+  defaultPoint: { label: {text: '%stateCode' }  },
+  defaultSeriesShapePadding: 0.02,
+  series: [ {map: 'us' }  ]
+};
+var mapData = [["AL",130],["AK",140],["AZ",155],["AR",145],["CA",141],["CO",150],["CT",146],["DE",131],["FL",129],["GA",117],["HI",124],["ID",124],["IL",119],["IN",132],["IA",146],["KS",144],["KY",125],["LA",136],["ME",126],["MD",133],["MA",134],["MI",148],["MN",166],["MS",148],["MO",161],["MT",156],["NE",175],["NV",170],["NH",167],["NJ",186],["NM",176],["NY",172],["NC",190],["ND",199],["OH",168],["OK",175],["OR",178],["PA",179],["RI",171],["SC",168],["SD",178],["TN",183],["TX",193],["UT",173],["VT",182],["VA",184],["WA",193],["WV",190],["WI",178],["WY",178]];
+
+
+chartConfig.series[0].points = $.map(mapData,function(arrItem){
+    return {  map:'US.'+arrItem[0],  z:arrItem[1] }
+});
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

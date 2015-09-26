@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Multi Chart Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+<div id="cc2" style="width: 640px; height: 400px; margin: 0px auto;">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates using multiple charts on one page.
+Learn how to:
+
+  - Create multiple charts on a single page.
+*/
+// JS
+chartA = {
+
+        targetElement: 'cc',
+
+		renderMode: 'JavaScript',
+    type: 'column',
+		titleLabelText:'Chart A',
+		series: [
+		{
+			name: 'Purchases',
+       
+			points: [
+            [new Date(2010, 0, 1), 29.9], 
+            [new Date(2010, 0, 2), 71.5], 
+            [new Date(2010, 0, 3), 106.4], 
+            [new Date(2010, 0, 6), 129.2], 
+            [new Date(2010, 0, 7), 144.0], 
+            [new Date(2010, 0, 8), 176.0]
+			]
+		}]
+		};
+
+chartB = {
+        targetElement: 'cc2',
+
+		renderMode: 'JavaScript',
+palette:'fiveColor2',
+    type: 'column',
+		titleLabelText:'Chart B',
+		series: [
+		{
+			name: 'Purchases',
+
+			points: [
+            [new Date(2010, 0, 1), 169.9],
+            [new Date(2010, 0, 2), 141.5],
+            [new Date(2010, 0, 3), 126.4],
+            [new Date(2010, 0, 6), 119.2],
+            [new Date(2010, 0, 7), 84.0],
+            [new Date(2010, 0, 8), 66.0]
+			]
+		}]
+	};
+
+var chart = new JSC.Chart(chartA);
+
+var chart2 = new JSC.Chart(chartB);
+
+
+</script>
+	</body>
+</html>

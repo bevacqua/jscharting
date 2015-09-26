@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Time Span Expressions Chart</title>
+		  <style type="text/css">.expr:{ font-weight: bold;}</style>
+	</head>
+	<body>
+	The chart data contains the date membership started. <br/>
+The point labels use that date to calculate the duration of the membership and average usage per year. <br/>
+    All this is accomplished by setting the point label string as follows:<br/>
+    &#39;Member &lt;br&gt;<span class="expr">{years(&#39;+Date.now()+&#39;-%since):number n1}</span> Years &lt;br&gt;<span class="expr">{%value/years(&#39;+Date.now()+&#39;-%since):number n1}</span> / Year&#39;
+<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates using token expressions to calculate time spans.
+Learn how to:
+
+  - Use token expressions in labels to calculate date time spans.
+  - Format label token expressions result.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'column',
+  yAxisLabelText: 'Usage Count',
+  xAxisLabelText: 'User',
+  defaultPointLabelText: 'Member <br/>{years('+Date.now()+'-%since):number n1} Years <br/>{%value/years('+Date.now()+'-%since):number n1} / Year',
+  toolbarVisible: false,
+  legendVisible: false,
+  titleLabelText: 'Member Stats',
+  series: [
+    {
+      name: 'Members',
+      points: [
+        {
+          name: 'Xavier',
+          y: 113,
+          attributes: {since: new Date(2000,2,4) }
+        },
+        {
+          name: 'Connor',
+          y: 82,
+          attributes: {since: new Date(2003,5,8) }
+        },
+        {
+          name: 'Jacob',
+          y: 92,
+          attributes: {since: new Date(2001,2,14) }
+        },
+        {
+          name: 'Camden',
+          y: 121,
+          attributes: {since: new Date(2006,7,20) }
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

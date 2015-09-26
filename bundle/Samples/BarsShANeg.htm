@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bars Sh A Neg Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Negative bar series type with aqua shading.
+Learn how to:
+
+  - Draw negative bars series.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  defaultSeriesType: 'columnAqua',
+  title: { label: {text: 'Net Cash Flow' }  },
+  legendVisible: false,
+  yAxisFormatString: 'c',
+  yAxisMarkers: [ {value: 0,color: 'black',lineWidth: 1 }  ],
+  series: [
+    {
+      points: [
+        { name: 'Angie', y: -12232  },
+        { name: 'Chris', y: 28651  },
+        { name: 'Arthur', y: -23093  },
+        { name: 'David', y: 35698  },
+        { name: 'Mike', y: -21324  },
+        { name: 'Laura', y: -18342  },
+        { name: 'Michelle', y: 25684  },
+        { name: 'Joseph', y: 38654  }
+      ]
+    }
+  ]
+};
+
+// Change colors of some data
+var pts = json.series[0].points;
+for(var i in pts){	if(pts[i].y<0)pts[i].color='red';}
+
+var chart = new JSC.Chart(json);
+
+
+</script>
+	</body>
+</html>

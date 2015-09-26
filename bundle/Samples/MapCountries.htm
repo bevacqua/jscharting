@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Countries Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<br/>
+
+        <!--Left,Up,Right,Down*/-->
+    <input type="button" value=" &#8592;" onclick="zoom([-5.055,0]);"/>
+    <input type="button" value=" &#8593;" onclick="zoom([0,5.055]);"/>
+    <input type="button" value=" &#8594;" onclick="zoom([5.055,0]);"/>
+    <input type="button" value=" &#8595;" onclick="zoom([0,-5.055]);"/>
+&nbsp;
+    <input type="button" value=" + " onclick="chart.zoom('+150');"/>
+    <input type="button" value=" - " onclick="chart.zoom('-50');"/>
+    &nbsp;&nbsp;
+    <input type="button" value=" 100%" onclick="zoom(1)"/>
+    <input type="button" value=" 200%" onclick="zoom(2)"/>
+    <input type="button" value=" 500%" onclick="zoom(5)"/>  <br/>
+
+<div id="cc" style="width: 740px; height: 480px">
+</div>
+	
+<script type="text/javascript">
+/*
+A map of countries using similar color palettes in context of Europe.
+Learn how to:
+
+  - Set initial map zoom.
+  - Use base layers for context.
+*/
+// JS
+var config = {
+  targetElement: 'cc',
+  type: 'map',
+  chartAreaFill: '#b6d9ff',
+  height: 480,
+  defaultSeriesShapePadding: 1.23,
+  mappingBaseLayers: 'europe',
+  series: [ {map: 'pl' }, {map: 'de' }, {map: 'cz' }  ]
+};
+
+config.series[0].palette=JSCL.palettes.colorToPalette('red',{saturation:.2,hue:.10},15,1);
+config.series[1].palette=JSCL.palettes.colorToPalette('#049DFF',{saturation:.3,hue:.05},15,1);
+config.series[2].palette=JSCL.palettes.colorToPalette('#34FE35',{saturation:.3,hue:.05},15,1);
+var chart = new JSC.Chart(config);
+
+
+function zoom(val){
+    if(val.length){  val = [val[0]*100000,val[1]*100000]; }
+    chart.zoom(val);
+}
+
+
+</script>
+	</body>
+</html>

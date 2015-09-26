@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bar 3D Interactive Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Interactive Bars in 3d.
+Learn how to:
+
+  - Interactively rotate a 3d bar chart.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  type: 'column',
+  margin: 70,
+  chartAreaView: { type: '3d'  },
+  legendVisible: false,
+  series: [
+    {
+      name: 'Team',
+      palette: 'default',
+      points: [
+        { name: 'Julian', y: 11  },
+        { name: 'Jeremiah', y: 118  },
+        { name: 'Eli', y: 136  },
+        { name: 'Tyler', y: 130  },
+        { name: 'Ryan', y: 123  }
+      ]
+    }
+  ]
+};
+var tilt = 12;
+var rotation=20;
+var speed = .3; //0-1
+json.chartAreaView.tilt=tilt;
+json.chartAreaView.rotation=rotation;
+var chart = new JSC.Chart(json);
+
+
+
+$('#cc').bind('mousedown touchstart',startDrag);
+
+    function startDrag(e) {
+
+        var lastView = {};
+        var dragStart;
+        $(document).bind({
+            'mousemove touchdrag': doDrag,
+            'mouseup touchend': endDrag
+        });
+
+        if (e.clientX) {dragStart = [e.clientX, e.clientY];  } else if (e.originalEvent.touches) {
+            dragStart = [e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].clientY];
+        }
+
+        function doDrag(e) {
+
+            var moveBy = dragStart[0] - (e.clientX || e.originalEvent.touches[0].pageX);
+            var moveByY = -(dragStart[1] - (e.clientY || e.originalEvent.touches[0].clientY));
+            moveBy=moveBy*speed;
+            moveByY=moveByY*speed;
+
+            tilt = typeof(tilt)==='undefined'?12:tilt;
+            rotation = typeof(rotation)==='undefined'?20:rotation;
+            lastView = {tilt: tilt + moveByY, rotation: rotation + moveBy};
+            lastView.tilt = Math.max(0, lastView.tilt);
+            lastView.tilt = Math.min(63, lastView.tilt);
+
+            lastView.rotation = Math.max(0, lastView.rotation);
+            lastView.rotation = Math.min(90, lastView.rotation);
+
+            chart.setView(lastView);
+
+        }
+
+        function endDrag(e) {
+            $(document).unbind({
+                'mousemove touchdrag': doDrag,
+                'mouseup touchend': endDrag
+            });
+            tilt = lastView.tilt;
+            rotation = lastView.rotation;
+        }
+    }
+
+
+</script>
+	</body>
+</html>

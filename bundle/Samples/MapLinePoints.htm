@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Line Points Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A map with standard line series plotted.
+Learn how to:
+
+  - Mapping base layers from mapCodes.
+  - Standard line series on maps.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  titleLabelText: 'Acme Airline Flights ',
+  mappingBaseLayers: 'US',
+  defaultSeriesShapePadding: 0.5,
+  legend: { position: 'CA:10,10'  },
+  defaultPointTooltip: '%SeriesName - %location',
+  series: [
+    {
+      name: '#121',
+      type: 'line',
+      points: [
+        {
+          x: -88,
+          y: 41,
+          attributes: {location: 'Chicago' }
+        },
+        {
+          x: -86.09,
+          y: 39.4606,
+          attributes: {location: 'Indianapolis' }
+        }
+      ]
+    },
+    {
+      name: '#221',
+      type: 'line',
+      points: [
+        {
+          x: -88,
+          y: 41,
+          attributes: {location: 'Chicago' }
+        },
+        {
+          x: -87.977,
+          y: 44.502508,
+          attributes: {location: 'Green Bay' }
+        }
+      ]
+    },
+    {
+      name: '#321',
+      type: 'line',
+      points: [
+        {
+          x: -88,
+          y: 41,
+          attributes: {location: 'Chicago' }
+        },
+        {
+          x: -104.9945,
+          y: 39.7491,
+          attributes: {location: 'Denver' }
+        }
+      ]
+    },
+    {
+      name: '#421',
+      type: 'line',
+      points: [
+        {
+          x: -88,
+          y: 41,
+          attributes: {location: 'Chicago' }
+        },
+        {
+          x: -118.143,
+          y: 34.0308,
+          attributes: {location: 'Los Angeles' }
+        }
+      ]
+    }
+  ]
+};
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

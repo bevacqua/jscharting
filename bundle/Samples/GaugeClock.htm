@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Gauge Clock Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 400px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Gauge simulating a real-time clock.
+Learn how to:
+
+  - Draw a gauge simulating a live clock.
+*/
+// JS
+var hourLabel=function(val){  if(val !==0){return val;}};
+var tooltipText=function(){
+    var now =new Date();
+    return JSC.formatString(now,'T');
+};
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'gauge',
+  width: 400,
+  toolbarVisible: false,
+  yAxisScale: { range: [0,12 ], interval: 1  },
+  yAxisDefaultTickLabel: { text: hourLabel, style: {fontSize: '30px' }  },
+  chartArea: { outlineColor: 'none', fill: 'none'  },
+  series: [
+    {
+      id: 's1',
+      angle: {  sweep: 360,  start: 0},
+      defaultPoint: {
+        tooltip: tooltipText,
+        color: 'black',
+        outlineWidth: 1
+      },
+      points: [
+        { id: 'hours', y: 0, z: 0.5  },
+        { id: 'minutes', y: 0, z: 0.8  },
+        {
+          color: ['black',0.8 ],
+          id: 'seconds',
+          y: 0,
+          z: 0.8
+        }
+      ]
+    }
+  ]
+},function(){updateClock(true)});
+var siId = setInterval(function () { updateClock();}, 1000);
+
+function updateClock(noAnim){
+    var animate = (noAnim)?false:true;
+    if (chart) {
+        var now = getNow();
+        chart.get('seconds').update({y:now.seconds},{animation:(now.seconds!=0)});
+        chart.get('minutes').update({y:now.minutes},{animation:animate});
+        chart.get('hours').update({y:now.hours},{animation:animate});
+    }
+    function getNow () {
+        var now = new Date();
+        return {
+            hours: now.getHours() + now.getMinutes() / 60,
+            minutes: now.getMinutes() * 12 / 60 + now.getSeconds() * 12 / 3600,
+            seconds: now.getSeconds() * 12 / 60
+        };
+    }
+}
+
+
+</script>
+	</body>
+</html>

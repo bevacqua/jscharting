@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Fips Binding Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Map points bound to specific map features using propertyFilters.
+Learn how to:
+
+  - Map points from propertyFilters.
+  - Map Base layers from mapCodes.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  legendPosition: 'CA:10,10',
+  mappingBaseLayers: 'us',
+  series: [
+    {
+      name: 'Four corner states',
+      color: '#34FE35',
+      points: [
+        { map: 'fips:US49'  },
+        { map: 'fips:US08'  },
+        { map: 'fips:US04'  },
+        { map: 'fips:US35'  }
+      ],
+      defaultPointLabelVisible: true
+    }
+  ]
+};
+
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

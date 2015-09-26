@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Label Tokens Chart</title>
+		  <style type="text/css">.Text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #3B3B3B;
+}</style>
+	</head>
+	<body>
+	<table style="width: 100%" cellspacing="0">
+	<tr class="Text">
+		<td colspan="3" style="background-color: #E8E8E8"><strong>Available Tokens</strong></td>
+	</tr>
+	<tr class="Text">
+		<td style="background-color: #F3F3F3"><strong>(SeriesCollection Tokens)</strong></td>
+		<td style="background-color: #F3F3F3"><strong>(Series Tokens)</strong></td>
+		<td style="background-color: #F3F3F3"><strong>&nbsp;(Point Tokens)</strong></td>
+	</tr>
+	<tr class="Text">
+		<td>%sum<br />
+%min<br />
+%max<br />
+%average<br />
+%range</td>
+		<td>%name<br />
+		%pointCount<br />
+		%id<br />
+		%sum %ySum<br />
+		%average %yAverage<br />
+		%lastY<br />
+		%range %yRange<br />
+		%max %yMax<br />
+		%min %yMin<br />
+		%percentOfTotal<br />
+		</td>
+		<td>%yValue<br />
+		%xValue<br />
+		%seriesName<br />
+		%seriesPointCount<br />
+		%name<br />
+		<br />
+		%percentOfSeries<br />
+		%percentOfTotal<br />
+		%id<br />
+		</td>
+	</tr>
+	<tr class="Text">
+		<td style="background-color: #E8E8E8" colspan="3"><strong>Try it with 
+		these labels:</strong></td>
+	</tr>
+	<tr class="Text">
+		<td style="background-color: #F3F3F3"><strong>Title:&nbsp; </strong>
+		</td>
+		<td style="background-color: #F3F3F3"><strong>Default Legend Entry:
+		</strong></td>
+		<td style="background-color: #F3F3F3"><strong>Default Point Label:
+		</strong></td>
+	</tr>
+	<tr>
+		<td> <input id="title" name="Text1" type="text" value="All Countries Total: %sum Avg: %average" style="width: 185px" /></td>
+		<td> <input id="legend" name="Text2" type="text"  value="%name %sum" style="width: 185px" /></td>
+		<td> <input id="points" name="Text3" type="text"  value="%yValue" style="width: 185px" /></td>
+	</tr>
+</table>
+
+<input name="Button1" type="button" value="Redraw" onclick="redraw();" />
+
+<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Uses tokens in strings to describe charted data.
+Learn how to:
+
+  - Use tokens to describe data in the title label.
+  - Use label tokens in the legend.
+  - Use label tokens with data point labels.
+*/
+// JS
+var getJSON=function (){
+    return {
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  width: 600,
+  height: 350,
+  legendPosition: '430,20',
+  yAxisFormatString: 'n',
+  defaultSeries: { type: 'column'  },
+  titleLabelText: ' Countries GDP',
+  legendDefaultEntryText: '%name %sum',
+  defaultPointLabelText: '%yValue',
+  toolbarVisible: false,
+  yAxisLabelText: 'GDP',
+  series: [
+    {
+      name: 'Countries',
+      points: [
+        { name: 'United States', y: 5452500  },
+        { name: 'Canada', y: 786052  },
+        { name: 'United Kingdom', y: 477338  },
+        { name: 'Mexico', y: 155313  }
+      ]
+    }
+  ]
+};
+}
+var j = getJSON();
+    j.titleLabelText = jQuery('#title').val();
+    j.legendDefaultEntryText = jQuery('#legend').val();
+    j.defaultPointLabelText = jQuery('#points').val();
+var chart = new JSC.Chart(j);
+
+function redraw(){
+    j = getJSON();
+     j.titleLabelText = jQuery('#title').val();
+    j.legendDefaultEntryText = jQuery('#legend').val();
+    j.defaultPointLabelText = jQuery('#points').val();
+    chart.dispose();
+ chart = new JSC.Chart(j);
+}
+
+
+</script>
+	</body>
+</html>

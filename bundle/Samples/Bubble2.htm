@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bubble 2 Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Multiple bubble series types.
+Learn how to:
+
+  - Draw bubble series type.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'bubble',
+  height: 400,
+  width: 640,
+  defaultSeries: { sizeMax: '40%'  },
+  defaultPoint: {
+    tooltip: '<b>%name</b> <br/>Population: <b>{%zValue/1000000} Mil</b><br/>Fertility Rate: <b>{%yValue:n2}</b><br/>Life Expectancy:<b> %xValue</b>',
+    label: {text: '%code',color: 'black' }
+  },
+  legend: {
+    position: 'bottom',
+    layout: 'horizontal',
+    defaultEntry: {
+      text: '<b>%name</b> Avg Life: <b>{%xAverage:n1}</b> Avg Fertility: <b>{%yAverage:n1}</b>',
+      width: 290
+    }
+  },
+  title: {
+    label: {
+      text: 'Correlation between life expectancy, fertility rate, and population.'
+    },
+    position: 'full'
+  },
+  xAxisLabelText: 'Life Expectancy',
+  yAxisLabelText: 'Fertility Rate',
+  series: [
+    {
+      name: 'Eastern Asia',
+      points: [
+        {
+          name: 'China',
+          x: 74.99,
+          y: 1.55,
+          z: 1349585838,
+          attributes: {code: 'CHN' }
+        },
+        {
+          name: 'Japan',
+          x: 84.19,
+          y: 1.39,
+          z: 127253075,
+          attributes: {code: 'JPN' }
+        }
+      ]
+    },
+    {
+      name: 'South-Central Asia',
+      points: [
+        {
+          name: 'India',
+          x: 67.48,
+          y: 2.55,
+          z: 1220800359,
+          attributes: {code: 'IND' }
+        },
+        {
+          name: 'Pakistan',
+          x: 66.71,
+          y: 2.96,
+          z: 193238868,
+          attributes: {code: 'PAK' }
+        },
+        {
+          name: 'Bangladesh',
+          x: 70.36,
+          y: 2.5,
+          z: 163654860,
+          attributes: {code: 'BGD' }
+        }
+      ]
+    },
+    {
+      name: 'North America',
+      points: [
+        {
+          name: 'United States',
+          x: 78.62,
+          y: 2.06,
+          z: 316438601,
+          attributes: {code: 'USA' }
+        },
+        {
+          name: 'Mexico',
+          x: 76.86,
+          y: 2.25,
+          z: 118818228,
+          attributes: {code: 'MEX' }
+        }
+      ]
+    },
+    {
+      name: 'South-East Asia',
+      points: [
+        {
+          name: 'Indonesia',
+          x: 71.9,
+          y: 2.2,
+          z: 251160124,
+          attributes: {code: 'IDN' }
+        },
+        {
+          name: 'Philippines',
+          x: 72.21,
+          y: 3.1,
+          z: 105720644,
+          attributes: {code: 'PHL' }
+        },
+        {
+          name: 'Vietnam',
+          x: 72.65,
+          y: 1.87,
+          z: 92477857,
+          attributes: {code: 'VNM' }
+        },
+        {
+          name: 'Thailand',
+          x: 74.05,
+          y: 1.66,
+          z: 67497151,
+          attributes: {code: 'THA' }
+        }
+      ]
+    },
+    {
+      name: 'Northern Asia',
+      points: [
+        {
+          name: 'Russia',
+          x: 69.85,
+          y: 1.61,
+          z: 142500482,
+          attributes: {code: 'RUS' }
+        },
+        {
+          name: 'Iran',
+          x: 70.62,
+          y: 1.86,
+          z: 79853900,
+          attributes: {code: 'IRN' }
+        }
+      ]
+    },
+    {
+      name: 'Africa, Middle East',
+      points: [
+        {
+          name: 'Egypt',
+          x: 73.19,
+          y: 2.9,
+          z: 85294388,
+          attributes: {code: 'EGY' }
+        }
+      ]
+    },
+    {
+      name: 'Western Europe',
+      points: [
+        {
+          name: 'Germany',
+          x: 80.32,
+          y: 1.42,
+          z: 81147265,
+          attributes: {code: 'DEU' }
+        },
+        {
+          name: 'France',
+          x: 81.56,
+          y: 2.08,
+          z: 65951611,
+          attributes: {code: 'FRA' }
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

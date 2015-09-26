@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Treemap Subtle Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Treemap with the default subtle shading.
+Learn how to:
+
+  - Draw a simple treemap with subtle shading.
+  - Simple treemap with palette giving each point a different color.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'treemapSubtle',
+  titleLabelText: 'Unit sales per representive. Total: %sum',
+  series: [
+    {
+      name: 'Sales',
+      palette: 'default',
+      points: [
+        { name: 'Brayden', y: 91  },
+        { name: 'Gabriel', y: 91  },
+        { name: 'Max', y: 111  },
+        { name: 'Cameron', y: 140  },
+        { name: 'Henry', y: 115  },
+        { name: 'Micah', y: 126  },
+        { name: 'Riley', y: 101  },
+        { name: 'Dylan', y: 104  },
+        { name: 'Adrian', y: 110  },
+        { name: 'Liam', y: 127  },
+        { name: 'Jayden', y: 137  },
+        { name: 'Elliot', y: 169  },
+        { name: 'Parker', y: 167  },
+        { name: 'Colton', y: 195  },
+        { name: 'Wyatt', y: 200  },
+        { name: 'Joseph', y: 180  },
+        { name: 'Blake', y: 178  },
+        { name: 'Lincoln', y: 171  },
+        { name: 'Jack', y: 148  },
+        { name: 'Hudson', y: 154  },
+        { name: 'Jonathan', y: 154  },
+        { name: 'Oliver', y: 126  },
+        { name: 'Lucas', y: 140  },
+        { name: 'Carter', y: 167  },
+        { name: 'Bentley', y: 195  },
+        { name: 'Connor', y: 195  },
+        { name: 'Nathaniel', y: 229  },
+        { name: 'Isaiah', y: 224  },
+        { name: 'William', y: 230  },
+        { name: 'Carson', y: 198  },
+        { name: 'Thomas', y: 219  },
+        { name: 'Colin', y: 213  },
+        { name: 'Anthony', y: 187  },
+        { name: 'Caleb', y: 201  },
+        { name: 'Logan', y: 222  },
+        { name: 'Daniel', y: 221  },
+        { name: 'Miles', y: 221  },
+        { name: 'Grayson', y: 195  },
+        { name: 'Christian', y: 198  },
+        { name: 'Tyler', y: 229  },
+        { name: 'Sebastian', y: 205  },
+        { name: 'Ian', y: 216  },
+        { name: 'Charlie', y: 205  },
+        { name: 'Levi', y: 176  },
+        { name: 'Chase', y: 163  },
+        { name: 'Aaron', y: 161  },
+        { name: 'Jackson', y: 127  },
+        { name: 'Jayce', y: 106  },
+        { name: 'Benjamin', y: 136  },
+        { name: 'Jeremiah', y: 122  },
+        { name: 'Zachary', y: 93  },
+        { name: 'Eli', y: 101  },
+        { name: 'John', y: 97  },
+        { name: 'Muhammad', y: 118  },
+        { name: 'Tristan', y: 139  },
+        { name: 'Christopher', y: 138  },
+        { name: 'Elijah', y: 128  },
+        { name: 'Alexander', y: 123  },
+        { name: 'Nathan', y: 125  },
+        { name: 'Jake', y: 110  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

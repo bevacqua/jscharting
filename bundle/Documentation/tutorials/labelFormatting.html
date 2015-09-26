@@ -1,0 +1,73 @@
+
+Axes host the main format settings for themselves and related values on a chart. This means
+that the Y axis format string setting will affect the
+point&#39;s y value format in any label. The axis properties associated with formatting are <a href="Types.axis.formatString">axis.formatString</a>
+and <a href="Types.axis.cultureName">axis.cultureName</a>.
+However, a culture name can be specified for the entire chart with the
+<a href="Types.chart.defaultCultureName">chart.defaultCultureName</a> property.<br />
+<br />
+Formatting labels is very simple by using a culture name, and a format
+string. By default the culture name <span class="example">&#39;en-US&#39;</span> indicating US English language is
+used. However, all cultures are supported. Example:
+<span class="codeText">{<br />
+		defaultCultureName: &#39;en-US&#39;<br />
+		}</span>
+<span class="docsReference">Enums.cultures:
+		All possible culture names. </span>
+A format string can be used with an axis to specify the type of values
+the axis represents.
+The <span class="example">&#39;c&#39;</span> format string indicates currency and depending on the culture
+name, y axis values will be shown as currency no matter where on the
+chart they appear.
+<span class="codeText">{<br />
+		yAxisFormatString:&#39;c&#39;<br />
+		}</span>
+In summary, the following chart JSON config:<br />
+<span class="codeText">{<br />
+		defaultCultureName: &#39;en-US&#39;,<br />
+		defaultPointLabelText:&#39;%yValue&#39;,<br />
+		yAxisFormatString:&#39;c&#39;<br />
+
+ 	  } </span>
+Will result in data labels such as <span class="example">&#39;$5.00&#39;</span>. As well as the actual axis
+tick labels being formatted the same way. And if related tokens are used
+in the legend or title, the formatting will persist there as well.
+<span class="docsNote">
+For series types that utilize the z value such as bubble and pie types, the <a href="Types.chart.zAxisFormatString">zAxisFormatString</a> property can be used.
+</span>
+
+<span class="docsSample"> AxisFormatting:
+		In this sample, notice how the axis, point, legend, and title labels are
+		formatted as currency.</span>
+<span class="docsReference"><a href="https://github.com/jquery/globalize/blob/master/README.md">Format Strings</a>: Format String Reference</span>
+<span class="docsTasks">
+Tasks.Label.Formatting
+</span>
+
+
+<h2>Inline Formatting</h2>
+Formatting can also be inlined within any specific label text if the default behavior is not desired.
+The formatting can be specified within the label
+text using the following syntax:
+<span class="output">
+    {(value):(formatString)}
+</span>
+
+
+For example, the following code can be used in a chart title
+label.
+<span class="codeText">{<br />
+titleLabelText: &#39;(Total Formatted As) Currency: {%sum:c} integer: {%sum:n0} decimal: {%sum:n2}&#39;<br />
+		}</span>
+Will show the following label in the title: <br />
+<span class="output">
+		(Total Formatted As) Currency: $22.00 integer: 22 decimal: 22.00
+    </span>
+<!--<span class="docsCaution">
+When using this syntax in ASP.net code such as '{%token}' will interfere with parsing of the page. This can also be substituted with [%token,"..."].
+</span>-->
+<span class="docsSample">LabelInlineFormatting:Label formatting.
+		</span>
+<span class="docsTasks">
+Tasks.Label.Formatting.Inline
+</span>

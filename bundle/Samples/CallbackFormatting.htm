@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Callback Formatting Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Using the JSC formatting methods in callback function.
+Learn how to:
+
+  - Format data values in label callback functions.
+*/
+// JS
+
+var tooltipCallback = function(point){
+    var f = JSC.formatString;
+    switch(point.name){
+        case 'Currency':
+            return point.name +': '+JSC.formatString(point.y,'c') +'<br/>Short Date: '+ f(point.config.attributes.start,'d');
+        case 'Integer':
+            return point.name +': '+JSC.formatString(point.y,'n0')+'<br/>Long Date: '+ f(point.config.attributes.start,'D');
+        case 'Decimal':
+            return point.name +': '+JSC.formatString(point.y,'n2')+'<br/>Month/Day Pattern: '+ f(point.config.attributes.start,'M');
+        case 'Percent':
+            return point.name +': '+JSC.formatString(point.y,'p')+'<br/>Short Time Pattern: '+ f(point.config.attributes.start,'t');
+    }
+ return '';
+}
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  type: 'column',
+  defaultPointLabelVisible: true,
+  titleLabelText: 'Hover data for formatted tooltips.',
+  defaultPointTooltip: tooltipCallback,
+  series: [
+    {
+      name: 'Representatives',
+      points: [
+        {
+          name: 'Currency',
+          y: 3,
+          attributes: {start: new Date(2010,1,1) },
+          labelText: 'Currency & <br/>Short Date'
+        },
+        {
+          name: 'Integer',
+          y: 8,
+          attributes: {start: new Date(2010,1,1) },
+          labelText: 'Integer & <br/>Long Date'
+        },
+        {
+          name: 'Decimal',
+          y: 5,
+          attributes: {start: new Date(2010,1,1) },
+          labelText: 'Decimal & <br/>Month/Day Pattern'
+        },
+        {
+          name: 'Percent',
+          y: 6,
+          attributes: {start: new Date(2010,1,1) },
+          labelText: 'Percentage & <br/>Short Time Pattern'
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

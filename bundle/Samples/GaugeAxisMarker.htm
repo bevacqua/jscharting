@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Gauge Axis Marker Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Gauge with an axis marker.
+Learn how to:
+
+  - Draw a gauge chart.
+  - Draw a gauge chart with axis markers.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'gauge',
+  yAxis: {
+    scaleRange: [0,100 ],
+    markers: [{  value: [ 80, 100  ],  color: 'red'} ]
+  },
+  series: [ {palette: 'default',points: [  { y: 30  }] }  ]
+});
+
+
+</script>
+	</body>
+</html>

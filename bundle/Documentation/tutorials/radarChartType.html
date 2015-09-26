@@ -1,0 +1,169 @@
+<h2>Radar Types</h2>
+        <p>There are two types of radar charts which are both set through the <a href="Enums.chartType">chartType enum</a>.</p>
+
+
+<ul class="simpleKvpList">
+    <li><em>Spider</em><section>A spider radar chart is drawn using lines connecting the y axis end points.</section></li>
+    <li><em>Polar</em><section>A polar radar type is drawn as a circle.</section></li>
+</ul>
+
+<p>By default this setting is automatic. If the x values of the series are numeric or time based,
+    a polar type is used. If the values are strings, the spider radar chart is utilized.</p>
+<p>This type can be specified with the chart type setting of <span class="example">&#39;radarSpider&#39;</span> or <span class="example">&#39;radarPolar&#39;</span> as follows. </p>
+
+<span class="codeText">
+{
+ type: 'radarSpider'
+}
+</span>
+<h2>Angles</h2>
+
+<p>Starting angles can be used with radar charts.</p>
+<p></p>
+<span class="codeText">
+{
+ defaultSeriesAngle: 45
+}
+</span>
+
+<h2>Axis Settings</h2>
+
+        <h3>Single Radar Axes</h3>
+<p>In a single radar chart, the main chart config properties <a href="Types.chart.xAxis">chart.xAxis</a> and <a href="Types.chart.yAxis">chart.yAxis</a> define the radar axis settings.</p>
+<p>The following code specifies scale ranges for the x and y axes on the radar chart.</p>
+<span class="codeText">
+{/*Single Radar Chart*/
+    type:'radar',
+    yAxis:{
+        scaleRange:[0,100]
+    },
+    xAxis:{
+        scaleRange:[0,360]
+    }
+}
+</span>
+
+<h3>Multiple Radar Axes</h3>
+<p>Each radar can have its own x and y axes. However, if an axis is not specified for the series, the main axis
+    or the first axis in the x or y axis array is used.</p>
+<span class="codeText">
+{/*Multiple Radars */
+    defaultSeriesType:'radar',
+     yAxis:[{
+    /*The main/default y axis.*/
+        scale:{
+            range:[0,400],
+                interval:100
+        }
+    },{
+        id:'y2',
+        defaultTickGridLineColor:'blue'
+    }],
+    xAxis:[{
+    /*The main/default x axis.*/
+        defaultTickLabelColor:'orange'
+    },{/*The 2nd x axis.*/id:'x2',
+    defaultTickLabelColor:'blue'
+    },{/*The 2nd x axis.*/id:'x3',
+    defaultTickLabelColor:'green'
+    }],
+     series:[{
+    /*First series doesn't assign axes, so default x and y axes are used.*/
+
+}, {
+    /*Second series uses the second defined x axis, and the default y axis.*/
+
+    xAxis:'x2'
+
+}, {
+     /*Third series uses the third defined x axis, and the second defined y axis.*/
+
+yAxis:'y2',
+    xAxis:'x3'
+
+}]
+}
+</span>
+<p>The above code creates the following radars.</p>
+<span class="tutorialImage">
+<img src="tutorials/images/radarAxisAssign.png"/>
+<em>Figure 1.</em>
+</span>
+<span class="docsCaution">
+If the same axis is duplicated on multiple radars as the main y axis above, the original
+    axis id will not be usable because it will not refer to a specific axis but rather a number of axes.
+</span>
+
+<span class="docsNote">
+With multiple radars, it is useful to specify the main axis scaleRange values because it ensures the data on each radar is comparable to other radars.
+</span>
+<h3>Axis Scale Types</h3>
+<p></p>
+<h3>Axis Markers</h3>
+
+<p>Radar axes offset standard axis markers support for both x and y axes.</p>
+<p></p>
+
+<h2>Styling</h2>
+
+<p>The series shape property allows setting the fill of the individual radars the series is plotted on.</p>
+<p></p>
+
+<span class="codeText">
+{
+     xAxis:{
+        lineWidth:2,
+    },
+  series:[{
+    "name": "William",
+    shapeFill:'#fff0f0',
+
+}, {
+    "name": "Elliot",
+    shapeFill:'#f0fff1',
+
+}, {
+    "name": "Andrew",
+    shapeFill:['#a0f1ff','white',45],
+
+}]
+}
+</span>
+<p>The above code produces the following result:</p>
+<span class="tutorialImage">
+<img src="tutorials/images/RadarStyling.png"/>
+<em>Figure 2.</em>
+</span>
+
+<h2>Layout</h2>
+<h3>Default Layout</h3>
+<p>Radar layout uses an algorithm that determines the most efficient number of columns and rows to maximize radar sizes.</p>
+
+<p>As radars may have varying point labels lengths, this can interfere with the automatic layout system.</p>
+<h3>Tweaking radar layout.</h3>
+<p>The series shape property which refers to the <a href="Types.series.shape">series.shape config</a> settings offer a number of
+    settings to allow manual layout adjustments.</p>
+<p></p>
+<p></p>
+<p> Applying the following adjusts radars positions. These values are given as 'x,y' in pixels.</p>
+<span class="codeText">
+{
+  series:[{
+      /*...*/
+        shapeOffset:'70,20'
+    },{
+         /*...*/
+        shapeOffset:'-70,20'
+    }]
+}
+</span>
+<h3>Padding Radars</h3>
+<p>In cases where radars or other similar series are too crowded, a general padding value can be applied for all radars on the chart.</p>
+
+<span class="codeText">
+{
+defaultSeries:{
+        shapePadding:.2
+    }
+}
+</span>

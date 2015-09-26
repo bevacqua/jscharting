@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Africa Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 500px; height: 500px">
+</div>
+	
+<script type="text/javascript">
+/*
+A map of African countries.
+Learn how to:
+
+  - Draw a simple country map.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  legendVisible: false,
+  height: 500,
+  title: { position: 'full', labelText: 'Africa'  },
+  series: [ {map: 'africa',palette: 'default',transparency: 0.2 }  ]
+};
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,289 @@
+
+<span class="docsNote">
+PHP Database samples are available in the bundle samples/php folder. These samples can be searched using the Sample Explorer, however,
+    PHP must be enabled in order to be visible in the Sample Explorer.
+
+</span>
+
+<h2>Creating your first PHP MySQL powered Chart</h2>
+
+
+<p>
+    The first step is to make a new *.php file.
+
+    <br/>
+    At the top of this file, please add the following code:
+    <span class="codePhpText">
+
+&lt;?php
+    include("Includes/DataEngine.php");
+    $de = new DataEngine();
+    $de->sqlStatement = 'SELECT DatePeriod,Purchases,Taxes,Supplies,Rent FROM AreaData';
+    $de->dataFields = 'xAxis=DatePeriod,yAxis=Purchases,yAxis=Taxes,yAxis=Supplies,yAxis=Rent';
+    $series = $de->getSeries();
+?&gt;
+</span>
+
+<p>The JS section will define JSON settings for the chart.</p>
+<span class="codeText">
+           var chartJson={
+  targetElement: 'cc',
+  defaultSeries: { type: 'area', transparency: 0.15  }
+           }
+
+       </span>
+
+The PHP series data is then added to the chart JSON in the JS section..
+<span class="codePhpText">
+   var php_var;
+  if(php_var =&lt;?php echo json_encode($series) ?&gt;)
+  {
+    chartJson.series =jQuery.parseJSON(php_var);
+    }
+
+</span>
+
+Finally, the chart is initialized with the JSON which includes the data from the database.
+<span class="codeText">
+ chart = new JSC.Chart(chartJson);
+</span>
+
+</p>
+
+<h2>Connecting to Data</h2>
+<p>The JSCharting PHP bundle provides a DataEngine object which can be used to automatically obtain data from any MySQL data source. MySQL settings are set in the php/Includes/MySQLConnection.php file; please update it with your database settings. The DataEngine manipulates a serialized string of series collection objects which contains data that is consumed by the chart.</p>
+<span class="docsNote">
+To verify the MySQL database connection and setup, update settings in the php/Includes/TestConnection.php file and run it in a browser.
+
+</span>
+<h2>DataEngine</h2>
+<p>The DataEngine object is instantiated with: </p>
+<p><span class="codePhpText">$de = new DataEngine();</span></p>
+<h2>DataEngine Properties</h2>
+<h3>sqlStatement</h3>
+The SQL statement used to obtain the charting data.
+
+<span class="docsNote">
+If dataFields is not set, calling getSeries() uses the first column returned for the X values, and the second column for the Y values.
+</span>
+
+
+</p>
+<p><span class="codePhpText">$de-&gt;sqlStatement = 'SELECT DatePeriod,Purchases,Taxes,Supplies,Rent FROM AreaData'; </span></p>
+
+<h3>dataFields</h3> <p>
+    Data fields specify the 'database column' to 'element value' relationships. It enables mapping which data table column or query populates a given point property.
+
+  <!--  Sets a value that specifies the 'database column' to 'element value' relationship.-->
+<p>
+    <h4>Basic Syntax</h4>
+
+    <span class="output">
+    "[Token]=[Data Column],..."
+</span>
+
+<h4>Escape Character</h4>
+Some database columns can have characters such as commas ',' in their names. In order to reference these column names an escape character can be used.
+<span class="example">'YAxis=Tom\,Harry'</span>
+        <br/>
+<p>   Supported tokens if calling getSeries() are:</p>
+
+
+<h4>DataFields Tokens</h4>
+
+<table class="useDocsTable">
+    <tr >
+        <th style="width: 187px"><strong>Token</strong></th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;name&#39;</span></td>
+        <td>  Name of the point assigned to the <a href="Types.Point.name">Point.name</a> property.   </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;xAxis&#39;</span></td>
+        <td>   X value of the point assigned to the <a href="Types.Point.x">Point.x</a> property.   </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;yAxis&#39;</span></td>
+        <td>  Y value of the point assigned to the <a href="Types.Point.y">Point.y</a> property.   </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;zAxis&#39;</span></td>
+        <td>   Z value of the point assigned to the <a href="Types.Point.z">Point.z</a> property.    </td>
+    </tr>
+    <tr>
+    <td style="width: 187px"><span class="example">&#39;Open&#39;</span></td>
+    <td>   Open value of the point assigned to the <a href="Types.Point.open">Point.open</a> property.   </td>
+</tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;High&#39;</span></td>
+        <td>  High value of the point assigned to the <a href="Types.Point.high">Point.high</a> property.    </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;Low&#39;</span></td>
+        <td>  Low value of the point assigned to the <a href="Types.Point.low">Point.low</a> property.    </td>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;Close&#39;</span></td>
+        <td>   Close value of the point assigned to the <a href="Types.Point.close">Point.close</a> property.   </td>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;ToolTip&#39;</span></td>
+        <td>   ToolTip value of the point assigned to the <a href="Types.Point.tooltip">Point.tooltip</a> property.   </td>
+    </tr>
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;Volume&#39;</span></td>
+        <td>   Finance Volume value for the point.  </td>
+    </tr>
+
+</table>
+     Any other fields are populated as custom attributes, for more information see '<b>Custom element attributes</b>' later in this document.<br>
+
+<span class="codePhpText">$de-&gt;dataFields = 'xAxis=DatePeriod,yAxis=Purchases';</span></p>
+
+        <h4>Multiple Series</h4>
+        <p>My specifying multiple yAxis tokens in the dataFields property, the data column of each instance is
+            associated with a separate series as in the following example:</p>
+<span class="codePhpText">$de-&gt;dataFields = 'xAxis=DatePeriod,yAxis=Purchases,yAxis=Taxes,yAxis=Supplies,yAxis=Rent';</span></p>
+<p>
+
+
+
+<h3>startDate and endDate</h3>
+<p>The starting and ending dates used with sqlStatement to query filtered data from a database, the <span class="example">&#39;#StartDate#&#39;</span> and <span class="example">&#39;#StartDate#&#39;</span> tokens in sqlStatement are replaced with the value set to these property.</p>
+
+<span class="codePhpText">
+        $de -> startDate = new DateTime('2014-1-1');
+        $de -> endDate = new DateTime('2014-12-31 23:59:59');
+        $de -> sqlStatement = 'SELECT MONTH(OrderDate) AS Month, SUM(1) AS Orders FROM Orders WHERE OrderDate &gt;= #StartDate#  And OrderDate &lt= #EndDate#;';
+    </span>
+<!--<h3>startDate</h3> The starting date used with sqlStatement to query filtered data from a database, the <span class="example">&#39;#StartDate#&#39;</span> token in sqlStatement is replaced with the value set to this property.</p>
+<p><span class="codeText">$de-&gt;startDate = new DateTime('2014-1-1');</span></p>
+<p>
+
+<h3>endDate</h3> The ending date used with
+sqlStatement to query filtered data from a database, the <span class="example">&#39;#EndDate#&#39;</span> token in
+sqlStatement is replaced with the value set to this property.</p>
+<p><span class="codeText">$de-&gt;endDate = new DateTime('2014-12-31 23:59:59');</span></p>-->
+<p>
+
+
+
+<h3>dateGrouping</h3>
+<p>
+    This feature controls how the values of a given series are grouped by date. In order to use this option the first column returned by the SqlStatement must be a date/time data type.
+    <span class="codePhpText">
+        //This setting shows all the months in the year regardless of having data for that month or not.
+        $de - > dateGrouping = 'Year';
+    </span>
+
+
+</p>
+<table class="useDocsTable">
+    <tr >
+        <th style="width: 187px"><strong>Setting</strong></th>
+        <th>Description</th>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;Year&#39;</span></td>
+        <td>Shows 12 months of a year regardless if you have data for all 12 months or not.</td>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;Month&#39;</span></td>
+        <td>Shows all the days of the month regardless if there are values for all the included days or not.</td>
+    </tr>
+
+    <tr>
+        <td style="width: 187px"><span class="example">&#39;Day&#39;</span></td>
+        <td>Shows each of the 24 hours in a day regardless if values are included for each hour in the return data.</td>
+    </tr>
+
+</table>
+<h3>storedProcedure and addParameter</h3>
+<p>
+    The storedProcedure property specifies a predefined stored procedure to use and the addParameter function adds parameters for the stored procedure.
+
+    <span class="codePhpText">
+        $de->storedProcedure = 'spSalesDateGroup';
+        $de->addParameter($startDate);
+    </span>
+
+
+</p>
+
+
+<p>
+
+<h2>Custom element attributes</h2><p>
+Additional information stored in your database can be extracted and used in your chart to provide further information in a
+tooltip, element's label, within the element's hot spot URL, and any other related text strings.<br>
+</p>
+
+
+<h3>Extracting from a database</h3><p>
+Extracting attributes from a database can be accomplished with a single line of 
+code using the dataFields property of a DataEngine object.<br>
+
+Assume the following database columns:
+
+        <ul>
+            <li>ID</li>
+            <li>Name</li>
+            <li>Department</li>
+            <li>Salary</li>
+            <li>Location</li>
+            <li>Phone</li>
+            <li>Picture</li>
+
+        </ul>
+
+
+Using this database we will create a chart that shows each employee's name on the x axis and there average
+performance on the y axis. When we mouse over a column in the chart we want to see the employee's ID, department,
+and phone number. When we click a given column we want to send the employee an email.<br>
+<br>
+The first step is to specify the dataFields property.<br>
+
+<span class="codePhpText">$de = new DataEngine();<br>
+$de-&gt;sqlStatement = "SELECT id,name,salary,Location,phone,Picture FROM Employees";<br>
+$de-&gt;dataFields = 'xAxis=name,yAxis=id,Location=location,phone,Picture=img';</span>
+
+<p>The next step is to specify a template for the 
+element's tooltip:
+</p>
+<span class="codeText">defaultPointTooltip: 'Location:%Location&lt;br/&gt;Phone:%phone&lt;br/&gt;&lt;img height="64" src="images/%img" width="64"&gt;', </span>
+
+<p>This complex and highly functional chart is now 
+ready. For a working sample, see <a href="Samples.CustomAttributesDB">CustomAttributesDB.php</a>
+</p>
+
+        <p>Please see the below tutorial for more information on custom attributes and client side usage.</p>
+    <span class="docsReference">Tutorials.customAttributes</span>
+
+
+
+<h2>DataEngine Methods</h2>
+<h3>getSeries()</h3> <p>Returns a serialized string
+of series collection objects which contains data that is consumed by the chart. 
+</p>
+
+<span class="docsNote">
+If dataFields is not set, the first column returned is used for the X values, and the second for the Y values.
+</span>
+
+
+<p><span class="codePhpText">$series = $de-&gt;getSeries();</span><br>
+&nbsp;</p>
+
+Please contact info@JSCharting.com if you wish to utilize the DataEngine functionality outside of PHP and what your server side preference is.
+
+
+
+<span class="docsNote">
+Please contact info@JSCharting.com if you wish to utilize the DataEngine functionality outside of PHP and what your server side preference is.
+</span>

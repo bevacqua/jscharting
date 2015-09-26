@@ -1,0 +1,83 @@
+<h2>Intro</h2>
+There are ways to easily generate statistical information about the chart data. Some precalculated information is available and accessible in a number of ways.
+
+
+&nbsp;
+<h3>Evaluating Tokens and Expressions using replaceTokens()</h3>
+<p>One way of doing this is to call the <a href="iObject.chart.replaceTokens()">chart.replaceTokens(string,[id])</a> method. It takes a string parameter in which tokens are specified and it returns the same string
+but with tokens replaced with actual values. For example,
+
+    <span class="codeText">
+{
+var chart = new JSC.Chart(/*Chart Settings*/);
+        var str=chart.replaceTokens(&#39;%sum - %average&#39;); /*str == '10,000 - 435'*/
+}
+</span>
+chart.replaceTokens(&#39;%sum - %average&#39;) will return something like: &#39;10,000 - 435&#39;.
+
+The above approach utilizes series collection tokens. But an ID can be passed to this method to use different data:
+
+chart.replaceTokens(&#39;%sum - %average&#39;, &#39;series1&#39;).
+   <span class="codeText">
+{
+var chart = new JSC.Chart(/*Chart Settings*/);
+        var str=chart.replaceTokens(&#39;%sum - %average&#39;,&#39;series1&#39;); /*str == '450 - 35'*/
+}
+</span>
+In which case the replaceTokens method will get the series with
+the matching ID, and process the string as series tokens. If a pointID is used, point tokens will be processed and so on.
+    Other replaceTokens methods include <a href="iObject.series.replaceTokens()">series.replaceTokens()</a>
+    and <a href="iObject.point.replaceTokens()">point.replaceTokens()</a>
+
+&nbsp;</p>
+        <p></p>
+<span class="docsReference">
+                        Tutorials.tokenReference
+                    </span>
+
+        <p>Token expressions can also be used in the replaceTokens() method. Such as:</p>
+<span class="codeText">
+{
+var str=chart.replaceTokens(&#39;{%sum-%average}&#39;); /*str == '9,565'*/
+}
+</span>
+<span class="docsReference">
+                        Tutorials.labelExpressions
+                    </span>
+<h3>Evaluating Token Values using tokenValue()</h3>
+        <p>The other approach is by using the <a href="iObject.chart.tokenValue()">chart.tokenValue(string,[id])</a> method.</p>
+        <p>This method has the same signature and basic functionality as replaceTokens() and  also includes <a href="iObject.series.tokenValue()">series.tokenValue()</a>
+            and <a href="iObject.point.tokenValue()">point.tokenValue()</a> versions.</p><p>
+        The  difference is that this method  supports only a single token in the string parameter without any additional text,
+            and returns the value the token represents in it's native data type, rather than a formatted string.
+
+        </p>
+<span class="codeText">
+{
+    var chart = new JSC.Chart( /*Chart Settings*/ );
+    var numericVal = chart.tokenValue('%sum'); /*numericVal == 10000*/
+}
+</span>
+<h3>Object properties</h3>
+When series or other data is specified with an ID, using <a href="iObject.chart.get()">chart.get(id)</a> will return those JS objects.
+These JS objects contain properties with calculation results that
+can be used programmatically as well:
+&nbsp;
+<span class="codeText">var s = chart.get(&#39;series1&#39;);
+Var series1Average = s.calculations.average;</span>
+&nbsp;
+<h3>Queries on JS Objects</h3>
+The <a href="iObject.series">series</a> and <a href="iObject.point">point</a> JS objects also include a replaceTokens method similar to chart.replaceTokens that can be used like so:
+&nbsp;
+<span class="codeText">var s = chart.get(&#39;series1&#39;);
+Var series1Average =  s.replaceTokens(&#39;%average&#39;);</span>
+&nbsp;
+<h3>Get user selected data</h3>
+        Data points can be selected on the chart by the user. The selected elements can be retrieved from the chart and processed to show calculations based on that selection.
+<span class="docsCaution">
+The <a href="Types.series.pointSelection">series.pointSelection</a> JSON setting must be set to true in order for the chart to allow point selection.
+</span>
+<span class="docsReference">
+                        Samples.GetSelectedData
+                    </span>
+&nbsp;

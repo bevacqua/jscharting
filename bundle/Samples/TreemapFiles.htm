@@ -1,0 +1,2986 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Treemap Files Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+<div> Top 20 file extensions used
+<table id="extListTable"></table>
+</div>
+	
+<script type="text/javascript">
+/*
+Treemap chart of file sizes in folder.
+Learn how to:
+
+  - Draw a treemap chart.
+*/
+// JS
+
+var entryTemplate = '<tr><td style="background-color: %color%;width:25px;"></td><td>%name%</td><td>%sum%</td></tr>';
+var extPalette = palette = JSC.getPalette('warmEarth');
+
+
+var config = {
+  targetElement: 'cc',
+  type: 'treemap',
+  toolbarVisible: false,
+  defaultSeriesShape: {
+    label: {
+      color: 'black',
+      align: 'left',
+      verticalAlign: 'top',
+      style: {  fontSize: 12,  fontWeight: 'bold'},
+      text: '%name/ {%ypercentOfTotal:n1}%<br/> (%sumk)'
+    },
+    outline: {width: 2,color: 'black',dashStyle: 'dash' }
+  },
+  titleLabelText: 'File Size by Folder: {%sum/1000:n1} MB',
+  defaultPointTooltip: '%name<br/> %yValuek',
+  series: [
+    {
+      id: 'bin',
+      name: 'bin',
+      points: [
+        { name: 'bin/append.bat', y: 0  },
+        { name: 'bin/focuskiller.dll', y: 32  },
+        { name: 'bin/focuskiller64.dll', y: 50  },
+        { name: 'bin/fsnotifier.exe', y: 98  },
+        { name: 'bin/idea.properties', y: 6  },
+        { name: 'bin/IdeaWin32.dll', y: 36  },
+        { name: 'bin/IdeaWin64.dll', y: 42  },
+        { name: 'bin/inspect.bat', y: 0  },
+        { name: 'bin/jumplistbridge.dll', y: 54  },
+        { name: 'bin/jumplistbridge64.dll', y: 61  },
+        { name: 'bin/log.xml', y: 72234  },
+        { name: 'bin/restarter.exe', y: 52  },
+        { name: 'bin/runnerw.exe', y: 106  },
+        { name: 'bin/Uninstall.exe', y: 105  },
+        { name: 'bin/vistalauncher.exe', y: 63  },
+        { name: 'bin/WebStorm.bat', y: 3  },
+        { name: 'bin/WebStorm.exe', y: 894  },
+        { name: 'bin/WebStorm.exe.vmoptions', y: 0  },
+        { name: 'bin/WebStorm64.exe', y: 922  },
+        { name: 'bin/WebStorm64.exe.vmoptions', y: 0  },
+        { name: 'bin/yjpagent.dll', y: 1864  },
+        { name: 'bin/yjpagent64.dll', y: 2101  }
+      ]
+    },
+    {
+      id: 'help',
+      name: 'help',
+      points: [
+        { name: 'help/ReferenceCard.pdf', y: 146  },
+        { name: 'help/ReferenceCardForMac.pdf', y: 245  }
+      ]
+    },
+    {
+      id: 'jre',
+      name: 'jre',
+      points: [
+        { id: 'jre_jre', name: 'jre/jre'  },
+        {
+          id: 'jre_jre_bin',
+          name: 'jre/jre/bin',
+          parent: 'jre_jre'
+        },
+        {
+          id: 'jre_jre_bin_client',
+          name: 'jre/jre/bin/client',
+          parent: 'jre_jre_bin'
+        },
+        {
+          parent: 'jre_jre_bin_client',
+          name: 'jre/jre/bin/client/classes.jsa',
+          y: 12386
+        },
+        {
+          parent: 'jre_jre_bin_client',
+          name: 'jre/jre/bin/client/jvm.dll',
+          y: 3814
+        },
+        {
+          parent: 'jre_jre_bin_client',
+          name: 'jre/jre/bin/client/Xusage.txt',
+          y: 1
+        },
+        {
+          id: 'jre_jre_bin_dtplugin',
+          name: 'jre/jre/bin/dtplugin',
+          parent: 'jre_jre_bin'
+        },
+        {
+          parent: 'jre_jre_bin_dtplugin',
+          name: 'jre/jre/bin/dtplugin/deployJava1.dll',
+          y: 818
+        },
+        {
+          parent: 'jre_jre_bin_dtplugin',
+          name: 'jre/jre/bin/dtplugin/npdeployJava1.dll',
+          y: 898
+        },
+        {
+          id: 'jre_jre_bin_plugin2',
+          name: 'jre/jre/bin/plugin2',
+          parent: 'jre_jre_bin'
+        },
+        {
+          parent: 'jre_jre_bin_plugin2',
+          name: 'jre/jre/bin/plugin2/msvcr100.dll',
+          y: 773
+        },
+        {
+          parent: 'jre_jre_bin_plugin2',
+          name: 'jre/jre/bin/plugin2/npjp2.dll',
+          y: 169
+        },
+        {
+          id: 'jre_jre_bin_server',
+          name: 'jre/jre/bin/server',
+          parent: 'jre_jre_bin'
+        },
+        {
+          parent: 'jre_jre_bin_server',
+          name: 'jre/jre/bin/server/jvm.dll',
+          y: 6244
+        },
+        {
+          parent: 'jre_jre_bin_server',
+          name: 'jre/jre/bin/server/Xusage.txt',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/attach.dll',
+          y: 19
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/awt.dll',
+          y: 1182
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/bci.dll',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/dcpr.dll',
+          y: 143
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/decora_sse.dll',
+          y: 63
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/deploy.dll',
+          y: 438
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/dt_shmem.dll',
+          y: 25
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/dt_socket.dll',
+          y: 21
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/eula.dll',
+          y: 109
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/fontmanager.dll',
+          y: 222
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/fxplugins.dll',
+          y: 147
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/glass.dll',
+          y: 205
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/glib-lite.dll',
+          y: 403
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/gstreamer-lite.dll',
+          y: 496
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/hprof.dll',
+          y: 131
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/instrument.dll',
+          y: 116
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/j2pcsc.dll',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/j2pkcs11.dll',
+          y: 51
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jaas_nt.dll',
+          y: 19
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jabswitch.exe',
+          y: 30
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/java-rmi.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/java.dll',
+          y: 125
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/java.exe',
+          y: 190
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/JavaAccessBridge-32.dll',
+          y: 128
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javacpl.cpl',
+          y: 146
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javacpl.exe',
+          y: 68
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javafx_font.dll',
+          y: 60
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javafx_font_t2k.dll',
+          y: 436
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javafx_iio.dll',
+          y: 118
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javaw.exe',
+          y: 191
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/javaws.exe',
+          y: 272
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/java_crw_demo.dll',
+          y: 23
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jawt.dll',
+          y: 14
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/JAWTAccessBridge-32.dll',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jdwp.dll',
+          y: 164
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jfr.dll',
+          y: 22
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jfxmedia.dll',
+          y: 117
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jfxwebkit.dll',
+          y: 16311
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jjs.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jli.dll',
+          y: 159
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jp2iexp.dll',
+          y: 204
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jp2launcher.exe',
+          y: 76
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jp2native.dll',
+          y: 19
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jp2ssv.dll',
+          y: 172
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jpeg.dll',
+          y: 145
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jsdt.dll',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jsound.dll',
+          y: 31
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/jsoundds.dll',
+          y: 28
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/kcms.dll',
+          y: 178
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/keytool.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/kinit.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/klist.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/ktab.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/lcms.dll',
+          y: 188
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/management.dll',
+          y: 33
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/mlib_image.dll',
+          y: 574
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/msvcr100.dll',
+          y: 773
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/net.dll',
+          y: 78
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/nio.dll',
+          y: 50
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/npt.dll',
+          y: 17
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/orbd.exe',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/pack200.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/policytool.exe',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/prism_common.dll',
+          y: 47
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/prism_d3d.dll',
+          y: 142
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/prism_es2.dll',
+          y: 39
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/prism_sw.dll',
+          y: 48
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/resource.dll',
+          y: 14
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/rmid.exe',
+          y: 15
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/rmiregistry.exe',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/sawindbg.dll',
+          y: 62
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/servertool.exe',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/splashscreen.dll',
+          y: 197
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/ssv.dll',
+          y: 460
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/ssvagent.exe',
+          y: 51
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/sunec.dll',
+          y: 123
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/sunmscapi.dll',
+          y: 25
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/t2k.dll',
+          y: 193
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/tnameserv.exe',
+          y: 16
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/unpack.dll',
+          y: 65
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/unpack200.exe',
+          y: 159
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/verify.dll',
+          y: 39
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/w2k_lsa_auth.dll',
+          y: 21
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/WindowsAccessBridge-32.dll',
+          y: 98
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/wsdetect.dll',
+          y: 163
+        },
+        {
+          parent: 'jre_jre_bin',
+          name: 'jre/jre/bin/zip.dll',
+          y: 69
+        },
+        {
+          id: 'jre_jre_lib',
+          name: 'jre/jre/lib',
+          parent: 'jre_jre'
+        },
+        {
+          id: 'jre_jre_lib_cmm',
+          name: 'jre/jre/lib/cmm',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_cmm',
+          name: 'jre/jre/lib/cmm/CIEXYZ.pf',
+          y: 51
+        },
+        {
+          parent: 'jre_jre_lib_cmm',
+          name: 'jre/jre/lib/cmm/GRAY.pf',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_cmm',
+          name: 'jre/jre/lib/cmm/LINEAR_RGB.pf',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_lib_cmm',
+          name: 'jre/jre/lib/cmm/PYCC.pf',
+          y: 274
+        },
+        {
+          parent: 'jre_jre_lib_cmm',
+          name: 'jre/jre/lib/cmm/sRGB.pf',
+          y: 3
+        },
+        {
+          id: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/ffjcext.zip',
+          y: 14
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages.properties',
+          y: 2
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_de.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_es.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_fr.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_it.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_ja.properties',
+          y: 6
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_ko.properties',
+          y: 5
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_pt_BR.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_sv.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_zh_CN.properties',
+          y: 4
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_zh_HK.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/messages_zh_TW.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/splash.gif',
+          y: 8
+        },
+        {
+          parent: 'jre_jre_lib_deploy',
+          name: 'jre/jre/lib/deploy/splash@2x.gif',
+          y: 15
+        },
+        {
+          id: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/access-bridge-32.jar',
+          y: 188
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/cldrdata.jar',
+          y: 3860
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/dnsns.jar',
+          y: 8
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/jaccess.jar',
+          y: 44
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/jfxrt.jar',
+          y: 18131
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/localedata.jar',
+          y: 2248
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/meta-index',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/nashorn.jar',
+          y: 2008
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/sunec.jar',
+          y: 39
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/sunjce_provider.jar',
+          y: 278
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/sunmscapi.jar',
+          y: 32
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/sunpkcs11.jar',
+          y: 249
+        },
+        {
+          parent: 'jre_jre_lib_ext',
+          name: 'jre/jre/lib/ext/zipfs.jar',
+          y: 68
+        },
+        {
+          id: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaBrightDemiBold.ttf',
+          y: 75
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaBrightDemiItalic.ttf',
+          y: 75
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaBrightItalic.ttf',
+          y: 80
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaBrightRegular.ttf',
+          y: 344
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaSansDemiBold.ttf',
+          y: 317
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaSansRegular.ttf',
+          y: 698
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaTypewriterBold.ttf',
+          y: 234
+        },
+        {
+          parent: 'jre_jre_lib_fonts',
+          name: 'jre/jre/lib/fonts/LucidaTypewriterRegular.ttf',
+          y: 242
+        },
+        {
+          id: 'jre_jre_lib_i386',
+          name: 'jre/jre/lib/i386',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_i386',
+          name: 'jre/jre/lib/i386/jvm.cfg',
+          y: 0
+        },
+        {
+          id: 'jre_jre_lib_images',
+          name: 'jre/jre/lib/images',
+          parent: 'jre_jre_lib'
+        },
+        {
+          id: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors',
+          parent: 'jre_jre_lib_images'
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/cursors.properties',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/invalid32x32.gif',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/win32_CopyDrop32x32.gif',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/win32_CopyNoDrop32x32.gif',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/win32_LinkDrop32x32.gif',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/win32_LinkNoDrop32x32.gif',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/win32_MoveDrop32x32.gif',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_images_cursors',
+          name: 'jre/jre/lib/images/cursors/win32_MoveNoDrop32x32.gif',
+          y: 0
+        },
+        {
+          id: 'jre_jre_lib_jfr',
+          name: 'jre/jre/lib/jfr',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_jfr',
+          name: 'jre/jre/lib/jfr/default.jfc',
+          y: 19
+        },
+        {
+          parent: 'jre_jre_lib_jfr',
+          name: 'jre/jre/lib/jfr/profile.jfc',
+          y: 19
+        },
+        {
+          id: 'jre_jre_lib_management',
+          name: 'jre/jre/lib/management',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_management',
+          name: 'jre/jre/lib/management/jmxremote.access',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_management',
+          name: 'jre/jre/lib/management/jmxremote.password.template',
+          y: 2
+        },
+        {
+          parent: 'jre_jre_lib_management',
+          name: 'jre/jre/lib/management/management.properties',
+          y: 14
+        },
+        {
+          parent: 'jre_jre_lib_management',
+          name: 'jre/jre/lib/management/snmp.acl.template',
+          y: 3
+        },
+        {
+          id: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security',
+          parent: 'jre_jre_lib'
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/blacklist',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/blacklisted.certs',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/cacerts',
+          y: 94
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/java.policy',
+          y: 2
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/java.security',
+          y: 21
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/javaws.policy',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/local_policy.jar',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/trusted.libraries',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib_security',
+          name: 'jre/jre/lib/security/US_export_policy.jar',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/accessibility.properties',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/calendars.properties',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/charsets.jar',
+          y: 3086
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/classlist',
+          y: 80
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/content-types.properties',
+          y: 5
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/currency.data',
+          y: 4
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/deploy.jar',
+          y: 4795
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/flavormap.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/fontconfig.bfc',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/fontconfig.properties.src',
+          y: 10
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/hijrah-config-umalqura.properties',
+          y: 13
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/javafx.properties',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/javaws.jar',
+          y: 922
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/jce.jar',
+          y: 114
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/jfr.jar',
+          y: 555
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/jfxswt.jar',
+          y: 33
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/jsse.jar',
+          y: 620
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/jvm.hprof.txt',
+          y: 4
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/logging.properties',
+          y: 2
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/management-agent.jar',
+          y: 0
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/meta-index',
+          y: 2
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/net.properties',
+          y: 3
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/plugin.jar',
+          y: 1923
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/psfont.properties.ja',
+          y: 2
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/psfontj2d.properties',
+          y: 10
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/resources.jar',
+          y: 3487
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/rt.jar',
+          y: 63190
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/sound.properties',
+          y: 1
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/tzdb.dat',
+          y: 102
+        },
+        {
+          parent: 'jre_jre_lib',
+          name: 'jre/jre/lib/tzmappings',
+          y: 8
+        },
+        {
+          parent: 'jre_jre',
+          name: 'jre/jre/COPYRIGHT',
+          y: 3
+        },
+        {
+          parent: 'jre_jre',
+          name: 'jre/jre/LICENSE',
+          y: 0
+        },
+        {
+          parent: 'jre_jre',
+          name: 'jre/jre/README.txt',
+          y: 0
+        },
+        {
+          parent: 'jre_jre',
+          name: 'jre/jre/THIRDPARTYLICENSEREADME-JAVAFX.txt',
+          y: 110
+        },
+        {
+          parent: 'jre_jre',
+          name: 'jre/jre/THIRDPARTYLICENSEREADME.txt',
+          y: 178
+        },
+        {
+          parent: 'jre_jre',
+          name: 'jre/jre/Welcome.html',
+          y: 0
+        },
+        { id: 'jre_lib', name: 'jre/lib'  },
+        {
+          parent: 'jre_lib',
+          name: 'jre/lib/tools.jar',
+          y: 18173
+        }
+      ]
+    },
+    {
+      id: 'lib',
+      name: 'lib',
+      points: [
+        { id: 'lib_ext', name: 'lib/ext'  },
+        {
+          parent: 'lib_ext',
+          name: 'lib/ext/cglib-2.2.2.jar',
+          y: 287
+        },
+        { id: 'lib_libpty', name: 'lib/libpty'  },
+        {
+          id: 'lib_libpty_linux',
+          name: 'lib/libpty/linux',
+          parent: 'lib_libpty'
+        },
+        {
+          id: 'lib_libpty_linux_x86',
+          name: 'lib/libpty/linux/x86',
+          parent: 'lib_libpty_linux'
+        },
+        {
+          parent: 'lib_libpty_linux_x86',
+          name: 'lib/libpty/linux/x86/libpty.so',
+          y: 9
+        },
+        {
+          id: 'lib_libpty_linux_x86_64',
+          name: 'lib/libpty/linux/x86_64',
+          parent: 'lib_libpty_linux'
+        },
+        {
+          parent: 'lib_libpty_linux_x86_64',
+          name: 'lib/libpty/linux/x86_64/libpty.so',
+          y: 10
+        },
+        {
+          id: 'lib_libpty_macosx',
+          name: 'lib/libpty/macosx',
+          parent: 'lib_libpty'
+        },
+        {
+          id: 'lib_libpty_macosx_x86',
+          name: 'lib/libpty/macosx/x86',
+          parent: 'lib_libpty_macosx'
+        },
+        {
+          parent: 'lib_libpty_macosx_x86',
+          name: 'lib/libpty/macosx/x86/libpty.dylib',
+          y: 14
+        },
+        {
+          id: 'lib_libpty_macosx_x86_64',
+          name: 'lib/libpty/macosx/x86_64',
+          parent: 'lib_libpty_macosx'
+        },
+        {
+          parent: 'lib_libpty_macosx_x86_64',
+          name: 'lib/libpty/macosx/x86_64/libpty.dylib',
+          y: 14
+        },
+        {
+          id: 'lib_libpty_win',
+          name: 'lib/libpty/win',
+          parent: 'lib_libpty'
+        },
+        {
+          id: 'lib_libpty_win_x86',
+          name: 'lib/libpty/win/x86',
+          parent: 'lib_libpty_win'
+        },
+        {
+          parent: 'lib_libpty_win_x86',
+          name: 'lib/libpty/win/x86/libwinpty.dll',
+          y: 206
+        },
+        {
+          parent: 'lib_libpty_win_x86',
+          name: 'lib/libpty/win/x86/winpty-agent.exe',
+          y: 176
+        },
+        {
+          id: 'lib_libpty_win_x86_64',
+          name: 'lib/libpty/win/x86_64',
+          parent: 'lib_libpty_win'
+        },
+        {
+          parent: 'lib_libpty_win_x86_64',
+          name: 'lib/libpty/win/x86_64/cyglaunch.exe',
+          y: 15
+        },
+        {
+          parent: 'lib_libpty_win_x86_64',
+          name: 'lib/libpty/win/x86_64/libwinpty.dll',
+          y: 216
+        },
+        {
+          parent: 'lib_libpty_win_x86_64',
+          name: 'lib/libpty/win/x86_64/winpty-agent.exe',
+          y: 201
+        },
+        {
+          id: 'lib_libpty_win_xp',
+          name: 'lib/libpty/win/xp',
+          parent: 'lib_libpty_win'
+        },
+        {
+          parent: 'lib_libpty_win_xp',
+          name: 'lib/libpty/win/xp/libwinpty.dll',
+          y: 206
+        },
+        {
+          parent: 'lib_libpty_win_xp',
+          name: 'lib/libpty/win/xp/winpty-agent.exe',
+          y: 176
+        },
+        { name: 'lib/alloy.jar', y: 328  },
+        { name: 'lib/annotations.jar', y: 24  },
+        { name: 'lib/asm-all.jar', y: 384  },
+        { name: 'lib/asm-commons.jar', y: 38  },
+        { name: 'lib/asm.jar', y: 43  },
+        { name: 'lib/automaton.jar', y: 199  },
+        { name: 'lib/batik.jar', y: 3599  },
+        { name: 'lib/boot.jar', y: 13  },
+        { name: 'lib/bootstrap.jar', y: 40  },
+        { name: 'lib/branding.jar', y: 763  },
+        { name: 'lib/cglib-2.2.2.jar', y: 287  },
+        { name: 'lib/cli-parser-1.1.jar', y: 10  },
+        { name: 'lib/commons-codec-1.8.jar', y: 263  },
+        {
+          name: 'lib/commons-httpclient-3.1-patched.jar',
+          y: 311
+        },
+        { name: 'lib/commons-logging-1.1.3.jar', y: 62  },
+        { name: 'lib/commons-net-3.3.jar', y: 280  },
+        { name: 'lib/coverage-agent.jar', y: 33  },
+        { name: 'lib/coverage-util.jar', y: 21  },
+        { name: 'lib/extensions.jar', y: 147  },
+        { name: 'lib/fluent-hc-4.3.6.jar', y: 29  },
+        { name: 'lib/forms_rt.jar', y: 62  },
+        { name: 'lib/gson-2.3.jar', y: 206  },
+        { name: 'lib/guava-17.0.jar', y: 2243  },
+        { name: 'lib/httpclient-4.3.6.jar', y: 592  },
+        { name: 'lib/httpcore-4.3.3.jar', y: 282  },
+        { name: 'lib/httpmime-4.3.6.jar', y: 37  },
+        { name: 'lib/icons.jar', y: 2957  },
+        { name: 'lib/instrumenter.jar', y: 57  },
+        { name: 'lib/isorelax.jar', y: 192  },
+        { name: 'lib/jaxen-1.1.3.jar', y: 223  },
+        { name: 'lib/jayatana-1.2.4.jar', y: 115  },
+        { name: 'lib/jdom.jar', y: 155  },
+        { name: 'lib/jgoodies-forms.jar', y: 87  },
+        { name: 'lib/jh.jar', y: 562  },
+        { name: 'lib/jing.jar', y: 486  },
+        { name: 'lib/jna-utils.jar', y: 913  },
+        { name: 'lib/jna.jar', y: 1006  },
+        { name: 'lib/jsch-0.1.51.jar', y: 261  },
+        {
+          name: 'lib/jsch.agentproxy.connector-factory.jar',
+          y: 12
+        },
+        { name: 'lib/jsch.agentproxy.core.jar', y: 9  },
+        { name: 'lib/jsch.agentproxy.pageant.jar', y: 7  },
+        {
+          name: 'lib/jsch.agentproxy.sshagent.jar',
+          y: 4
+        },
+        {
+          name: 'lib/jsch.agentproxy.usocket-jna.jar',
+          y: 6
+        },
+        {
+          name: 'lib/jsch.agentproxy.usocket-nc.jar',
+          y: 5
+        },
+        { name: 'lib/jsr166e.jar', y: 277  },
+        { name: 'lib/jsr173_1.0_api.jar', y: 24  },
+        { name: 'lib/jzlib-1.1.1.jar', y: 69  },
+        { name: 'lib/log4j.jar', y: 489  },
+        {
+          name: 'lib/markdownj-core-0.4.2-SNAPSHOT.jar',
+          y: 34
+        },
+        { name: 'lib/microba.jar', y: 134  },
+        { name: 'lib/miglayout-swing.jar', y: 75  },
+        { name: 'lib/nanoxml-2.2.3.jar', y: 42  },
+        { name: 'lib/nekohtml-1.9.14.jar', y: 124  },
+        {
+          name: 'lib/netty-all-4.1.0.Beta4.jar',
+          y: 2689
+        },
+        { name: 'lib/openapi.jar', y: 17845  },
+        { name: 'lib/oromatcher.jar', y: 65  },
+        { name: 'lib/picocontainer.jar', y: 112  },
+        { name: 'lib/protobuf-2.5.0.jar', y: 532  },
+        { name: 'lib/proxy-vole_20131209.jar', y: 195  },
+        { name: 'lib/pty4j-0.4.12.jar', y: 49  },
+        { name: 'lib/purejavacomm.jar', y: 141  },
+        { name: 'lib/resolver.jar', y: 84  },
+        { name: 'lib/resources.jar', y: 1764  },
+        { name: 'lib/resources_en.jar', y: 16074  },
+        { name: 'lib/rhino-js-1_7R4.jar', y: 1134  },
+        {
+          name: 'lib/rngom-20051226-patched.jar',
+          y: 652
+        },
+        {
+          name: 'lib/sanselan-0.98-snapshot.jar',
+          y: 619
+        },
+        { name: 'lib/serviceMessages.jar', y: 47  },
+        { name: 'lib/snappy-in-java-0.3.1.jar', y: 42  },
+        { name: 'lib/swingx-core-1.6.2.jar', y: 1447  },
+        { name: 'lib/trang-core.jar', y: 496  },
+        { name: 'lib/trove4j.jar', y: 390  },
+        { name: 'lib/trove4j_src.jar', y: 445  },
+        { name: 'lib/util.jar', y: 5037  },
+        { name: 'lib/velocity.jar', y: 751  },
+        { name: 'lib/webstorm.jar', y: 81738  },
+        { name: 'lib/winp-1.21-patched.jar', y: 27  },
+        { name: 'lib/xbean.jar', y: 2678  },
+        { name: 'lib/xerces.jar', y: 1229  },
+        { name: 'lib/xmlrpc-2.0.jar', y: 117  },
+        { name: 'lib/xpp3-1.1.4-min.jar', y: 48  },
+        { name: 'lib/xstream-1.4.3.jar', y: 481  },
+        {
+          name: 'lib/yjp-controller-api-redist.jar',
+          y: 109
+        }
+      ]
+    },
+    {
+      id: 'license',
+      name: 'license',
+      points: [
+        { name: 'license/ant_license.txt', y: 0  },
+        { name: 'license/asm_license.txt', y: 1  },
+        { name: 'license/eclipse_license.txt', y: 11  },
+        { name: 'license/growl.license', y: 1  },
+        { name: 'license/gson_license.txt', y: 0  },
+        { name: 'license/javahelp_license.html', y: 13  },
+        { name: 'license/javolution_license.txt', y: 1  },
+        { name: 'license/jaxb_license.txt', y: 36  },
+        { name: 'license/jaxen_license.txt', y: 1  },
+        { name: 'license/jayatana_license.txt', y: 1  },
+        { name: 'license/jdom_license.txt', y: 2  },
+        {
+          name: 'license/jgoodies_forms_license.txt',
+          y: 1
+        },
+        { name: 'license/junit_license.txt', y: 11  },
+        { name: 'license/kryo-license.txt', y: 1  },
+        { name: 'license/log4j_license.txt', y: 2  },
+        { name: 'license/microba_license.txt', y: 1  },
+        {
+          name: 'license/miglayout_swing_license.txt',
+          y: 1
+        },
+        { name: 'license/nanoxml_license.txt', y: 0  },
+        { name: 'license/oromatcher_license.txt', y: 3  },
+        {
+          name: 'license/picoContainer_license.txt',
+          y: 1
+        },
+        { name: 'license/sanselan_license.txt', y: 11  },
+        { name: 'license/sqljet-license.txt', y: 1  },
+        { name: 'license/svnkit-license.txt', y: 1  },
+        { name: 'license/swingx_license.txt', y: 26  },
+        {
+          name: 'license/WebStorm_Academic_license.txt',
+          y: 13
+        },
+        {
+          name: 'license/WebStorm_Classroom_license.txt',
+          y: 12
+        },
+        { name: 'license/WebStorm_license.txt', y: 13  },
+        {
+          name: 'license/WebStorm_OpenSource_license.txt',
+          y: 13
+        },
+        {
+          name: 'license/WebStorm_personal_license.txt',
+          y: 13
+        },
+        { name: 'license/winp_license.txt', y: 1  },
+        { name: 'license/xerces_license.txt', y: 11  },
+        { name: 'license/xmlrpc_license.txt', y: 9  },
+        { name: 'license/XStream_license.txt', y: 1  },
+        {
+          name: 'license/yourkit-license-redist.txt',
+          y: 1
+        }
+      ]
+    },
+    {
+      id: 'plugins',
+      name: 'plugins',
+      points: [
+        {
+          id: 'plugins_AngularJS',
+          name: 'plugins/AngularJS'
+        },
+        {
+          id: 'plugins_AngularJS_lib',
+          name: 'plugins/AngularJS/lib',
+          parent: 'plugins_AngularJS'
+        },
+        {
+          parent: 'plugins_AngularJS_lib',
+          name: 'plugins/AngularJS/lib/AngularJS.jar',
+          y: 320
+        },
+        { id: 'plugins_asp', name: 'plugins/asp'  },
+        {
+          id: 'plugins_asp_lib',
+          name: 'plugins/asp/lib',
+          parent: 'plugins_asp'
+        },
+        {
+          parent: 'plugins_asp_lib',
+          name: 'plugins/asp/lib/asp.jar',
+          y: 42
+        },
+        {
+          parent: 'plugins_asp_lib',
+          name: 'plugins/asp/lib/resources_en.jar',
+          y: 0
+        },
+        {
+          id: 'plugins_coffeescript',
+          name: 'plugins/coffeescript'
+        },
+        {
+          id: 'plugins_coffeescript_lib',
+          name: 'plugins/coffeescript/lib',
+          parent: 'plugins_coffeescript'
+        },
+        {
+          parent: 'plugins_coffeescript_lib',
+          name: 'plugins/coffeescript/lib/coffeescript.jar',
+          y: 1828
+        },
+        {
+          parent: 'plugins_coffeescript_lib',
+          name: 'plugins/coffeescript/lib/resources_en.jar',
+          y: 9
+        },
+        { id: 'plugins_CSS', name: 'plugins/CSS'  },
+        {
+          id: 'plugins_CSS_lib',
+          name: 'plugins/CSS/lib',
+          parent: 'plugins_CSS'
+        },
+        {
+          parent: 'plugins_CSS_lib',
+          name: 'plugins/CSS/lib/css-openapi.jar',
+          y: 290
+        },
+        {
+          parent: 'plugins_CSS_lib',
+          name: 'plugins/CSS/lib/css.jar',
+          y: 5509
+        },
+        {
+          parent: 'plugins_CSS_lib',
+          name: 'plugins/CSS/lib/resources_en.jar',
+          y: 43
+        },
+        {
+          id: 'plugins_cucumber',
+          name: 'plugins/cucumber'
+        },
+        {
+          id: 'plugins_cucumber_lib',
+          name: 'plugins/cucumber/lib',
+          parent: 'plugins_cucumber'
+        },
+        {
+          parent: 'plugins_cucumber_lib',
+          name: 'plugins/cucumber/lib/cucumber.jar',
+          y: 607
+        },
+        {
+          parent: 'plugins_cucumber_lib',
+          name: 'plugins/cucumber/lib/resources_en.jar',
+          y: 6
+        },
+        {
+          id: 'plugins_CucumberJavaScript',
+          name: 'plugins/CucumberJavaScript'
+        },
+        {
+          id: 'plugins_CucumberJavaScript_lib',
+          name: 'plugins/CucumberJavaScript/lib',
+          parent: 'plugins_CucumberJavaScript'
+        },
+        {
+          parent: 'plugins_CucumberJavaScript_lib',
+          name: 'plugins/CucumberJavaScript/lib/CucumberJavaScript.jar',
+          y: 92
+        },
+        {
+          parent: 'plugins_CucumberJavaScript_lib',
+          name: 'plugins/CucumberJavaScript/lib/cucumberjs_formatter_nix.js',
+          y: 7
+        },
+        {
+          parent: 'plugins_CucumberJavaScript_lib',
+          name: 'plugins/CucumberJavaScript/lib/cucumberjs_formatter_windows.js',
+          y: 7
+        },
+        {
+          id: 'plugins_cvsIntegration',
+          name: 'plugins/cvsIntegration'
+        },
+        {
+          id: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib',
+          parent: 'plugins_cvsIntegration'
+        },
+        {
+          parent: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib/cvsIntegration.jar',
+          y: 2114
+        },
+        {
+          parent: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib/cvs_util.jar',
+          y: 182
+        },
+        {
+          parent: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib/javacvs-src.jar',
+          y: 553
+        },
+        {
+          parent: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib/resources_en.jar',
+          y: 30
+        },
+        {
+          parent: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib/smartcvs-src.jar',
+          y: 101
+        },
+        {
+          parent: 'plugins_cvsIntegration_lib',
+          name: 'plugins/cvsIntegration/lib/trilead-ssh2-build213.jar',
+          y: 248
+        },
+        { id: 'plugins_Dart', name: 'plugins/Dart'  },
+        {
+          id: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib',
+          parent: 'plugins_Dart'
+        },
+        {
+          parent: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib/commons-lang3-3.2.1.jar',
+          y: 385
+        },
+        {
+          parent: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib/Dart.jar',
+          y: 3400
+        },
+        {
+          parent: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib/dartanalyzer_server.jar',
+          y: 513
+        },
+        {
+          parent: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib/json.jar',
+          y: 68
+        },
+        {
+          parent: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib/resources_en.jar',
+          y: 14
+        },
+        {
+          parent: 'plugins_Dart_lib',
+          name: 'plugins/Dart/lib/snakeyaml-1.13.jar',
+          y: 273
+        },
+        {
+          id: 'plugins_editorconfig',
+          name: 'plugins/editorconfig'
+        },
+        {
+          id: 'plugins_editorconfig_lib',
+          name: 'plugins/editorconfig/lib',
+          parent: 'plugins_editorconfig'
+        },
+        {
+          parent: 'plugins_editorconfig_lib',
+          name: 'plugins/editorconfig/lib/editorconfig-core-java.jar',
+          y: 18
+        },
+        {
+          parent: 'plugins_editorconfig_lib',
+          name: 'plugins/editorconfig/lib/editorconfig.jar',
+          y: 68
+        },
+        { id: 'plugins_EJS', name: 'plugins/EJS'  },
+        {
+          id: 'plugins_EJS_lib',
+          name: 'plugins/EJS/lib',
+          parent: 'plugins_EJS'
+        },
+        {
+          parent: 'plugins_EJS_lib',
+          name: 'plugins/EJS/lib/EJS.jar',
+          y: 190
+        },
+        {
+          parent: 'plugins_EJS_lib',
+          name: 'plugins/EJS/lib/resources_en.jar',
+          y: 2
+        },
+        {
+          id: 'plugins_fileWatcher',
+          name: 'plugins/fileWatcher'
+        },
+        {
+          id: 'plugins_fileWatcher_lib',
+          name: 'plugins/fileWatcher/lib',
+          parent: 'plugins_fileWatcher'
+        },
+        {
+          parent: 'plugins_fileWatcher_lib',
+          name: 'plugins/fileWatcher/lib/fileWatcher.jar',
+          y: 491
+        },
+        {
+          parent: 'plugins_fileWatcher_lib',
+          name: 'plugins/fileWatcher/lib/resources_en.jar',
+          y: 3
+        },
+        {
+          id: 'plugins_git4idea',
+          name: 'plugins/git4idea'
+        },
+        {
+          id: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib',
+          parent: 'plugins_git4idea'
+        },
+        {
+          parent: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib/git4idea-rt.jar',
+          y: 64
+        },
+        {
+          parent: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib/git4idea.jar',
+          y: 2945
+        },
+        {
+          parent: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib/ini4j-0.5.2-patched.jar',
+          y: 105
+        },
+        {
+          parent: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib/remote-servers-git.jar',
+          y: 143
+        },
+        {
+          parent: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib/resources_en.jar',
+          y: 29
+        },
+        {
+          parent: 'plugins_git4idea_lib',
+          name: 'plugins/git4idea/lib/trilead-ssh2.jar',
+          y: 252
+        },
+        { id: 'plugins_github', name: 'plugins/github'  },
+        {
+          id: 'plugins_github_lib',
+          name: 'plugins/github/lib',
+          parent: 'plugins_github'
+        },
+        {
+          parent: 'plugins_github_lib',
+          name: 'plugins/github/lib/github.jar',
+          y: 807
+        },
+        { id: 'plugins_haml', name: 'plugins/haml'  },
+        {
+          id: 'plugins_haml_lib',
+          name: 'plugins/haml/lib',
+          parent: 'plugins_haml'
+        },
+        {
+          parent: 'plugins_haml_lib',
+          name: 'plugins/haml/lib/haml.jar',
+          y: 186
+        },
+        {
+          parent: 'plugins_haml_lib',
+          name: 'plugins/haml/lib/resources_en.jar',
+          y: 2
+        },
+        {
+          id: 'plugins_handlebars',
+          name: 'plugins/handlebars'
+        },
+        {
+          id: 'plugins_handlebars_lib',
+          name: 'plugins/handlebars/lib',
+          parent: 'plugins_handlebars'
+        },
+        {
+          parent: 'plugins_handlebars_lib',
+          name: 'plugins/handlebars/lib/handlebars.jar',
+          y: 268
+        },
+        {
+          parent: 'plugins_handlebars_lib',
+          name: 'plugins/handlebars/lib/resources_en.jar',
+          y: 4
+        },
+        {
+          id: 'plugins_hg4idea',
+          name: 'plugins/hg4idea'
+        },
+        {
+          id: 'plugins_hg4idea_lib',
+          name: 'plugins/hg4idea/lib',
+          parent: 'plugins_hg4idea'
+        },
+        {
+          parent: 'plugins_hg4idea_lib',
+          name: 'plugins/hg4idea/lib/hg4idea.jar',
+          y: 1238
+        },
+        {
+          parent: 'plugins_hg4idea_lib',
+          name: 'plugins/hg4idea/lib/resources_en.jar',
+          y: 8
+        },
+        {
+          id: 'plugins_htmltools',
+          name: 'plugins/htmltools'
+        },
+        {
+          id: 'plugins_htmltools_lib',
+          name: 'plugins/htmltools/lib',
+          parent: 'plugins_htmltools'
+        },
+        {
+          parent: 'plugins_htmltools_lib',
+          name: 'plugins/htmltools/lib/htmltools.jar',
+          y: 259
+        },
+        {
+          parent: 'plugins_htmltools_lib',
+          name: 'plugins/htmltools/lib/resources_en.jar',
+          y: 3
+        },
+        {
+          id: 'plugins_IntelliLang',
+          name: 'plugins/IntelliLang'
+        },
+        {
+          id: 'plugins_IntelliLang_lib',
+          name: 'plugins/IntelliLang/lib',
+          parent: 'plugins_IntelliLang'
+        },
+        {
+          parent: 'plugins_IntelliLang_lib',
+          name: 'plugins/IntelliLang/lib/IntelliLang.jar',
+          y: 776
+        },
+        { id: 'plugins_Jade', name: 'plugins/Jade'  },
+        {
+          id: 'plugins_Jade_lib',
+          name: 'plugins/Jade/lib',
+          parent: 'plugins_Jade'
+        },
+        {
+          parent: 'plugins_Jade_lib',
+          name: 'plugins/Jade/lib/Jade.jar',
+          y: 493
+        },
+        {
+          parent: 'plugins_Jade_lib',
+          name: 'plugins/Jade/lib/resources_en.jar',
+          y: 3
+        },
+        {
+          id: 'plugins_JavaScriptDebugger',
+          name: 'plugins/JavaScriptDebugger'
+        },
+        {
+          id: 'plugins_JavaScriptDebugger_extensions',
+          name: 'plugins/JavaScriptDebugger/extensions',
+          parent: 'plugins_JavaScriptDebugger'
+        },
+        {
+          parent: 'plugins_JavaScriptDebugger_extensions',
+          name: 'plugins/JavaScriptDebugger/extensions/jb.xpi',
+          y: 46
+        },
+        {
+          id: 'plugins_JavaScriptDebugger_lib',
+          name: 'plugins/JavaScriptDebugger/lib',
+          parent: 'plugins_JavaScriptDebugger'
+        },
+        {
+          parent: 'plugins_JavaScriptDebugger_lib',
+          name: 'plugins/JavaScriptDebugger/lib/ChromeConnector.jar',
+          y: 2268
+        },
+        {
+          parent: 'plugins_JavaScriptDebugger_lib',
+          name: 'plugins/JavaScriptDebugger/lib/FirefoxConnector.jar',
+          y: 363
+        },
+        {
+          parent: 'plugins_JavaScriptDebugger_lib',
+          name: 'plugins/JavaScriptDebugger/lib/JavaScriptDebugger.jar',
+          y: 1156
+        },
+        {
+          parent: 'plugins_JavaScriptDebugger_lib',
+          name: 'plugins/JavaScriptDebugger/lib/resources_en.jar',
+          y: 6
+        },
+        {
+          parent: 'plugins_JavaScriptDebugger',
+          name: 'plugins/JavaScriptDebugger/nashorn-debugger-support.jar',
+          y: 5
+        },
+        {
+          id: 'plugins_JavaScriptLanguage',
+          name: 'plugins/JavaScriptLanguage'
+        },
+        {
+          id: 'plugins_JavaScriptLanguage_grunt_js',
+          name: 'plugins/JavaScriptLanguage/grunt_js',
+          parent: 'plugins_JavaScriptLanguage'
+        },
+        {
+          id: 'plugins_JavaScriptLanguage_grunt_js_lib',
+          name: 'plugins/JavaScriptLanguage/grunt_js/lib',
+          parent: 'plugins_JavaScriptLanguage_grunt_js'
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_grunt_js_lib',
+          name: 'plugins/JavaScriptLanguage/grunt_js/lib/grunt-intellij-util.js',
+          y: 0
+        },
+        {
+          id: 'plugins_JavaScriptLanguage_grunt_js_tasks',
+          name: 'plugins/JavaScriptLanguage/grunt_js/tasks',
+          parent: 'plugins_JavaScriptLanguage_grunt_js'
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_grunt_js_tasks',
+          name: 'plugins/JavaScriptLanguage/grunt_js/tasks/grunt-tasks-fetcher.js',
+          y: 2
+        },
+        {
+          id: 'plugins_JavaScriptLanguage_lib',
+          name: 'plugins/JavaScriptLanguage/lib',
+          parent: 'plugins_JavaScriptLanguage'
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_lib',
+          name: 'plugins/JavaScriptLanguage/lib/ecmascript6-compiler.jar',
+          y: 252
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_lib',
+          name: 'plugins/JavaScriptLanguage/lib/javascript-openapi.jar',
+          y: 246
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_lib',
+          name: 'plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar',
+          y: 16036
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_lib',
+          name: 'plugins/JavaScriptLanguage/lib/js-test-common.jar',
+          y: 312
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_lib',
+          name: 'plugins/JavaScriptLanguage/lib/resources_en.jar',
+          y: 199
+        },
+        {
+          id: 'plugins_JavaScriptLanguage_typescriptCompiler',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler',
+          parent: 'plugins_JavaScriptLanguage'
+        },
+        {
+          id: 'plugins_JavaScriptLanguage_typescriptCompiler_external',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/external',
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler'
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler_external',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/external/lib.d.ts',
+          y: 583
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler_external',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/external/lib.es6.d.ts',
+          y: 718
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler_external',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/external/typescriptServices.js',
+          y: 1423
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/bridge.js',
+          y: 4
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/browser-ext-platform.js',
+          y: 49
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/out-path-process.js',
+          y: 3
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/store.js',
+          y: 6
+        },
+        {
+          parent: 'plugins_JavaScriptLanguage_typescriptCompiler',
+          name: 'plugins/JavaScriptLanguage/typescriptCompiler/ts-compiler-host-impl.js',
+          y: 17
+        },
+        {
+          id: 'plugins_js-karma',
+          name: 'plugins/js-karma'
+        },
+        {
+          id: 'plugins_js-karma_js_reporter',
+          name: 'plugins/js-karma/js_reporter',
+          parent: 'plugins_js-karma'
+        },
+        {
+          id: 'plugins_js-karma_js_reporter_karma-intellij',
+          name: 'plugins/js-karma/js_reporter/karma-intellij',
+          parent: 'plugins_js-karma_js_reporter'
+        },
+        {
+          id: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib',
+          parent: 'plugins_js-karma_js_reporter_karma-intellij'
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/fakePlugin.js',
+          y: 0
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/fileListUpdater.js',
+          y: 1
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellij.conf.js',
+          y: 2
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijCli.js',
+          y: 2
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijCoverageReporter.js',
+          y: 8
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijPlugin.js',
+          y: 0
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijReporter.js',
+          y: 8
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijRunner.js',
+          y: 2
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijServer.js',
+          y: 0
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/intellijUtil.js',
+          y: 4
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij_lib',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/lib/tree.js',
+          y: 7
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/LICENSE.txt',
+          y: 0
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/package.json',
+          y: 0
+        },
+        {
+          parent: 'plugins_js-karma_js_reporter_karma-intellij',
+          name: 'plugins/js-karma/js_reporter/karma-intellij/README.md',
+          y: 0
+        },
+        {
+          id: 'plugins_js-karma_lib',
+          name: 'plugins/js-karma/lib',
+          parent: 'plugins_js-karma'
+        },
+        {
+          parent: 'plugins_js-karma_lib',
+          name: 'plugins/js-karma/lib/js-karma.jar',
+          y: 526
+        },
+        {
+          id: 'plugins_JSIntentionPowerPack',
+          name: 'plugins/JSIntentionPowerPack'
+        },
+        {
+          id: 'plugins_JSIntentionPowerPack_lib',
+          name: 'plugins/JSIntentionPowerPack/lib',
+          parent: 'plugins_JSIntentionPowerPack'
+        },
+        {
+          parent: 'plugins_JSIntentionPowerPack_lib',
+          name: 'plugins/JSIntentionPowerPack/lib/JSIntentionPowerPack.jar',
+          y: 538
+        },
+        {
+          parent: 'plugins_JSIntentionPowerPack_lib',
+          name: 'plugins/JSIntentionPowerPack/lib/resources_en.jar',
+          y: 71
+        },
+        { id: 'plugins_jsp', name: 'plugins/jsp'  },
+        {
+          id: 'plugins_jsp_lib',
+          name: 'plugins/jsp/lib',
+          parent: 'plugins_jsp'
+        },
+        {
+          parent: 'plugins_jsp_lib',
+          name: 'plugins/jsp/lib/jsp-impl.jar',
+          y: 702
+        },
+        {
+          id: 'plugins_JsTestDriver',
+          name: 'plugins/JsTestDriver'
+        },
+        {
+          id: 'plugins_JsTestDriver_lib',
+          name: 'plugins/JsTestDriver/lib',
+          parent: 'plugins_JsTestDriver'
+        },
+        {
+          parent: 'plugins_JsTestDriver_lib',
+          name: 'plugins/JsTestDriver/lib/coverage-1.3.5.jar',
+          y: 2241
+        },
+        {
+          parent: 'plugins_JsTestDriver_lib',
+          name: 'plugins/JsTestDriver/lib/JsTestDriver-1.3.5-patched.jar',
+          y: 4355
+        },
+        {
+          parent: 'plugins_JsTestDriver_lib',
+          name: 'plugins/JsTestDriver/lib/JsTestDriver-plugin-rt.jar',
+          y: 194
+        },
+        {
+          parent: 'plugins_JsTestDriver_lib',
+          name: 'plugins/JsTestDriver/lib/JsTestDriver-plugin.jar',
+          y: 1051
+        },
+        {
+          parent: 'plugins_JsTestDriver_lib',
+          name: 'plugins/JsTestDriver/lib/resources_en.jar',
+          y: 1
+        },
+        { id: 'plugins_less', name: 'plugins/less'  },
+        {
+          id: 'plugins_less_lib',
+          name: 'plugins/less/lib',
+          parent: 'plugins_less'
+        },
+        {
+          parent: 'plugins_less_lib',
+          name: 'plugins/less/lib/less.jar',
+          y: 570
+        },
+        {
+          parent: 'plugins_less_lib',
+          name: 'plugins/less/lib/resources_en.jar',
+          y: 4
+        },
+        {
+          id: 'plugins_LiveEdit',
+          name: 'plugins/LiveEdit'
+        },
+        {
+          id: 'plugins_LiveEdit_lib',
+          name: 'plugins/LiveEdit/lib',
+          parent: 'plugins_LiveEdit'
+        },
+        {
+          parent: 'plugins_LiveEdit_lib',
+          name: 'plugins/LiveEdit/lib/LiveEdit.jar',
+          y: 674
+        },
+        {
+          parent: 'plugins_LiveEdit_lib',
+          name: 'plugins/LiveEdit/lib/resources_en.jar',
+          y: 1
+        },
+        { id: 'plugins_Meteor', name: 'plugins/Meteor'  },
+        {
+          id: 'plugins_Meteor_lib',
+          name: 'plugins/Meteor/lib',
+          parent: 'plugins_Meteor'
+        },
+        {
+          parent: 'plugins_Meteor_lib',
+          name: 'plugins/Meteor/lib/Meteor.jar',
+          y: 456
+        },
+        {
+          parent: 'plugins_Meteor_lib',
+          name: 'plugins/Meteor/lib/resources_en.jar',
+          y: 2
+        },
+        { id: 'plugins_NodeJS', name: 'plugins/NodeJS'  },
+        {
+          id: 'plugins_NodeJS_js',
+          name: 'plugins/NodeJS/js',
+          parent: 'plugins_NodeJS'
+        },
+        {
+          id: 'plugins_NodeJS_js_mocha-intellij',
+          name: 'plugins/NodeJS/js/mocha-intellij',
+          parent: 'plugins_NodeJS_js'
+        },
+        {
+          id: 'plugins_NodeJS_js_mocha-intellij_lib',
+          name: 'plugins/NodeJS/js/mocha-intellij/lib',
+          parent: 'plugins_NodeJS_js_mocha-intellij'
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij_lib',
+          name: 'plugins/NodeJS/js/mocha-intellij/lib/mochaIntellijReporter.js',
+          y: 8
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij_lib',
+          name: 'plugins/NodeJS/js/mocha-intellij/lib/mochaIntellijTree.js',
+          y: 13
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij_lib',
+          name: 'plugins/NodeJS/js/mocha-intellij/lib/mochaIntellijUtil.js',
+          y: 4
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij_lib',
+          name: 'plugins/NodeJS/js/mocha-intellij/lib/mochaTreeUtil.js',
+          y: 2
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij_lib',
+          name: 'plugins/NodeJS/js/mocha-intellij/lib/normalizer.js',
+          y: 0
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij',
+          name: 'plugins/NodeJS/js/mocha-intellij/LICENSE',
+          y: 11
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij',
+          name: 'plugins/NodeJS/js/mocha-intellij/package.json',
+          y: 0
+        },
+        {
+          parent: 'plugins_NodeJS_js_mocha-intellij',
+          name: 'plugins/NodeJS/js/mocha-intellij/README.md',
+          y: 0
+        },
+        {
+          id: 'plugins_NodeJS_lib',
+          name: 'plugins/NodeJS/lib',
+          parent: 'plugins_NodeJS'
+        },
+        {
+          parent: 'plugins_NodeJS_lib',
+          name: 'plugins/NodeJS/lib/NodeJS.jar',
+          y: 2686
+        },
+        {
+          parent: 'plugins_NodeJS_lib',
+          name: 'plugins/NodeJS/lib/resources_en.jar',
+          y: 5
+        },
+        {
+          id: 'plugins_PerforceIntegration',
+          name: 'plugins/PerforceIntegration'
+        },
+        {
+          id: 'plugins_PerforceIntegration_lib',
+          name: 'plugins/PerforceIntegration/lib',
+          parent: 'plugins_PerforceIntegration'
+        },
+        {
+          parent: 'plugins_PerforceIntegration_lib',
+          name: 'plugins/PerforceIntegration/lib/PerforceIntegration.jar',
+          y: 2042
+        },
+        {
+          parent: 'plugins_PerforceIntegration_lib',
+          name: 'plugins/PerforceIntegration/lib/perforce_util.jar',
+          y: 59
+        },
+        {
+          parent: 'plugins_PerforceIntegration_lib',
+          name: 'plugins/PerforceIntegration/lib/resources_en.jar',
+          y: 12
+        },
+        {
+          id: 'plugins_phoneGap',
+          name: 'plugins/phoneGap'
+        },
+        {
+          id: 'plugins_phoneGap_lib',
+          name: 'plugins/phoneGap/lib',
+          parent: 'plugins_phoneGap'
+        },
+        {
+          parent: 'plugins_phoneGap_lib',
+          name: 'plugins/phoneGap/lib/phoneGap.jar',
+          y: 311
+        },
+        {
+          parent: 'plugins_phoneGap_lib',
+          name: 'plugins/phoneGap/lib/resources_en.jar',
+          y: 1
+        },
+        {
+          id: 'plugins_QuirksMode',
+          name: 'plugins/QuirksMode'
+        },
+        {
+          id: 'plugins_QuirksMode_lib',
+          name: 'plugins/QuirksMode/lib',
+          parent: 'plugins_QuirksMode'
+        },
+        {
+          parent: 'plugins_QuirksMode_lib',
+          name: 'plugins/QuirksMode/lib/quirksmode.jar',
+          y: 159
+        },
+        {
+          parent: 'plugins_QuirksMode_lib',
+          name: 'plugins/QuirksMode/lib/resources_en.jar',
+          y: 0
+        },
+        {
+          id: 'plugins_RefactorX',
+          name: 'plugins/RefactorX'
+        },
+        {
+          id: 'plugins_RefactorX_lib',
+          name: 'plugins/RefactorX/lib',
+          parent: 'plugins_RefactorX'
+        },
+        {
+          parent: 'plugins_RefactorX_lib',
+          name: 'plugins/RefactorX/lib/RefactorX.jar',
+          y: 437
+        },
+        {
+          parent: 'plugins_RefactorX_lib',
+          name: 'plugins/RefactorX/lib/resources_en.jar',
+          y: 8
+        },
+        {
+          id: 'plugins_restClient',
+          name: 'plugins/restClient'
+        },
+        {
+          id: 'plugins_restClient_lib',
+          name: 'plugins/restClient/lib',
+          parent: 'plugins_restClient'
+        },
+        {
+          parent: 'plugins_restClient_lib',
+          name: 'plugins/restClient/lib/resources_en.jar',
+          y: 1
+        },
+        {
+          parent: 'plugins_restClient_lib',
+          name: 'plugins/restClient/lib/restClient.jar',
+          y: 253
+        },
+        { id: 'plugins_sass', name: 'plugins/sass'  },
+        {
+          id: 'plugins_sass_lib',
+          name: 'plugins/sass/lib',
+          parent: 'plugins_sass'
+        },
+        {
+          parent: 'plugins_sass_lib',
+          name: 'plugins/sass/lib/jrubyparser-0.5.4.jar',
+          y: 1602
+        },
+        {
+          parent: 'plugins_sass_lib',
+          name: 'plugins/sass/lib/resources_en.jar',
+          y: 6
+        },
+        {
+          parent: 'plugins_sass_lib',
+          name: 'plugins/sass/lib/sass.jar',
+          y: 2905
+        },
+        { id: 'plugins_stylus', name: 'plugins/stylus'  },
+        {
+          id: 'plugins_stylus_lib',
+          name: 'plugins/stylus/lib',
+          parent: 'plugins_stylus'
+        },
+        {
+          parent: 'plugins_stylus_lib',
+          name: 'plugins/stylus/lib/resources_en.jar',
+          y: 2
+        },
+        {
+          parent: 'plugins_stylus_lib',
+          name: 'plugins/stylus/lib/stylus.jar',
+          y: 325
+        },
+        {
+          id: 'plugins_svn4idea',
+          name: 'plugins/svn4idea'
+        },
+        {
+          id: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib',
+          parent: 'plugins_svn4idea'
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/ANTLR-LICENSE',
+          y: 1
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/antlr.jar',
+          y: 164
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/changelog.txt',
+          y: 15
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/CHANGES.txt',
+          y: 18
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/COPYING',
+          y: 2
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/jsch.agentproxy.svnkit-trilead-ssh2.jar',
+          y: 3
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE-ANTLR.txt',
+          y: 1
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE-JAVAHL.txt',
+          y: 2
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE-JNA.txt',
+          y: 0
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE-SEQUENCE.txt',
+          y: 2
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE-SQLJET.txt',
+          y: 0
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE-TRILEAD.txt',
+          y: 4
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/LICENSE.txt',
+          y: 2
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/README.txt',
+          y: 1
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/resources_en.jar',
+          y: 43
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/sequence-library.jar',
+          y: 70
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/SEQUENCE-LICENSE',
+          y: 2
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/SQLJET-LICENSE',
+          y: 0
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/SQLJET-README.txt',
+          y: 1
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/sqljet.jar',
+          y: 757
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/sqljetsrc.zip',
+          y: 457
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/svn4idea.jar',
+          y: 5280
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/svnkit-javahl.jar',
+          y: 330
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/svnkit-javahl16.zip',
+          y: 166
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/svnkit.jar',
+          y: 3382
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/TRILEAD-LICENSE',
+          y: 4
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/trilead.jar',
+          y: 250
+        },
+        {
+          parent: 'plugins_svn4idea_lib',
+          name: 'plugins/svn4idea/lib/trileadsrc.zip',
+          y: 506
+        },
+        { id: 'plugins_tasks', name: 'plugins/tasks'  },
+        {
+          id: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib',
+          parent: 'plugins_tasks'
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/axis-1.4.jar',
+          y: 1599
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/axis-jaxrpc-1.4.jar',
+          y: 31
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/axis-saaj-1.3.jar',
+          y: 19
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/commons-discovery-0.4.jar',
+          y: 76
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/jira.jar',
+          y: 318
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/json-path-0.8.0.jar',
+          y: 55
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/json-smart-1.1.1.jar',
+          y: 51
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/tasks-api.jar',
+          y: 94
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/tasks-core.jar',
+          y: 1593
+        },
+        {
+          parent: 'plugins_tasks_lib',
+          name: 'plugins/tasks/lib/wsdl4j-1.4.jar',
+          y: 113
+        },
+        {
+          id: 'plugins_terminal',
+          name: 'plugins/terminal'
+        },
+        {
+          id: 'plugins_terminal_lib',
+          name: 'plugins/terminal/lib',
+          parent: 'plugins_terminal'
+        },
+        {
+          parent: 'plugins_terminal_lib',
+          name: 'plugins/terminal/lib/jediterm-pty-2.0.jar',
+          y: 232
+        },
+        {
+          parent: 'plugins_terminal_lib',
+          name: 'plugins/terminal/lib/jediterm.in',
+          y: 0
+        },
+        {
+          parent: 'plugins_terminal_lib',
+          name: 'plugins/terminal/lib/terminal.jar',
+          y: 211
+        },
+        {
+          id: 'plugins_textmate',
+          name: 'plugins/textmate'
+        },
+        {
+          id: 'plugins_textmate_lib',
+          name: 'plugins/textmate/lib',
+          parent: 'plugins_textmate'
+        },
+        {
+          id: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes',
+          parent: 'plugins_textmate_lib'
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/All Hallows Eve.tmTheme ',
+          color: '',
+          y: 5
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/Blackboard.tmTheme',
+          y: 7
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/Cobalt.tmTheme',
+          y: 12
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/Darcula.tmTheme',
+          y: 6
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/default.tmTheme',
+          y: 10
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/Github.tmTheme',
+          y: 17
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/IR_Black.tmTheme',
+          y: 18
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/Monokai.tmTheme',
+          y: 8
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/RailsCasts.tmTheme',
+          y: 6
+        },
+        {
+          parent: 'plugins_textmate_lib_themes',
+          name: 'plugins/textmate/lib/themes/Twilight.tmTheme',
+          y: 12
+        },
+        {
+          parent: 'plugins_textmate_lib',
+          name: 'plugins/textmate/lib/jcodings.jar',
+          y: 1258
+        },
+        {
+          parent: 'plugins_textmate_lib',
+          name: 'plugins/textmate/lib/joni.jar',
+          y: 186
+        },
+        {
+          parent: 'plugins_textmate_lib',
+          name: 'plugins/textmate/lib/textmate.jar',
+          y: 469
+        },
+        {
+          id: 'plugins_w3validators',
+          name: 'plugins/w3validators'
+        },
+        {
+          id: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib',
+          parent: 'plugins_w3validators'
+        },
+        {
+          parent: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib/jigsaw-2.2.6.jar',
+          y: 2693
+        },
+        {
+          parent: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib/resources_en.jar',
+          y: 1
+        },
+        {
+          parent: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib/tagsoup-1.2.jar',
+          y: 90
+        },
+        {
+          parent: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib/w3-css-validator.jar',
+          y: 2297
+        },
+        {
+          parent: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib/w3-css_validator_src.zip',
+          y: 4510
+        },
+        {
+          parent: 'plugins_w3validators_lib',
+          name: 'plugins/w3validators/lib/w3validators.jar',
+          y: 50
+        },
+        {
+          id: 'plugins_w3validators_license',
+          name: 'plugins/w3validators/license',
+          parent: 'plugins_w3validators'
+        },
+        {
+          parent: 'plugins_w3validators_license',
+          name: 'plugins/w3validators/license/W3C_Software_License.html',
+          y: 4
+        },
+        {
+          id: 'plugins_WebComponents',
+          name: 'plugins/WebComponents'
+        },
+        {
+          id: 'plugins_WebComponents_lib',
+          name: 'plugins/WebComponents/lib',
+          parent: 'plugins_WebComponents'
+        },
+        {
+          parent: 'plugins_WebComponents_lib',
+          name: 'plugins/WebComponents/lib/WebComponents.jar',
+          y: 121
+        },
+        {
+          id: 'plugins_webDeployment',
+          name: 'plugins/webDeployment'
+        },
+        {
+          id: 'plugins_webDeployment_lib',
+          name: 'plugins/webDeployment/lib',
+          parent: 'plugins_webDeployment'
+        },
+        {
+          parent: 'plugins_webDeployment_lib',
+          name: 'plugins/webDeployment/lib/commons-vfs2-2.1-SNAPSHOT.jar',
+          y: 449
+        },
+        {
+          parent: 'plugins_webDeployment_lib',
+          name: 'plugins/webDeployment/lib/resources_en.jar',
+          y: 34
+        },
+        {
+          parent: 'plugins_webDeployment_lib',
+          name: 'plugins/webDeployment/lib/webDeployment.jar',
+          y: 2759
+        },
+        { id: 'plugins_xpath', name: 'plugins/xpath'  },
+        {
+          id: 'plugins_xpath_lib',
+          name: 'plugins/xpath/lib',
+          parent: 'plugins_xpath'
+        },
+        {
+          id: 'plugins_xpath_lib_rt',
+          name: 'plugins/xpath/lib/rt',
+          parent: 'plugins_xpath_lib'
+        },
+        {
+          parent: 'plugins_xpath_lib_rt',
+          name: 'plugins/xpath/lib/rt/xslt-rt.jar',
+          y: 18
+        },
+        {
+          parent: 'plugins_xpath_lib',
+          name: 'plugins/xpath/lib/resources_en.jar',
+          y: 14
+        },
+        {
+          parent: 'plugins_xpath_lib',
+          name: 'plugins/xpath/lib/xpath.jar',
+          y: 2480
+        },
+        {
+          id: 'plugins_xslt-debugger',
+          name: 'plugins/xslt-debugger'
+        },
+        {
+          id: 'plugins_xslt-debugger_lib',
+          name: 'plugins/xslt-debugger/lib',
+          parent: 'plugins_xslt-debugger'
+        },
+        {
+          id: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt',
+          parent: 'plugins_xslt-debugger_lib'
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt/saxon-conditions.html',
+          y: 6
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt/saxon.jar',
+          y: 572
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt/saxon9he.jar',
+          y: 5831
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt/serializer.jar',
+          y: 278
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt/xalan.jar',
+          y: 3176
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib_rt',
+          name: 'plugins/xslt-debugger/lib/rt/xslt-debugger-engine-impl.jar',
+          y: 186
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib',
+          name: 'plugins/xslt-debugger/lib/rmi-stubs.jar',
+          y: 28
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib',
+          name: 'plugins/xslt-debugger/lib/xslt-debugger-engine.jar',
+          y: 119
+        },
+        {
+          parent: 'plugins_xslt-debugger_lib',
+          name: 'plugins/xslt-debugger/lib/xslt-debugger.jar',
+          y: 200
+        },
+        { id: 'plugins_yaml', name: 'plugins/yaml'  },
+        {
+          id: 'plugins_yaml_lib',
+          name: 'plugins/yaml/lib',
+          parent: 'plugins_yaml'
+        },
+        {
+          parent: 'plugins_yaml_lib',
+          name: 'plugins/yaml/lib/resources_en.jar',
+          y: 1
+        },
+        {
+          parent: 'plugins_yaml_lib',
+          name: 'plugins/yaml/lib/yaml.jar',
+          y: 258
+        }
+      ]
+    }
+  ]
+};
+var extColorList = assignColors(config);
+drawExtTable(extColorList);
+var chart =  new JSC.Chart(config);
+
+
+/**
+ * Uses data from assignColors to generate a table listing extensions.
+ * @param extData
+ */
+function drawExtTable(extData){
+    var htm = '',max=20;
+    var arr = extData.array;
+    for (var i = 0, iLen = arr.length; i < iLen; i++) {
+        var ext = arr[i];
+        htm += entryTemplate.replace('%color%', extPalette[extData[ext].index % extPalette.length])
+            .replace('%name%', ext)
+            .replace('%sum%', extData[ext].sum);
+
+        if (i > max) {break;  }
+    }
+    $('#extListTable').html(htm);
+}
+
+/**
+ * This function assigns the same colors to all points that share specific file extensions.
+ * Returns data on the extensions found
+ * @param data
+ * @returns {{}}
+ */
+function assignColors(data){
+    var extList={},ext,extIndex= 0,extArr=[],
+        palette = extPalette;
+    for (var si = 0, siLen = data.series.length; si < siLen; si++) {
+        var ser = data.series[si];
+        for (var fi = 0, fiLen = ser.points.length; fi < fiLen; fi++) {
+            var point = ser.points[fi];
+            if(ext = getExtention(point.name) ){
+                if(extList[ext]){  extList[ext].sum+=point.y; }else{
+                    extArr.push(ext);
+                    extList[ext]={index:extIndex++,sum:point.y};
+                }
+                point.color = palette[extList[ext].index%palette.length];
+            }
+        }
+    }
+    extArr.sort(function(a,b){  return extList[b].sum-extList[a].sum; });
+    extList.array=extArr;
+
+    return extList;
+}
+function getExtention(path){
+    return (/[.]/.exec(path)) ? /[^.]+$/.exec(path) : undefined;
+}
+
+
+</script>
+	</body>
+</html>

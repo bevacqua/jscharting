@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Formatting Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates specifying different cultures and format strings to axis tick labels.
+Learn how to:
+
+  - Format axis labels.
+  - Use different label culture formatting.
+  - Globalize the chart by defining a culture used for value formatting.
+  - Use tokens with legend labels.
+  - Use tokens with title labels.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'line',
+  defaultCultureName: 'en-US',
+  legendDefaultEntryText: '%name <br/>max:%max <br/>min: %min',
+  titleLabelText: 'Total: %sum',
+  yAxis: { scaleMinorInterval: 25, formatString: 'c'  },
+  xAxis: {
+    scaleMinorInterval: {unit: 'day',multiplier: 4 },
+    formatString: 'd'
+  },
+  defaultPointTooltip: '%xValue<br/>%yValue',
+  annotations: [
+    {
+      position: 'CA:5,5',
+      labelText: 'Simple to use formatting:A setting such as yAxisFormatString:"c"<br/>will make all values related to that axis format as currency. <br/> X axis uses a time scale and supports fully featured formatting as well.<br/> Try settings like d, f, F, t, T, D, Y, M.',
+      boxVisible: false
+    }
+  ],
+  series: [
+    {
+      name: 'Purchases',
+      points: [
+        [ new Date(2014, 0, 1), 29.9  ],
+        [ new Date(2014, 0, 2), 71.5  ],
+        [ new Date(2014, 0, 3), 106.4  ],
+        [ new Date(2014, 0, 6), 129.2  ],
+        [ new Date(2014, 0, 7), 144.0  ],
+        [ new Date(2014, 0, 8), 176.0  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

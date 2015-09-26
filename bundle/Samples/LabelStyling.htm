@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Label Styling Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	Javascript | <a href="LabelStyling_SL.htm">Silverlight</a>
+<script type="text/javascript">
+/*
+Demonstrates styling chart labels.
+Learn how to:
+
+  - Style data labels on a chart.
+  - Style title label.
+  - Style axis labels.
+  - Style legend labels.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  defaultSeries: { type: 'column'  },
+  titleLabelStyle: {
+    color: '#15559E',
+    fontWeight: 'bold',
+    fontSize: '12px'
+  },
+  defaultPointLabel: {
+    text: '%yValue',
+    style: {
+      color: 'black',
+      fontWeight: 'normal',
+      fontSize: '11px'
+    }
+  },
+  legendDefaultEntryStyle: {
+    color: 'gray',
+    fontWeight: 'bold',
+    fontFamily: 'verdana',
+    fontSize: '12px'
+  },
+  yAxisLabelStyle: {
+    color: 'darkgray',
+    fontWeight: 'bold',
+    fontFamily: 'arial',
+    fontSize: '13px'
+  },
+  yAxisDefaultTickLabelStyle: {
+    color: 'darkgray',
+    fontWeight: 'bold',
+    fontFamily: 'arial',
+    fontSize: '13px'
+  },
+  xAxisDefaultTickLabelStyle: {
+    color: 'darkgray',
+    fontWeight: 'bold',
+    fontFamily: 'arial',
+    fontSize: '13px'
+  },
+  width: 600,
+  height: 350,
+  yAxisLabelText: 'USD',
+  titleLabelText: 'Sales by quarter ',
+  yAxisFormatString: 'c',
+  series: [
+    {
+      name: 'Gross Sales',
+      points: [
+        [ 'Q1', 50120  ],
+        [ 'Q2', 53465  ],
+        [ 'Q3', 62165  ],
+        [ 'Q4', 52156  ]
+      ]
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        [ 'Q1', 32654  ],
+        [ 'Q2', 35645  ],
+        [ 'Q3', 42651  ],
+        [ 'Q4', 30153  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

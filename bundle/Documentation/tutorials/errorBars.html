@@ -1,0 +1,67 @@
+<h2>Introduction</h2>
+        <p>A number of series types also support error bars. Error bars are associated with points and defined under the <a href="Types.point.subvalue">subvalue</a> point property.</p>
+<span class="docsReference">Types.subvalue</span>
+
+        <p>Example error bars</p>
+<span class="tutorialImage">
+<img src="tutorials/images/columnError.png"/>
+<em>Figure 1.</em>
+
+</span>    <span class="docsReference">
+    Samples.ColumnError
+</span>
+        <h3>Setting Values</h3>
+        <p>
+            The <a href="Types.subvalue.range">subvalue.range</a> property can be set as an array of high and low values as shown below.
+
+
+        </p>
+<span class="codeText">
+{
+series:[{
+
+    points:[{name:"Nolan",y:16,subvalue:{range:[15,18]}]
+    }]
+}
+</span>
+<span class="docsReference">
+    Samples.timeLineError
+</span>
+
+        <p>A numeric offset (<a href="Types.subvalue.offset">subvalue.offset</a>) can also be used to specify the range as the point's y value + and - the offset.</p>
+
+<span class="codeText">
+{
+series:[{
+
+    points:[{name:"Nolan",y:16,subvalue:{offset:5}]
+    }]
+}
+</span>
+<span class="docsReference">
+    Samples.lineErrorOffset
+</span>
+
+<p>A percentage offset (<a href="Types.subvalue.percent">subvalue.percent</a>) can also be used and indicates the error range is + and - that percentage of the point's y value.</p>
+
+<span class="codeText">
+{
+series:[{
+
+    points:[{name:"Nolan",y:16,subvalue:{percent:5}]
+    }]
+}
+</span>
+<span class="docsReference">
+    Samples.lineErrorStyling
+</span>
+<span class="docsTip">
+Subvalue percentage offsets can be applied to chart's defaultPoint and does not have to be repeated for each data point.
+</span>
+
+        <h3>Styling</h3>
+        <p>The  <a href="Types.subvalue.line">subvalue.line</a> property provides setting to allow styling the error bars. The following sample demonstrates these styling options. </p>
+
+<span class="docsReference">
+    Samples.lineErrorStyling
+    </span>

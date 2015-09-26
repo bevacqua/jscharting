@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Radars Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 100%; height: 500px">
+</div>
+	
+<script type="text/javascript">
+/*
+Multiple radar charts with different series types.
+Learn how to:
+
+  - Draw multiple radar charts with different series types.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  height: 500,
+  defaultSeriesType: 'radar',
+  titleLabelText: 'Sales By Representative',
+  series: [
+    {
+      name: 'William',
+      type: 'area',
+      points: [
+        { name: 'Jan', y: 59  },
+        { name: 'Feb', y: 122  },
+        { name: 'Mar', y: 57  },
+        { name: 'Apr', y: 15  },
+        { name: 'May', y: 111  },
+        { name: 'Jun', y: 170  },
+        { name: 'Jul', y: 67  },
+        { name: 'Aug', y: 88  },
+        { name: 'Sep', y: 90  },
+        { name: 'Oct', y: 50  },
+        { name: 'Nov', y: 77  },
+        { name: 'Dec', y: 109  }
+      ]
+    },
+    {
+      name: 'Elliot',
+      type: 'columnRounded',
+      points: [
+        { name: 'Jan', y: 79  },
+        { name: 'Feb', y: 94  },
+        { name: 'Mar', y: 93  },
+        { name: 'Apr', y: 60  },
+        { name: 'May', y: 7  },
+        { name: 'Jun', y: 83  },
+        { name: 'Jul', y: 94  },
+        { name: 'Aug', y: 66  },
+        { name: 'Sep', y: 94  },
+        { name: 'Oct', y: 68  },
+        { name: 'Nov', y: 81  },
+        { name: 'Dec', y: 65  }
+      ]
+    },
+    {
+      name: 'Andrew',
+      type: 'spline',
+      points: [
+        { name: 'Jan', y: 31  },
+        { name: 'Feb', y: 107  },
+        { name: 'Mar', y: 176  },
+        { name: 'Apr', y: 80  },
+        { name: 'May', y: 140  },
+        { name: 'Jun', y: 138  },
+        { name: 'Jul', y: 78  },
+        { name: 'Aug', y: 27  },
+        { name: 'Sep', y: 49  },
+        { name: 'Oct', y: 10  },
+        { name: 'Nov', y: 155  },
+        { name: 'Dec', y: 174  }
+      ]
+    },
+    {
+      name: 'Michael',
+      type: 'line',
+      defaultPointMarkerVisible: false,
+      points: [
+        { name: 'Jan', y: 160  },
+        { name: 'Feb', y: 152  },
+        { name: 'Mar', y: 176  },
+        { name: 'Apr', y: 156  },
+        { name: 'May', y: 187  },
+        { name: 'Jun', y: 91  },
+        { name: 'Jul', y: 123  },
+        { name: 'Aug', y: 64  },
+        { name: 'Sep', y: 5  },
+        { name: 'Oct', y: 53  },
+        { name: 'Nov', y: 66  },
+        { name: 'Dec', y: 59  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

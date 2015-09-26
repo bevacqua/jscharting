@@ -1,0 +1,29 @@
+.main-frame .panel .btn{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f69844', endColorstr='#e2771f',GradientType=0 );
+}
+.main-frame .panel .btn:hover{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcab4b', endColorstr='#f49541',GradientType=0 );
+}
+.section-holder .btn-edit,
+.top1 .btns-holder .btn,
+.top1 .btns-holder .btn-back{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#f0f0f0',GradientType=0 );
+}
+.section-holder .btn-edit:hover,
+.top1 .btns-holder .btn:hover,
+.top1 .btns-holder .btn-back:hover{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e1e1e1',GradientType=0 );
+}
+.accordion .slide{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9f9f9',GradientType=0 );
+}
+.cart-form .btn-buy,
+.accordion .info .row.buy .btn-buy,
+.accordion .buy-form .btn-buy{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f69844', endColorstr='#f69844',GradientType=0 );
+}
+.cart-form .btn-buy:hover,
+.accordion .info .row.buy .btn-buy:hover,
+.accordion .buy-form .btn-buy:hover{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcab4b', endColorstr='#fcab4b',GradientType=0 );
+}

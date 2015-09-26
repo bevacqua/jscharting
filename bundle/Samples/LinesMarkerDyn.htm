@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Lines Marker Dyn Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A line series with different color markers.
+Learn how to:
+
+  - Draw a line series with different color markers.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  xAxisScaleRangePadding: 0.07,
+  legendVisible: false,
+  defaultSeries: { type: 'line', defaultPointMarkerSize: 10  },
+  palette: [ 'gray'  ],
+  series: [
+    {
+      name: 'Purchases',
+      points: [
+        { x: new Date(2010, 0, 1), y: 29.9  },
+        { x: new Date(2010, 0, 2), y: 71.5  },
+        { x: new Date(2010, 0, 3), y: 106.4  },
+        { x: new Date(2010, 0, 6), y: 129.2  },
+        { x: new Date(2010, 0, 7), y: 144.0  },
+        { x: new Date(2010, 0, 8), y: 176.0  },
+        { x: new Date(2010, 0, 9), y: 123  },
+        { x: new Date(2010, 0, 10), y: 112  },
+        { x: new Date(2010, 0, 11), y: 89  },
+        { x: new Date(2010, 0, 12), y: 72  },
+        { x: new Date(2010, 0, 13), y: 95  },
+        { x: new Date(2010, 0, 14), y: 110  },
+        { x: new Date(2010, 0, 15), y: 85  }
+      ]
+    }
+  ]
+};
+var pts = json.series[0].points;
+for(var i in pts){
+	if(parseInt(i)===pts.length-1){
+		 pts[i].markerVisible=false;
+		 pts[i].markerSize=1;
+	} else {
+		if(pts[(parseInt(i)+1)].y > pts[i].y){
+			pts[i].markerType='arrow-up';
+			pts[i].color='green';
+		} else {
+			pts[i].markerType='arrow-down';
+			pts[i].color='red';
+		}
+	}
+}
+
+var chart = new JSC.Chart(json);
+
+
+</script>
+	</body>
+</html>

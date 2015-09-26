@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Token Queries Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+The buttons below query the chart for data.
+<input type='button' value='Get All Data sum: %sum Average: %average' onclick="replaceChartTokens(1);" /><br/>
+<input type='button' value='Get Series 1 sum: %sum Average: %average' onclick="replaceChartTokens(2);" /><br/>
+<input type='button' value='Get Series1[Point1] Name: %name Percent Of %seriesName: %percentOfSeries' onclick="replaceChartTokens(3);" />
+<div id="info"></div>
+<textArea id="status" rows="10" cols="75"></textArea>
+	
+<script type="text/javascript">
+/*
+Queries the chart for info by passing a string with tokens and data IDs to get relevant reports.
+Learn how to:
+
+  - Get chart data info and calculations in real-time.
+  - Query the to chart replace tokens in a string template with chart data info and calculations.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'column',
+  series: [
+    {
+      id: 's1',
+      points: [
+        { id: 'p1', name: 'Q1', y: 50120  },
+        { name: 'Q2', y: 53465  },
+        { name: 'Q3', y: 62165  },
+        { name: 'Q4', y: 52156  }
+      ],
+      name: 'Gross Sales'
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        { name: 'Q1', y: 32654  },
+        { name: 'Q2', y: 35645  },
+        { name: 'Q3', y: 42651  },
+        { name: 'Q4', y: 30153  }
+      ]
+    }
+  ],
+  yAxisLabelText: 'USD',
+  titleLabelText: ' Sales by quarter ',
+  yAxisFormatString: 'c'
+});
+function replaceChartTokens(option){
+	var result;
+	if(chart){
+		switch(option){
+            case 1:
+                // Processes tokens of (SeriesCollection) type for all data in the chart.
+				result = chart.replaceTokens('All Data sum: %sum Average: %average');
+			break;
+            case 2:
+                // By passing a specific series ID, it processes tokens of (Series) type for all data in the chart.
+				result = chart.replaceTokens('%name sum: %sum Average: %average','s1');
+			break;
+			case 3:
+                // By passing a specific point ID, it processes tokens of (Point) type for all data in the chart.
+				result = chart.replaceTokens('%seriesName-%name Percent Of %seriesName: %percentOfSeries%','p1');
+			break;
+		}
+		jQuery('#status').val(result);
+	}
+}
+
+
+</script>
+	</body>
+</html>

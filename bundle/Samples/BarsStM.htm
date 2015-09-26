@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bars St M Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Mixed stacked bars series type with default shading.
+Learn how to:
+
+  - Draw mixed stack bar series.
+*/
+// JS
+var json = {
+  targetElement: 'cc',
+  defaultSeriesType: 'column',
+  yAxis: [
+    {
+      id: 'stacked',
+      scaleType: 'stacked',
+      labelText: 'Stacked',
+      orientation: 'right'
+    },
+    {id: 'normal',labelText: 'Unstacked' }
+  ],
+  series: [
+    {
+      yAxis: 'normal',
+      name: 'Saw',
+      id: 's1',
+      points: [
+        { name: 'Q1', y: 530  },
+        { name: 'Q2', y: 740  },
+        { name: 'Q3', y: 667  },
+        { name: 'Q4', y: 838  }
+      ]
+    },
+    {
+      yAxis: 'normal',
+      name: 'Hammer',
+      points: [
+        { name: 'Q1', y: 325  },
+        { name: 'Q2', y: 367  },
+        { name: 'Q3', y: 382  },
+        { name: 'Q4', y: 371  }
+      ]
+    },
+    {
+      yAxis: 'stacked',
+      name: 'Grinder',
+      points: [
+        { name: 'Q1', y: 285  },
+        { name: 'Q2', y: 292  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 218  }
+      ]
+    },
+    {
+      yAxis: 'stacked',
+      name: 'Drill',
+      points: [
+        { name: 'Q1', y: 185  },
+        { name: 'Q2', y: 192  },
+        { name: 'Q3', y: 198  },
+        { name: 'Q4', y: 248  }
+      ]
+    }
+  ],
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales '
+};
+delete json.yAxisLabelText;
+var chart = new JSC.Chart(json);
+
+
+</script>
+	</body>
+</html>

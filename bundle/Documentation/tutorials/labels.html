@@ -1,0 +1,157 @@
+﻿<h2>Enable Data Labels</h2>
+		Charts do not show labels by default, in order to show data labels 
+		either <a href="Types.label.visible">chart.defaultPoint.label.visible</a> must be set to true or
+<a href="Types.label.text">point.label.text</a>  must be specified like so:
+		<span class="codeText">{<br />
+		defaultPointLabelText:&#39;%yValue&#39;<br />
+		}</span>
+		or
+		<span class="codeText">{<br />
+		defaultPointLabelVisible:true<br />
+		}</span>
+		<span class="docsNote">
+		(NOTE: these property names are specified with one word, but are part of 
+		a hierarchy. This is possible due to the <a href="Tutorials.codeExpansion">code expansion</a> feature of
+		JSCharting).</span>
+
+		<h2>Label Tokens</h2>
+		Label tokens are a powerful feature that allows specifying the syntax of your
+		labels in a simple way. Tokens also provide common calculations that make
+		specifying complex labels very simple. For example, the following data 
+		point label text can be used:
+		<span class="codeText">{<br />
+		defaultPointLabelText:&#39;%name:&nbsp; %yValue&nbsp; is %percentOfSeries% of %seriesName&#39;<br />
+		}</span>
+		This setting will evaluate point labels to something similar to
+        <span class="output">
+Point
+		A: 12 is 
+		25% of Series 1</span>
+
+		There are a number of token types. Point tokens, Series tokens, 
+		Series Collection Tokens, Value and Range tokens. Point labels use Point 
+		tokens, Legend entries use Series tokens, title text uses series 
+		collection tokens to summarize all the data on a chart, and axis ticks use value tokens.<br />
+		<br />
+		Tokens can be used in virtually all labels including point labels, tooltips, URL, string events, legend
+		and title text.
+		<span class="docsReference">Tutorials.labelExpressions |<a href="Tutorials.tokenReference">Token Reference</a>: A complete list of available tokens.</span>
+
+<span class="docsReference">
+
+Tutorials.labelExpressions
+
+
+</span>
+
+<span class="docsTasks">
+Tasks.Label.Tokens
+</span>
+		<h2>Point Attribute Tokens</h2>
+		Point data can be specified with additional custom metadata. This data can then
+		be referenced in labels by using tokens. For example, this code 
+		specifies two attributes for a point, a telephone number and an 
+		industry:
+		<span class="codeText">{<br />
+		series:[<br />
+		{<br />
+		name:&#39;Series 1&#39;,<br />
+		points:[<br />
+		{<br />
+		name: &#39;Mike Smith&#39;,<br />
+		y: 25,<br />
+		attributes:{<br />
+		tel:&#39;(555) 555-5555&#39;,<br />
+		industry: &#39;Automotive&#39;<br />
+		}<br />
+		}<br />
+		]<br />
+		}<br />
+		]<br />
+		}</span>
+		These attributes can be used inside label text, tooltip, url, and any other point related strings.
+
+		<span class="codeText">{<br />
+		defaultPointLabelText:&#39;%name&nbsp; %tel&nbsp; &lt;br&gt;  %industry &#39;<br />
+		}</span>
+
+        <span class="docsNote">Notice the attribute names defined in JSON for this point can be used as tokens in labels.</span>
+
+		This will result in the following label text:<br />
+<span class="output">
+		Mike Smith (555)555-5555<br />
+		Automotive</span>
+<span class="docsReference">Samples.LabelDataAttributes: Demonstrates using attributes in labels.|Tutorials.customAttributes</span>
+		<span class="docsSample">LabelDataAttributes: Demonstrates using attributes in labels.</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	   <h2>Label Callbacks</h2>
+		Label callbacks can also be used if more advanced label
+		processing is 
+		necessary that requires code. It works by assigning a 
+		function to the label text property instead of a string. The function is called in context of the object it's assigned to, and a string return value is expected.<br />
+		<br />
+		<span class="docsSample">LabelCallbacks:Specifies callback functions for a number of labels as a demonstration.|
+		 AxisShadowing:Uses label callbacks to recalculate axis tick labels into different units.</span>
+
+		<h3>Evaluate tokens in callabacks</h3>
+		Point label callback functions get a parameter that is a
+		reference to the point object itself. The point object has a <a href="iObject.point.replaceTokens()">replaceTokens()</a>
+		function that takes a string with tokens and returns the same string with the tokens replaced.
+For example, see the following code that sets a	callback function:<br />
+		<br />
+		<span class="codeText">json.defaultPointLabelText = function (point){
+		<br />
+		var txt = &#39;T:&#39;+ point.replaceTokens(&#39;{%percentOfTotal:n2}%&#39;); <br />
+		txt+= &#39;&lt;br&gt;S:&#39;+ point.replaceTokens(&#39;{%percentOfSeries:n2}%&#39;); <br />
+		return txt; <br />
+		}; </span>
+		The resulting label of this callback will look something like:<span class="output">
+		T:5.34%<br />
+		S:23.59%<br />
+		</span>
+		Of course, the same can be achieved by simply using a string with the 
+		label as follows:
+		<span class="codeText">json.defaultPointLabelText = 
+		&#39;T:{%percentOfTotal:n2}% &lt;br&gt; S:{%percentOfSeries:n2}%&#39;;</span>
+<span class="docsSample">LabelCallbackTokens: Demonstrates label callbacks.</span>
+
+		Tokens can be evaluated within callbacks as well.
+		However, label tokens when used with expressions can reduce if not completely
+		eliminate the need for callback functions.
+<span class="docsReference">Tutorials.labelExpressions</span>
+<span class="docsTasks">
+Tasks.Label.Callbacks
+</span>
+		<h2>Label Styling</h2>
+		Label styling can be specified for any label on the chart. The options 
+		match the standard available CSS settings.
+		<span class="docsSample">LabelStyling: Demonstrates how to style different labels on the chart.|
+		 LabelRotation: Demonstrates label rotation features.</span>
+		A useful feature that is also available is taking an existing CSS style defined on
+		the page hosting the chart, and using it to style labels on the chart.
+		<span class="docsSample">pageCssStyles:Uses existing page CSS to style chart labels.</span>
+		<h2>Other Features</h2>
+		A number of other label related features are available.
+		<h3>Unicode Support</h3>
+		<span class="docsSample"> labelUnicode: Unicode characters</span>
+		<h3>Label URL settings</h3>
+		<span class="docsSample">labelURLs: Label URLs</span>
+
+<span class="docsTasks">
+            Tasks.Label
+        </span>

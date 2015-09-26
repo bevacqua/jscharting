@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Momentary Zoom Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 540px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Zoom to series when legend entry clicked.
+Learn how to:
+
+  - Map series from mapCodes.
+  - Interact with maps legend click events.
+  - Zoom map charts.
+*/
+// JS
+var zotId, zoomOutDelay = 2000;
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  titleLabelText: 'Momentary Zoom',
+  height: 400,
+  legend: {
+    titleLabelText: 'Click legend below',
+    position: 'CA:10,10'
+  },
+  defaultSeriesEvents: { legendEntryClick: leClick  },
+  series: [
+    {map: 'CA' },
+    {map: 'US' },
+    {map: 'MX' },
+    {map: 'GT' },
+    {map: 'HN' }
+  ]
+};
+
+var chart = new JSC.Chart(chartConfig);
+
+function leClick(e){
+    this.zoomTo();
+    startZoomOut();
+    return false;
+}
+
+function startZoomOut(){
+    clearTimeout(zotId)
+    zotId = setTimeout(function(){  chart.zoom(1); },zoomOutDelay);
+}
+
+
+</script>
+	</body>
+</html>

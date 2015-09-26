@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Scales Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Applies axis scales settings that affect the axis range and appearance.
+Learn how to:
+
+  - Specify an axis scale range.
+  - Reverse or invert the axis scale.
+  - Apply axis scale padding.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendPosition: 'CA:3,3',
+  titleLabelText: 'Manipulating axis scale ranges. [Invert scale, Static range, Range padding]',
+  titlePosition: 'full',
+  type: 'column',
+  
+/*Y Axis Settings*/
+  yAxis: {
+    scale: {invert: true,range: [  -75,  350] },
+    markers: [{  value: 0,  color: [ 'black', 0.7  ],  lineWidth: 1} ]
+  },
+  
+/*X Axis Settings*/
+  xAxis: { scale: {rangePadding: 0.2,invert: true }  },
+  series: [
+    {
+      name: 'Purchases',
+      points: [
+        [ new Date(2014, 0, 1), 29.9  ],
+        [ new Date(2014, 0, 2), 71.5  ],
+        [ new Date(2014, 0, 3), 106.4  ],
+        [ new Date(2014, 0, 6), 129.2  ],
+        [ new Date(2014, 0, 7), 144.0  ],
+        [ new Date(2014, 0, 8), 176.0  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

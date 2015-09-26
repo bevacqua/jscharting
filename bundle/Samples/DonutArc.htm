@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Donut Arc Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Pie arc that shows data on only 20 degrees oriented to the right.
+Learn how to:
+
+  - Draw donut arcs segment.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'pie',
+  titleLabelText: 'Top World Populations',
+  defaultSeries: {
+    angle: {orientation: 90,sweep: 20 },
+    shape: {innerSize: '60%',offset: '-20,0' },
+    defaultPointLabelText: '<b>%name</b>'
+  },
+  series: [
+    {
+      name: 'Top 5 Countries',
+      points: [
+        { name: 'China', y: 1349585838  },
+        { name: 'India', y: 1220800359  },
+        { name: 'Europe', y: 509365627  },
+        { name: 'U.S.', y: 316438601  },
+        { name: 'Indonesia', y: 251160124  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Custom Nav UI Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<br/>
+
+    <div>
+        <!--Left,Up,Right,Down*/-->
+    <input type="button" value=" &#8592;" onclick="zoom([-5.055,0]);"/>
+    <input type="button" value=" &#8593;" onclick="zoom([0,5.055]);"/>
+    <input type="button" value=" &#8594;" onclick="zoom([5.055,0]);"/>
+    <input type="button" value=" &#8595;" onclick="zoom([0,-5.055]);"/>
+&nbsp;
+    <input type="button" value=" + " onclick="chart.zoom('+150');"/>
+    <input type="button" value=" - " onclick="chart.zoom('-50');"/>
+    &nbsp;&nbsp;
+    <input type="button" value=" 100%" onclick="zoom(1)"/>
+    <input type="button" value=" 200%" onclick="zoom(2)"/>
+    <input type="button" value=" 500%" onclick="zoom(5)"/>
+    &nbsp;&nbsp;&nbsp; Palette: <select id="Palettes" onchange="selectPalette();">
+    <option value="default">default</option><option value="spreadsheet">spreadsheet</option><option value="oceanMidtones">oceanMidtones</option><option value="mutedRainbow">mutedRainbow</option><option value="pastelContrast">pastelContrast</option><option value="rainforest">rainforest</option><option value="random">random</option><option value="autumn">autumn</option><option value="bright">bright</option><option value="lavender">lavender</option><option value="midTones">midTones</option><option value="mixed">mixed</option><option value="pastel">pastel</option><option value="poppies">poppies</option><option value="spring">spring</option><option value="warmEarth">warmEarth</option><option value="waterMeadow">waterMeadow</option><option value="darkRainbow">darkRainbow</option><option value="midRange">midRange</option><option value="vividDark">vividDark</option><option value="fiveColor1">fiveColor1</option><option value="fiveColor2">fiveColor2</option><option value="fiveColor3">fiveColor3</option><option value="fiveColor4">fiveColor4</option><option value="fiveColor5">fiveColor5</option><option value="fiveColor6">fiveColor6</option><option value="fiveColor7">fiveColor7</option><option value="fiveColor8">fiveColor8</option><option value="fiveColor9">fiveColor9</option><option value="fiveColor10">fiveColor10</option><option value="fiveColor11">fiveColor11</option><option value="fiveColor12">fiveColor12</option><option value="fiveColor13">fiveColor13</option><option value="fiveColor14">fiveColor14</option><option value="fiveColor15">fiveColor15</option><option value="fiveColor16">fiveColor16</option><option value="fiveColor17">fiveColor17</option><option value="fiveColor18">fiveColor18</option><option value="fiveColor19">fiveColor19</option><option value="fiveColor20">fiveColor20</option><option value="fiveColor21">fiveColor21</option><option value="fiveColor22">fiveColor22</option><option value="fiveColor23">fiveColor23</option><option value="fiveColor24">fiveColor24</option><option value="fiveColor25">fiveColor25</option><option value="fiveColor26">fiveColor26</option><option value="fiveColor27">fiveColor27</option><option value="fiveColor28">fiveColor28</option><option value="fiveColor29">fiveColor29</option><option value="fiveColor30">fiveColor30</option><option value="fiveColor31">fiveColor31</option><option value="fiveColor32">fiveColor32</option><option value="fiveColor33">fiveColor33</option><option value="fiveColor34">fiveColor34</option><option value="fiveColor35">fiveColor35</option><option value="fiveColor36">fiveColor36</option><option value="fiveColor37">fiveColor37</option><option value="fiveColor38">fiveColor38</option><option value="fiveColor39">fiveColor39</option><option value="fiveColor40">fiveColor40</option><option value="fiveColor41">fiveColor41</option><option value="fiveColor42">fiveColor42</option><option value="fiveColor43">fiveColor43</option><option value="fiveColor44">fiveColor44</option><option value="fiveColor45">fiveColor45</option><option value="fiveColor46">fiveColor46</option>
+    </select> <br/>
+</div>
+<div id="cc" style="width: 740px; height: 480px">
+</div>
+	
+<script type="text/javascript">
+/*
+A map with custom real-time navigation and palette controls.
+Learn how to:
+
+  - Map series from mapCodes.
+  - Update map palette in real-time.
+  - Interactively zoom and pan map charts.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'map',
+  height: 480,
+  legendVisible: false,
+  series: [
+    {
+      id: 'states',
+      defaultPointLabelText: ' %statecode',
+      palette: 'default',
+      map: 'US'
+    }
+  ]
+});
+var $Palettes = $('#Palettes');
+
+function zoom(val){
+
+    if(val.length){  val = [val[0]*100000,val[1]*100000]; }
+    chart.zoom(val);
+}
+
+function selectPalette(){
+    var pal = $Palettes.val();
+    chart.get('states').setPalette(pal);
+}
+
+
+</script>
+	</body>
+</html>

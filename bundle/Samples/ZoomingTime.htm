@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Zooming Time Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates zooming a time series.
+Learn how to:
+
+  - Zooming a time data series.
+  - Sets a limit on zooming interactivity.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  axisToZoom: 'x',
+  
+/*X Axis Time Zoom limit*/
+  xAxisScaleZoomLimit: { unit: 'hour', multiplier: 5  },
+  annotations: [
+    {
+      position: 'CA:95,5',
+      labelText: 'Click-Drag the chart area to zoom.',
+      boxVisible: false
+    }
+  ],
+  series: [
+    {
+      name: 'Purchases',
+      points: [
+        [ new Date(2015, 0, 1), 29.9  ],
+        [ new Date(2015, 0, 2), 71.5  ],
+        [ new Date(2015, 0, 3), 106.4  ],
+        [ new Date(2015, 0, 6), 129.2  ],
+        [ new Date(2015, 0, 7), 144.0  ],
+        [ new Date(2015, 0, 8), 176.0  ],
+        [ new Date(2015, 0, 9), 123  ],
+        [ new Date(2015, 0, 10), 112  ],
+        [ new Date(2015, 0, 11), 89  ],
+        [ new Date(2015, 0, 12), 72  ],
+        [ new Date(2015, 0, 13), 95  ],
+        [ new Date(2015, 0, 14), 110  ],
+        [ new Date(2015, 0, 15), 85  ],
+        [ new Date(2015, 0, 16), 68  ],
+        [ new Date(2015, 0, 17), 56  ],
+        [ new Date(2015, 0, 18), 64  ],
+        [ new Date(2015, 0, 19), 85  ],
+        [ new Date(2015, 0, 20), 102  ],
+        [ new Date(2015, 0, 21), 128  ],
+        [ new Date(2015, 0, 22), 120  ],
+        [ new Date(2015, 0, 23), 125  ],
+        [ new Date(2015, 0, 24), 113  ],
+        [ new Date(2015, 0, 25), 105  ],
+        [ new Date(2015, 0, 26), 85  ],
+        [ new Date(2015, 0, 27), 56  ],
+        [ new Date(2015, 0, 28), 43  ],
+        [ new Date(2015, 0, 29), 56  ],
+        [ new Date(2015, 0, 30), 78  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,3 @@
+.treeContainer div.leaf{
+    z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('afterBegin', '<span class="afterEnd"></span>'));
+}

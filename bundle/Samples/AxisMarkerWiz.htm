@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Marker Wiz Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Demonstrates many axis marker styling features.
+Learn how to:
+
+  - Style range and value axis markers.
+  - Add and style axis markers.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  
+/*Y Axis Marker*/
+  yAxisMarkers: [
+    {
+      
+/*Value*/
+      value: {  low: 40000,  high: 70000},
+      
+/*Apperance*/
+      color: 'rgba(88,219,81,.8)',
+      transparency: 0.2,
+      bringToFront: false,
+      line: {
+        
+/*Line settings - (Will work if just value: 40000 is used.)*/
+        dashStyle: 'Solid',
+        width: 2
+      },
+      
+/*Label*/
+      label: {
+        text: 'my Axis Marker',
+        style: {
+          color: 'black',
+          fontSize: '8pt',
+          fontFamily: 'Arial, Helvetica, sans-serif'
+        },
+        align: 'left',
+        rotation: 90
+      }
+    }
+  ],
+  width: 600,
+  height: 350,
+  yAxisLabelText: 'USD',
+  titleLabelText: 'Sales by quarter ',
+  yAxisFormatString: 'c',
+  series: [
+    {
+      name: 'Gross Sales',
+      points: [
+        [ 'Q1', 50120  ],
+        [ 'Q2', 53465  ],
+        [ 'Q3', 62165  ],
+        [ 'Q4', 52156  ]
+      ]
+    },
+    {
+      name: 'Net Sales',
+      points: [
+        [ 'Q1', 32654  ],
+        [ 'Q2', 35645  ],
+        [ 'Q3', 42651  ],
+        [ 'Q4', 30153  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

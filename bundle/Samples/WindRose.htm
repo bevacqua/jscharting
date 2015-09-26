@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Wind Rose Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height:550px">
+</div>
+	
+<script type="text/javascript">
+/*
+Radar with stacked columns. Also known as WindRose.
+Learn how to:
+
+  - Draw a radar with stacked columns.
+  - Draw a WindRose chart.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'radarColumnAqua',
+  height: 550,
+  titleLabelText: 'Windrose Chart',
+  legendPosition: 'CA:10,10',
+  defaultSeriesShapePadding: 0.15,
+  yAxis: {
+    scale: {type: 'stacked',rangeMax: 450,interval: 100 }
+  },
+  xAxis: {
+    defaultTickLabelText: '%value°',
+    scale: {range: [  0,  360],interval: 45 }
+  },
+  palette: [ '#049dff', '#34fe35', '#ffff05', '#fe6535'  ],
+  series: [
+    {
+      name: '0-10',
+      points: [
+        { x: 10, y: 35  },
+        { x: 20, y: 35  },
+        { x: 30, y: 31  },
+        { x: 40, y: 39  },
+        { x: 50, y: 43  },
+        { x: 60, y: 51  },
+        { x: 70, y: 51  },
+        { x: 80, y: 58  },
+        { x: 90, y: 57  },
+        { x: 100, y: 64  },
+        { x: 110, y: 64  },
+        { x: 120, y: 61  },
+        { x: 130, y: 54  },
+        { x: 140, y: 60  },
+        { x: 150, y: 63  },
+        { x: 160, y: 72  },
+        { x: 170, y: 68  },
+        { x: 180, y: 74  },
+        { x: 190, y: 70  },
+        { x: 200, y: 60  },
+        { x: 210, y: 53  },
+        { x: 220, y: 54  },
+        { x: 230, y: 47  },
+        { x: 240, y: 38  },
+        { x: 250, y: 31  },
+        { x: 260, y: 23  },
+        { x: 270, y: 28  },
+        { x: 280, y: 20  },
+        { x: 290, y: 16  },
+        { x: 300, y: 10  },
+        { x: 310, y: 19  },
+        { x: 320, y: 27  },
+        { x: 330, y: 18  },
+        { x: 340, y: 11  },
+        { x: 350, y: 10  },
+        { x: 360, y: 7  }
+      ]
+    },
+    {
+      name: '10-20',
+      points: [
+        { x: 10, y: 16  },
+        { x: 20, y: 14  },
+        { x: 30, y: 17  },
+        { x: 40, y: 16  },
+        { x: 50, y: 25  },
+        { x: 60, y: 33  },
+        { x: 70, y: 35  },
+        { x: 80, y: 30  },
+        { x: 90, y: 38  },
+        { x: 100, y: 36  },
+        { x: 110, y: 38  },
+        { x: 120, y: 44  },
+        { x: 130, y: 44  },
+        { x: 140, y: 35  },
+        { x: 150, y: 43  },
+        { x: 160, y: 51  },
+        { x: 170, y: 50  },
+        { x: 180, y: 42  },
+        { x: 190, y: 48  },
+        { x: 200, y: 52  },
+        { x: 210, y: 50  },
+        { x: 220, y: 47  },
+        { x: 230, y: 46  },
+        { x: 240, y: 43  },
+        { x: 250, y: 38  },
+        { x: 260, y: 31  },
+        { x: 270, y: 36  },
+        { x: 280, y: 38  },
+        { x: 290, y: 38  },
+        { x: 300, y: 33  },
+        { x: 310, y: 41  },
+        { x: 320, y: 50  },
+        { x: 330, y: 40  },
+        { x: 340, y: 44  },
+        { x: 350, y: 35  },
+        { x: 360, y: 40  }
+      ]
+    },
+    {
+      name: '20-30',
+      points: [
+        { x: 10, y: 91  },
+        { x: 20, y: 98  },
+        { x: 30, y: 97  },
+        { x: 40, y: 87  },
+        { x: 50, y: 80  },
+        { x: 60, y: 69  },
+        { x: 70, y: 66  },
+        { x: 80, y: 83  },
+        { x: 90, y: 103  },
+        { x: 100, y: 113  },
+        { x: 110, y: 129  },
+        { x: 120, y: 147  },
+        { x: 130, y: 151  },
+        { x: 140, y: 137  },
+        { x: 150, y: 147  },
+        { x: 160, y: 135  },
+        { x: 170, y: 154  },
+        { x: 180, y: 172  },
+        { x: 190, y: 190  },
+        { x: 200, y: 169  },
+        { x: 210, y: 180  },
+        { x: 220, y: 178  },
+        { x: 230, y: 181  },
+        { x: 240, y: 176  },
+        { x: 250, y: 169  },
+        { x: 260, y: 175  },
+        { x: 270, y: 160  },
+        { x: 280, y: 164  },
+        { x: 290, y: 160  },
+        { x: 300, y: 142  },
+        { x: 310, y: 148  },
+        { x: 320, y: 141  },
+        { x: 330, y: 124  },
+        { x: 340, y: 123  },
+        { x: 350, y: 104  },
+        { x: 360, y: 109  }
+      ]
+    },
+    {
+      name: '>=30',
+      points: [
+        { x: 10, y: 22  },
+        { x: 20, y: 35  },
+        { x: 30, y: 28  },
+        { x: 40, y: 36  },
+        { x: 50, y: 21  },
+        { x: 60, y: 40  },
+        { x: 70, y: 36  },
+        { x: 80, y: 43  },
+        { x: 90, y: 52  },
+        { x: 100, y: 47  },
+        { x: 110, y: 52  },
+        { x: 120, y: 64  },
+        { x: 130, y: 81  },
+        { x: 140, y: 99  },
+        { x: 150, y: 98  },
+        { x: 160, y: 92  },
+        { x: 170, y: 110  },
+        { x: 180, y: 112  },
+        { x: 190, y: 125  },
+        { x: 200, y: 106  },
+        { x: 210, y: 90  },
+        { x: 220, y: 74  },
+        { x: 230, y: 56  },
+        { x: 240, y: 43  },
+        { x: 250, y: 54  },
+        { x: 260, y: 61  },
+        { x: 270, y: 68  },
+        { x: 280, y: 61  },
+        { x: 290, y: 49  },
+        { x: 300, y: 44  },
+        { x: 310, y: 52  },
+        { x: 320, y: 33  },
+        { x: 330, y: 30  },
+        { x: 340, y: 25  },
+        { x: 350, y: 41  },
+        { x: 360, y: 42  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Bars St F Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Full stacked bars series type with default shading.
+Learn how to:
+
+  - Draw full stacked bar series.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeriesType: 'column',
+  yAxis: {
+    scaleType: 'stackedFull',
+    formatString: 'n0',
+    defaultTickLabelText: '%value%'
+  },
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales ',
+  series: [
+    {
+      name: 'Saw',
+      id: 's1',
+      points: [
+        { name: 'Q1', y: 230  },
+        { name: 'Q2', y: 240  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 238  }
+      ]
+    },
+    {
+      name: 'Hammer',
+      points: [
+        { name: 'Q1', y: 325  },
+        { name: 'Q2', y: 367  },
+        { name: 'Q3', y: 382  },
+        { name: 'Q4', y: 371  }
+      ]
+    },
+    {
+      name: 'Grinder',
+      points: [
+        { name: 'Q1', y: 285  },
+        { name: 'Q2', y: 292  },
+        { name: 'Q3', y: 267  },
+        { name: 'Q4', y: 218  }
+      ]
+    },
+    {
+      name: 'Drill',
+      points: [
+        { name: 'Q1', y: 185  },
+        { name: 'Q2', y: 192  },
+        { name: 'Q3', y: 198  },
+        { name: 'Q4', y: 248  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

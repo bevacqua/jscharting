@@ -1,0 +1,67 @@
+﻿
+
+           <!-- This tutorial explains how JSON can be written more efficiently by
+		using shortcuts.<br />
+		<br />-->
+		JSON Configuration used by the chart follows an object oriented 
+		API to define settings that span a hierarchy of objects. For
+		example an axis tick label can be set by using the following json:
+		<span class="codeText">{<br />
+		yAxis:{<br />
+		defaultTick:{<br />
+		label:{<br />
+		text:&#39;%value&#39;<br />
+		}<br />
+		}<br />
+		}<br />
+		}</span>
+		This setting is defined deep within the hierarchy and despite being a 
+		bit complex, is a standard 
+		approach in such a scenario. JSCharting however provides a mechanism 
+		that makes applying such settings much easier. This is achieved by using 
+		a single property setting that capitalizes and concatenates all
+		subsequent properties into one name and used at the root level like so:
+		<span class="codeText">{<br />
+		yAxisDefaultTickLabelText:&#39;%value&#39;<br />
+		}</span>
+		This setting will be evaluated by the chart into the fully expanded code 
+		shown above.
+		<span class="docsCaution">Notice how 
+		subsequent property names like 
+		<span style="text-decoration: underline">d</span>efaultTick becomes
+		capitalized:
+		yAxis<span style="text-decoration: underline">D</span>efaultTick
+		when used in this context.</span>
+		JSCharting utilizes an API definition file that contains all the 
+		properties and related metadata to make this processing work for all 
+		available properties, perform well and 
+		without error. Minor spelling mistakes in property names can make 
+		libraries miss the property and cost time tracking down the issue. This 
+		processing allows the chart to validate the specified json 
+		and property settings to ensure all intended settings are valid. <br />
+		<br />
+		Due to this approach, it is possible to define the same property 
+		multiple times. For example the following code specifies the same 
+		setting twice:
+		<span class="codeText">{<br />
+		label:{text:&#39;textA&#39;},<br />
+		labelText:&#39;textB&#39;<br />
+		}</span>
+		In this instance, the more expanded property takes precedence and 
+		overwrites the aliased version. Running this json through the chart will 
+		result in the following code:
+		<span class="codeText">{<br />
+		label:{text:&#39;textA&#39;}<br />
+		}</span>
+		When labelText is expanded into label.text, and this value is already 
+		defined, it will be ignored.
+		<span class="docsNote">When defining json configuration to be used as a 
+		chart template. The chart expands both the chart configuration and 
+		template before the settings are merged. Therefore, this precedence does 
+		not influence use of templates.</span>
+		<span class="docsCaution">Some properties such as xAxis and yAxis can be 
+		set with an axis object, or with an array of axis objects. If an array 
+		of axes is used and an aliased axis property is set, it may cause 
+		problems as it will not be expanded into one of the axis objects in the 
+		array but as a property of the array. </span>
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Scatter Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Scatter chart.
+Learn how to:
+
+  - Draw a scatter chart.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  legendVisible: false,
+  defaultSeriesType: 'marker',
+  titleLabelText: 'Scatter Chart',
+  toolbarPosition: 'topLeft',
+  xAxisScaleRangeMin: 0,
+  xAxisLabelText: 'Hourly Wage',
+  yAxisLabelText: 'Daily amount spent on lunch.',
+  xAxisFormatString: 'c',
+  yAxisFormatString: 'c',
+  series: [
+    {
+      name: 'Scatter Data',
+      points: [
+        [ 0.9, 0.27  ],
+        [ 0.34, 0.21  ],
+        [ 1.47, 3.41  ],
+        [ 2.29, 4.11  ],
+        [ 2.46, 1.29  ],
+        [ 3.52, 3.68  ],
+        [ 4.38, 3.24  ],
+        [ 5.98, 7.18  ],
+        [ 6.86, 6.51  ],
+        [ 8.19, 8.01  ],
+        [ 9.41, 9.33  ],
+        [ 9.47, 10.46  ],
+        [ 10.21, 10.06  ],
+        [ 12.17, 13.54  ],
+        [ 13.4, 13.27  ],
+        [ 13.41, 12.86  ],
+        [ 12.42, 10.68  ],
+        [ 12.82, 11.26  ],
+        [ 12.78, 14.16  ],
+        [ 14.46, 15.89  ],
+        [ 15.51, 14.48  ],
+        [ 17.12, 15.47  ],
+        [ 18.85, 18.45  ],
+        [ 20.5, 22.12  ],
+        [ 19.83, 21.44  ],
+        [ 19.09, 19.2  ],
+        [ 18.94, 17.07  ],
+        [ 20.15, 19.77  ],
+        [ 19.38, 20.14  ],
+        [ 18.87, 19.43  ],
+        [ 18.79, 17.78  ],
+        [ 18.46, 17.1  ],
+        [ 17.52, 16.78  ],
+        [ 17.13, 15.87  ],
+        [ 17.54, 19.36  ],
+        [ 18.06, 18.27  ],
+        [ 18.13, 19.43  ],
+        [ 17.9, 19.29  ],
+        [ 19.56, 20.11  ],
+        [ 18.96, 19.6  ],
+        [ 18.68, 18.83  ],
+        [ 18.8, 20.69  ],
+        [ 20.58, 19.67  ],
+        [ 22.03, 21.62  ],
+        [ 22.07, 22.31  ],
+        [ 22.22, 23.79  ],
+        [ 23.27, 23.4  ],
+        [ 22.58, 23.29  ],
+        [ 23.69, 22.29  ],
+        [ 22.91, 22.41  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

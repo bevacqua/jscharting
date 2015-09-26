@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Radar Range Columns Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Radar bars series type with rounded shading and range values.
+Learn how to:
+
+  - Draw radar chart with ranged bar series .
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'radarPolarColumnRounded',
+  height: 400,
+  width: 640,
+  yAxis: {
+    scale: {interval: 25,rangeMax: 100 },
+    defaultTickLabelText: '%value%',
+    markers: [{  value: [ 0, 60  ],  color: [ 'red', 0.7  ]} ]
+  },
+  defaultPointTooltip: '<b>%name</b> <br/>Score range: <b>%yStart%</b> - <b>%yValue%</b><br/>Percentile: <b>%yPercentile%</b>',
+  legend: { visible: false  },
+  title: {
+    label: {
+      text: 'Test score ranges per student. [Best: %maxPointName %max%, Worst: %minPointName %min%]'
+    },
+    position: 'full'
+  },
+  series: [
+    {
+      name: 'Test Scores',
+      points: [
+        { name: 'Brayden', y: [57.5,96 ]  },
+        { name: 'Aiden', y: [32.5,72 ]  },
+        { name: 'Mason', y: [55,83 ]  },
+        { name: 'Anthony', y: [58.5,78 ]  },
+        { name: 'Elijah', y: [61,87 ]  },
+        { name: 'Mateo', y: [46,73 ]  },
+        { name: 'Levi', y: [51.5,81 ]  },
+        { name: 'Luke', y: [41,63 ]  },
+        { name: 'Connor', y: [52.5,76 ]  },
+        { name: 'Cameron', y: [51.5,69 ]  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

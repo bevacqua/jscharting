@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pie Z Val All Neg Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Pie with only negative z values.
+Learn how to:
+
+  - Draw pie chart with varying negative slice lengths.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'pie',
+  titleLabelText: 'Most Negative Migration: Population vs. Net Migration Rate',
+  defaultPoint: {
+    labelText: '<b>%name</b> %yValue [%percentOfTotal%]',
+    tooltip: '<b>%name</b> %yValue<br/>%zValue migrants / 1000 population<br/>Expected: {%yValue/1000*%zValue}'
+  },
+  series: [
+    {
+      name: 'Countries',
+      angleOrientation: 30,
+      shapeOffset: '-37,0',
+      points: [
+        { name: 'Syria', y: 22457336, z: -113.51  },
+        { name: 'American Samoa', y: 54719, z: -21.64  },
+        { name: 'Tonga', y: 106322, z: -17.85  },
+        { name: 'Nauru', y: 9434, z: -14.12  },
+        { name: 'Maldives', y: 393988, z: -12.67  },
+        { name: 'Samoa', y: 195476, z: -10.12  },
+        { name: 'Moldova', y: 3619925, z: -9.8  },
+        { name: 'Guyana', y: 739903, z: -9.67  },
+        { name: 'Saint Vincent', y: 103220, z: -9.6  },
+        { name: 'Somalia', y: 10251568, z: -9.51  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Marker Types Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A demonstration of different marker types.
+Learn how to:
+
+  - Draw a different marker types.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeries: {
+    type: 'marker',
+    defaultPoint: {
+      color: 'white',
+      outlineColor: 'gray',
+      markerSize: 10,
+      statesHoverFill: 'red'
+    }
+  },
+  toolbarVisible: false,
+  legendVisible: false,
+  titleLabelText: 'Marker Types',
+  xAxis: {
+    defaultTickLabel: {rotation: -90,align: 'right',offset: '3,20' },
+    markers: [
+      {
+        value: { low: -0.5, high: 6.5  },
+        labelText: 'General Shapes',
+        color: [ 'red', 0.5  ]
+      },
+      {
+        value: { low: 6.5, high: 10.5  },
+        labelText: 'Star Shapes',
+        color: [ 'blue', 0.5  ]
+      },
+      {
+        value: { low: 10.5, high: 15.5  },
+        labelText: 'Finance Shapes',
+        color: [ 'green', 0.5  ]
+      }
+    ]
+  },
+  series: [
+    {
+      points: [
+        {
+          name: 'square',
+          y: 18653,
+          markerType: 'square'
+        },
+        {
+          name: 'diamond',
+          y: 32165,
+          markerType: 'diamond'
+        },
+        {
+          name: 'circle',
+          y: 28651,
+          markerType: 'circle'
+        },
+        {
+          name: 'triangle',
+          y: 26543,
+          markerType: 'triangle'
+        },
+        {
+          name: 'triangle-down',
+          y: 26543,
+          markerType: 'triangle-down'
+        },
+        {
+          name: 'arrow-down',
+          y: 18563,
+          markerType: 'arrow-down'
+        },
+        {
+          name: 'arrow-up',
+          y: 35698,
+          markerType: 'arrow-up'
+        },
+        {
+          name: 'four-point-star',
+          y: 28684,
+          markerType: 'four-point-star'
+        },
+        {
+          name: 'five-point-star',
+          y: 27659,
+          markerType: 'five-point-star'
+        },
+        {
+          name: 'six-point-star',
+          y: 13364,
+          markerType: 'six-point-star'
+        },
+        {
+          name: 'seven-point-star',
+          y: 23564,
+          markerType: 'seven-point-star'
+        },
+        {
+          name: 'spinoff',
+          y: 8653,
+          markerType: 'spinoff'
+        },
+        { name: 'split', y: 18653, markerType: 'split'  },
+        {
+          name: 'merger',
+          y: 25684,
+          markerType: 'merger'
+        },
+        {
+          name: 'split-reverse',
+          y: 38654,
+          markerType: 'split-reverse'
+        }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

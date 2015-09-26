@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Toolbar Styling 2 Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Use orientation and offset to position the toolbar.
+Learn how to:
+
+  - Style export toolbar buttons.
+  - Specify export toolbar layout.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  type: 'line',
+  defaultPointLabelVisible: true,
+  toolbar: {
+    position: 'bottomRight',
+    offset: '0,-3',
+    defaultButton: {outlineColor: 'red',outlineWidth: 2 },
+    buttons: {print: {  visible: false} }
+  },
+  series: [
+    {
+      name: 'Purchases',
+      points: [
+        [ new Date(2014, 0, 1), 29.9  ],
+        [ new Date(2014, 0, 15), 71.5  ],
+        [ new Date(2014, 1, 1), 106.4  ],
+        [ new Date(2014, 1, 15), 129.2  ],
+        [ new Date(2014, 2, 1), 144.0  ],
+        [ new Date(2014, 2, 15), 176.0  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

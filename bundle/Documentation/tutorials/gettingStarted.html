@@ -1,0 +1,145 @@
+﻿
+<div style="display:none;">
+            <h2>Installation</h2>
+            <ol class="ordered-list">
+                <li><strong class="number">1</strong> <span>Download the 
+				JSCharting.zip bundle to your computer from
+                    <a href="http://JSCharting.com/download.aspx">http://JSCharting.com/download.aspx</a></span></li>
+                <li><strong class="number">2</strong> <span>Extract the files to a folder on your local 
+				web server.</span></li>
+            </ol>
+            <span class="docsCaution">Installation on a local server is required in order to use the 
+			JSCharting Editor feature.</span>
+            When the bundle is installed locally, all the samples and features will be available by navigating to the installed folder through localhost 
+			e.g. http://localhost/JSCharting/index.htm
+</div>
+            <h2>Overview</h2>
+            <table>
+
+                <tr style="vertical-align: top;">
+
+                    <td><h3>The bundle</h3>
+                        <img  src="tutorials/images/BundleFolder.png"></td>
+                    <td style="vertical-align: top;"><h3>JSC Folder</h3><img style="float:left;" src="tutorials/images/JSCFolder.png">
+                        The JSC folder contains all the libraries necessary to generate charts 
+					using JSCharting. The cultures folder contains culture 
+					specific data which are loaded dynamically as required.
+                                                                                                            The JSCharting.js and jQuery 
+					JavaScript files must be included in the HTML page in order to generate charts. 
+					JSCharting.js will load other required files dynamically as needed for different features 
+					to minimize the required client side download.
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td style="vertical-align: top;"></td>
+                    <td style="vertical-align: top;"></td>
+                </tr>
+            </table>
+            <h2>Exploring installed content</h2>
+            <ul>
+                <li><strong>Sample Explorer</strong> - This tool provides a quick way to search and 
+				browse samples matching your criteria.&nbsp; You can also 
+				navigate the sample browser broken down by specific tasks.
+                                                     Please see the <a href="Tutorials.SampleExplorer">SampleExplorer</a> for more information.
+                    By default, samples that are supported in the editor will 
+				open in that view, otherwise, the sample file will be directly 
+				opened. All samples are available in the /Samples folder as HTML files 
+				you can view or edit directly as you wish.</li>
+                <li><strong>Documentation</strong> - The JSCharting
+				documentation provides a collection of tutorials along with a 
+				complete API reference. The API reference is split into 2 sections: JSON Config and JS Objects.
+                    <ul>
+                        <li>The <a href="index.htm#node=API.Json" class="refLink">JSON Config</a> section defines
+						JSON configuration objects used to specify settings for the chart, as well
+                            as pre-defined string settings under the <a href="Enums" class="refLink">Enums node</a>. Please note that the
+                            <a href="Types.chart" class="refLink">Chart</a> node under JSON Config is type similar to those listed under the <a href="Types" class="refLink">Types node</a>, and is simply a link to provide quicker access
+						to this most commonly used configuration. </li>
+                        <li>The <a href="iObject" class="refLink">JS Objects</a> section defines the direct API
+						for the JSCharting library. The <a href="iObject.JSC" class="refLink">JSC object</a> can be used to create a chart,
+						while the remaining objects are returned by methods
+                            and are not instantiated directly. The <a href="iObject.JSC.Chart()" class="refLink">JSC.Chart() method</a> constructs a <a href="iObject.chart" class="refLink">chart JS Object</a> and is the primary way to generate a chart.
+                            It takes a <a href="Types.chart" class="refLink">Chart JSON</a>
+                            configuration to define the chart's settings. </li>
+                    </ul>
+                    </li>
+            </ul>
+            <h2>API Documentation</h2>
+            <table>
+                <tr>
+                    <td><img src="tutorials/images/docsAPITree.png"></td>
+                    <td> The JSON Objects node contains definitions for configuration objects that are used to define chart settings and data. There are many types of configurations
+                    and they are listed under JSON Objects.Types.
+            <!--        <span class="docsNote">
+JSON Objects also contain a Chart node. This is a type like those listed under Types, but was promoted to allow easier access to it.
+</span>-->
+                        The Enums section contains predefined string settings that are used by some configuration properties.
+                        <p>The JS Objects node describes JS objects provided with the library. The main JS object is JSC.
+                           It provides a method that constructs a chart as well as some utility methods.
+                           All other types listed there are not constructed manually but returned by the chart object itself. </p>
+                        <h3>API Color Coding</h3>
+                        <table class="useDocsTable">
+                            <tr>
+                                <th>Color Coding</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>(<span class="refNative ">native</span>)</td>
+                                <td>Native types like string, number, object...</td>
+                            </tr>
+                            <tr>
+                                <td>(<span class="refType ">JSON Object</span>)</td>
+                                <td>JSON configuration objects that are used to define chart settings and data</td>
+                            </tr>
+                            <tr>
+                                <td>(<span class="refEnum ">string settings</span>)</td>
+                                <td>Predefined string settings.</td>
+                            </tr>
+                            <tr>
+                                <td>(<span class="refiObj ">JS Objects</span>)</td>
+                                <td>JS objects provided with the library.</td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+<h2>PHP Database samples</h2>
+        <p>If the sample explorer is running on a server that supports PHP, samples using PHP and a database will be visible. Otherwise, these samples can be found in the bundle/samples/php folder.</p>
+
+            <h2>Editor</h2>
+            <table >
+                <tr>
+                    <td style="vertical-align: top; padding:5px;"><img  src="tutorials/images/editorShot.png"></td>
+                    <td style="vertical-align: top; padding:5px;"> The JSC Editor provides editing 
+					and design time capabilities which automatically create UI
+					controls for all the chart settings in the given sample code. The generated UI
+                                                      includes available options as well as real-time documentation of those settings. Chart code can be copied into the editor to quickly modify settings such as colors and
+                                                      see the result of these changes in real-time. After editing, the code within the editor must be copied back into the 
+					HTML editor or IDE of your choice.</td>
+                </tr>
+            </table>
+
+
+
+
+
+<h2>Learning JSCharting</h2>
+             <p>      There are two main ways to learn how to develop charts using JSCharting. One is to read the relevant tutorials and API documentation to get a good understanding of
+			the products functionality and capabilities. The other way is to find samples that demonstrate features specific to your requirements and use similar code. A mix of these approaches is ideal, but
+            finding related samples to your needs will get you up and running 
+			faster. The JSC SampleExplorer is designed to make finding samples much more efficient.
+            Please see the <a href="Tutorials.SampleExplorer">SampleExplorer</a> for more information.
+
+
+
+
+
+
+			Once you have found a sample, you can quickly prototype and 
+			customize the settings using the JSCharting Editor.</p>
+
+        <h2>First Chart</h2>
+        <p>Please see <a href="Tutorials.firstChart">this tutorial</a> for a quick start creating your first chart.</p>

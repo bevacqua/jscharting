@@ -1,0 +1,54 @@
+<h2>Your First Chart</h2>
+
+
+To begin, create a new HTML file.
+<span class="docsNote">This file can be created within the JSC bundle or
+			built off of a sample in /Samples. In order to use the charts in any other location,
+                               copy the JSC folder from within the bundle to your working directory. This is the minimum requirement to
+			work with JSCharting.</span>
+
+First, include jQuery and JSCharting libraries in your HTML file as follows:
+
+<span class="htmlText">
+        &lt;script type=&quot;text/javascript&quot; src=&quot;JSC/jquery-latest.min.js&quot;&gt;&lt;/script&gt;
+		&lt;script type=&quot;text/javascript&quot; src=&quot;JSC/JSCharting.js&quot;&gt;&lt;/script&gt;</span>
+jQuery version 1.10.1 is shown in this example, however, the version shipped with the bundle should be used.<br />
+<br />
+In the body of the HTML page, add a div element with a
+specific ID attribute to contain the chart graphics.
+<span class="htmlText">&lt;div id=&quot;chartDiv&quot; style=&quot;width: 640px; height: 400px&quot;&gt;&lt;/div&gt;</span>
+Now add a script block to define the chart with a JSON configuration to initialize and render the chart in the div#chartDiv tag.
+
+<span class="docsCaution">The div ID is specified through the targetElement property.</span>
+
+<span class="codeText">
+		&lt;script type=&quot;text/javascript&quot;&gt;<br />
+<br />
+var config = {<br />
+ targetElement: &#39;chartDiv&#39;,
+
+series: [<br />
+{<br />
+ name: &#39;Purchases&#39;,<br />
+ points: [<br />
+[new Date(2010, 0, 1),29.9]<br />
+ ]<br />
+ }]<br />
+		};<br />
+<br />
+$(document).ready(function () {<br />
+            /*Now initialize the chart with this config setting and a chart will
+			render in place of the div tag with the '<span class="htmlText">chartDiv</span>' ID.*/
+var chart = new JSC.Chart(config);<br />
+});<br /><br />
+&lt;/script&gt;</span>
+Open this page in your web browser to view your newly configured
+chart!
+
+
+<span class="docsNote">Note: It is important to be aware of the chart's <a href="Tutorials.codeExpansion">Code Expansion</a> feature when looking at sample code.</span>
+
+<span class="docsNote">In order to specify the chart types effectively, it is also important to understand <a href="Tutorials.enumChaining">Enum Chaining</a> feature.
+More on using chart types is available in the <a href="Tutorials.chartTypes">chart types tutorials</a>.
+</span>
+

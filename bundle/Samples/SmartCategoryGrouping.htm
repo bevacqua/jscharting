@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Smart Category Grouping Chart</title>
+		  <style type="text/css">.excHeads { background-color: #000000; color: #FFFFFF; }
+.samTbls {
+    text-align: center;
+    width:600px;
+    margin: 0px auto;
+    }
+.clsWData { background-color: #EFEFEF; }
+.samTblFrstCol{ width:100px; }</style>
+	</head>
+	<body>
+	<table  class="samTbls">
+    <tr>
+        <td><strong>Smart Category Grouping</strong><br/>Imagine an excel type data grid where not all data points are available.</td>
+    </tr>
+</table>
+<table class="samTbls">
+    <tr>
+        <td class="samTblFrstCol">&nbsp;</td>
+        <td class="excHeads">
+        A</td>
+        <td class="excHeads">
+        B</td>
+        <td class="excHeads">
+        C</td>
+        <td class="excHeads">
+        D</td>
+        <td class="excHeads">
+        E</td>
+        <td class="excHeads">
+        F</td>
+        <td class="excHeads">
+        G</td>
+        <td class="excHeads">
+        H</td>
+    </tr>
+    <tr>
+    <td class="samTblFrstCol" style="background-color:#3F89E4">
+    Series 1</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class="clsWData">1</td>
+    <td class="clsWData">1</td>
+    <td class="clsWData">1</td>
+    <td class="clsWData">1</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+    <tr>
+    <td class="samTblFrstCol" style="background-color:#F0342F">
+    Series 2</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class="clsWData">1</td>
+    <td class="clsWData">1</td>
+    <td class="clsWData">1</td>
+    <td class="clsWData">1</td>
+</tr>
+    <tr>
+    <td class="samTblFrstCol" style="background-color:#58EE33">
+    Series 3</td>
+<td class="clsWData">1</td>
+<td class="clsWData">1</td>
+<td class="clsWData">1</td>
+<td class="clsWData">1</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+<table class="samTbls">
+    <tr>
+        <td>Each series will only contain the points with data. In this example,
+        the names of
+        data points for each series are as follows:</td>
+    </tr>
+</table>
+<table class="samTbls">
+    <tr>
+        <td class="samTblFrstCol" style="background-color:#3F89E4">
+        Series 1</td>
+        <td>C</td>
+        <td>D</td>
+        <td>E</td>
+        <td>F</td>
+    </tr>
+    <tr>
+    <td class="samTblFrstCol" style="background-color:#F0342F">
+    Series 2</td>
+    <td>E</td>
+<td>F</td>
+    <td>G</td>
+<td>H</td>
+</tr>
+<tr>
+    <td class="samTblFrstCol" style="background-color:#58EE33">
+    Series 3</td>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+    <td>D</td>
+</tr>
+</table>
+<table  class="samTbls">
+    <tr>
+        <td>When all series do not contain points with same names, the chart
+        will try to figure out the intended order automatically. Given the info
+        above, it is enough to determine the correct order. Some overlap in
+        names is required to logically conclude the correct result.</td>
+    </tr>
+</table>
+
+
+<div id="cc" style="width: 640px; height: 200px">
+</div>
+	Javascript | <a href="SmartCategoryGrouping_SL.htm">Silverlight</a>
+<script type="text/javascript">
+/*
+Demonstrates how unmatched datasets will be grouped in a logical way removing the need for manually specifying the order. The chart will recognize the same datasets but with missing values and order them correctly.
+Learn how to:
+
+  - Use smart data category grouping to automatically order data points of different series.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  height: 200,
+  renderMode: 'JavaScript',
+  type: 'column',
+  series: [
+    {
+      name: 'Series 1',
+      points: [  [ 'C', 1  ],  [ 'D', 1  ],  [ 'E', 1  ],  [ 'F', 1  ]]
+    },
+    {
+      name: 'Series 2',
+      points: [  [ 'E', 1  ],  [ 'F', 1  ],  [ 'G', 1  ],  [ 'H', 1  ]]
+    },
+    {
+      name: 'Series 3',
+      points: [  [ 'A', 1  ],  [ 'B', 1  ],  [ 'C', 1  ],  [ 'D', 1  ]]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

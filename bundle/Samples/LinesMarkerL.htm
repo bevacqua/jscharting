@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Lines Marker L Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+A line series type with large markers.
+Learn how to:
+
+  - Draw line chart with large markers.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  palette: 'fiveColor3',
+  xAxisScaleRangePadding: 0.07,
+  defaultSeries: { type: 'line', defaultPointMarkerSize: 12  },
+  titleLabelText: ' Costs (Last 6 Months) ',
+  yAxisFormatString: 'c',
+  series: [
+    {
+      name: 'Purchases',
+      points: [
+        [ new Date(2014, 0, 1), 29.9  ],
+        [ new Date(2014, 1, 1), 97.5  ],
+        [ new Date(2014, 2, 1), 110.4  ],
+        [ new Date(2014, 3, 1), 129.2  ],
+        [ new Date(2014, 4, 1), 144.0  ],
+        [ new Date(2014, 5, 1), 176.0  ]
+      ]
+    },
+    {
+      name: 'Taxes',
+      points: [
+        [ new Date(2014, 0, 1), 86.9  ],
+        [ new Date(2014, 1, 1), 79.5  ],
+        [ new Date(2014, 2, 1), 95.4  ],
+        [ new Date(2014, 3, 1), 97.2  ],
+        [ new Date(2014, 4, 1), 123.0  ],
+        [ new Date(2014, 5, 1), 111.0  ]
+      ]
+    },
+    {
+      name: 'Supplies',
+      points: [
+        [ new Date(2014, 0, 1), 129.9  ],
+        [ new Date(2014, 1, 1), 111.5  ],
+        [ new Date(2014, 2, 1), 66.4  ],
+        [ new Date(2014, 3, 1), 29.2  ],
+        [ new Date(2014, 4, 1), 88.0  ],
+        [ new Date(2014, 5, 1), 102.0  ]
+      ]
+    },
+    {
+      name: 'Rent',
+      points: [
+        [ new Date(2014, 0, 1), 56.9  ],
+        [ new Date(2014, 1, 1), 56.5  ],
+        [ new Date(2014, 2, 1), 56.4  ],
+        [ new Date(2014, 3, 1), 56.2  ],
+        [ new Date(2014, 4, 1), 75.0  ],
+        [ new Date(2014, 5, 1), 56.0  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

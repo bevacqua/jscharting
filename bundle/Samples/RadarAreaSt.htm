@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Radar Area St Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 100%">
+</div>
+	
+<script type="text/javascript">
+/*
+Radar chart with stacked area series.
+Learn how to:
+
+  - Draw radar with stacked areas.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'radarArea',
+  yAxisScaleType: 'stacked',
+  height: 500,
+  defaultSeriesTransparency: 0.3,
+  titleLabelText: 'Sales By Representative',
+  series: [
+    {
+      name: 'William',
+      points: [
+        { name: 'Jan', y: 196  },
+        { name: 'Feb', y: 178  },
+        { name: 'Mar', y: 169  },
+        { name: 'Apr', y: 166  },
+        { name: 'May', y: 172  },
+        { name: 'Jun', y: 162  },
+        { name: 'Jul', y: 155  },
+        { name: 'Aug', y: 156  },
+        { name: 'Sep', y: 167  },
+        { name: 'Oct', y: 182  },
+        { name: 'Nov', y: 188  },
+        { name: 'Dec', y: 197  }
+      ]
+    },
+    {
+      name: 'Elliot',
+      points: [
+        { name: 'Jan', y: 186  },
+        { name: 'Feb', y: 178  },
+        { name: 'Mar', y: 186  },
+        { name: 'Apr', y: 171  },
+        { name: 'May', y: 180  },
+        { name: 'Jun', y: 166  },
+        { name: 'Jul', y: 156  },
+        { name: 'Aug', y: 156  },
+        { name: 'Sep', y: 170  },
+        { name: 'Oct', y: 179  },
+        { name: 'Nov', y: 165  },
+        { name: 'Dec', y: 156  }
+      ]
+    },
+    {
+      name: 'Andrew',
+      points: [
+        { name: 'Jan', y: 146  },
+        { name: 'Feb', y: 134  },
+        { name: 'Mar', y: 128  },
+        { name: 'Apr', y: 120  },
+        { name: 'May', y: 117  },
+        { name: 'Jun', y: 112  },
+        { name: 'Jul', y: 115  },
+        { name: 'Aug', y: 117  },
+        { name: 'Sep', y: 109  },
+        { name: 'Oct', y: 106  },
+        { name: 'Nov', y: 104  },
+        { name: 'Dec', y: 102  }
+      ]
+    },
+    {
+      name: 'Michael',
+      points: [
+        { name: 'Jan', y: 92  },
+        { name: 'Feb', y: 92  },
+        { name: 'Mar', y: 85  },
+        { name: 'Apr', y: 96  },
+        { name: 'May', y: 109  },
+        { name: 'Jun', y: 102  },
+        { name: 'Jul', y: 117  },
+        { name: 'Aug', y: 108  },
+        { name: 'Sep', y: 116  },
+        { name: 'Oct', y: 114  },
+        { name: 'Nov', y: 111  },
+        { name: 'Dec', y: 115  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

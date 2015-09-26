@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Label Inline Formatting Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	Javascript | <a href="LabelInlineFormatting_SL.htm">Silverlight</a>
+<script type="text/javascript">
+/*
+Uses inline formatting to show the same value but using a different format in the title.
+Learn how to:
+
+  - Use inline formatting with title, legend, and axis tick label tokens.
+  - Use label tokens in the title.
+  - Use label tokens.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  width: 600,
+  height: 350,
+  legendPosition: 'bottom',
+  toolbarVisible: false,
+  legendDefaultEntryText: 'Total: {%sum:n1}',
+  yAxisDefaultTickLabelText: '{%value:n2}',
+  title: {
+    label: {
+      text: '(Total Formatted As) Currency: {%sum:c} Integer: {%sum:n0} Decimal: {%sum:n2}'
+    }
+  },
+  defaultSeries: { type: 'column'  },
+  annotations: [
+    {
+      position: 'CA:5,5',
+      width: 500,
+      labelText: 'Formatting for this title is specified within the title text with the following string:<br/>Currency: {%sum:c}  integer: {%sum:n0} decimal: {%sum:n2};<br/>Axis ticks and legend labels also use inline formatting.',
+      fill: [  'white',  0.2],
+      outlineColor: 'none'
+    }
+  ],
+  yAxisLabelText: 'Unit Count',
+  titleLabelText: 'Unit Sales by Representative',
+  series: [
+    {
+      name: 'Representatives',
+      points: [
+        { name: 'Angie', y: 3  },
+        { name: 'Chris', y: 8  },
+        { name: 'Arthur', y: 5  },
+        { name: 'David', y: 6  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

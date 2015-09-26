@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Area Range Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Area line series type with range values.
+Learn how to:
+
+  - Draw range area series.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'areaSpline',
+  height: 400,
+  width: 640,
+  palette: [ 'crimson', '#03bbfb'  ],
+  legend: {
+    position: 'CA:360,4',
+    layout: 'vertical',
+    boxVisible: false
+  },
+  title: {
+    label: {
+      text: 'Average Temperatures [Chicago]  Range: %min°F to %max°F,    Average: %average°F'
+    },
+    position: 'full'
+  },
+  yAxis: [
+    {
+      id: 'mainY',
+      labelText: '(°F) Fahrenheit',
+      defaultTickLabel: {
+        text: '%value°F',
+        style: { fontWeight: 'bold', fontSize: '12px'  }
+      },
+      markers: [
+        {
+          value: [0,32 ],
+          label: {
+            text: 'Freezing',
+            styleFontSize: 14,
+            align: 'center'
+          },
+          color: ['#65affb',0.5 ]
+        },
+        {
+          value: 72,
+          labelText: 'Perfect (72°F)',
+          labelStyleFontSize: 14,
+          lineWidth: 3,
+          color: ['#fcc348',0.5 ]
+        }
+      ]
+    },
+    {
+      scaleSyncWith: 'mainY',
+      orientation: 'right',
+      formatString: 'n2',
+      labelText: '(°C) Celcius',
+      defaultTickLabel: {
+        text: '{(%Value-32)*5/9:n1}°C',
+        style: { fontWeight: 'bold', fontSize: '12px'  }
+      }
+    }
+  ],
+  xAxis: {
+    formatString: 'MMM',
+    scaleInterval: {unit: 'month' },
+    centerTickMarks: false,
+    defaultTickLabel: {
+      style: {  fontWeight: 'bold',  fontSize: '12px'}
+    }
+  },
+  defaultPointTooltip: '<b>%xValue</b><br/>Average High: <b>%yValue°F</b>  ({(%yValue-32)*5/9:n1}°C)<br/>Average Low: <b>%yStart°F</b>  ({(%yStart-32)*5/9:n1}°C)',
+  toolbarVisible: false,
+  series: [
+    {
+      name: 'Average High',
+      points: JSC.pointsFromArray( 'x,y', [ [new Date(2010, 0, 1),[ 15, 30]], [new Date(2010, 1, 1), [18, 35]], [new Date(2010, 2, 1),[27, 47]], [new Date(2010, 3, 1),[37, 60]], [new Date(2010, 4, 1),[46, 71]], [new Date(2010, 5, 1),[56, 80]], [new Date(2010, 6, 1),[61, 83]], [new Date(2010, 7, 1),[60, 81]], [new Date(2010, 8, 1),[51, 75]], [new Date(2010, 9, 1),[40, 63]], [new Date(2010, 10, 1),[30, 48]], [new Date(2010, 11, 1),[19, 34]] ])
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

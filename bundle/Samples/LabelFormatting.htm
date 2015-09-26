@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Label Formatting Chart</title>
+		  <style type="text/css">.LabelStyle {
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-size: xx-small;
+		color: #AA0033;
+		font-weight: bold;
+	}</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	Javascript | <a href="LabelFormatting_SL.htm">Silverlight</a>
+<script type="text/javascript">
+/*
+Demonstrates specifying the data formatting using a single setting.
+Learn how to:
+
+  - Define label formatting used by axes, data, title, and legend labels.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  yAxis: { formatString: 'c'  },
+  titleLabelText: 'Total Cost: %sum',
+  legendDefaultEntryText: '%name %sum',
+  defaultPointLabelText: '%yValue',
+  toolbarVisible: false,
+  legendPosition: 'bottom',
+  marginRight: 20,
+  annotations: [
+    {
+      position: 'CA:5,5',
+      width: 200,
+      labelText: 'By setting the y axis format String : (yAxisFormatString: "c") <br/> all y values on the chart including the title, legend, point labels will be formatted accordingly.',
+      boxVisible: false
+    }
+  ],
+  xAxisScaleType: 'time',
+  series: [
+    {
+      name: 'Brand A',
+      points: [
+        [ '2014/01/02', 71.5  ],
+        [ '2014/01/03', 106.4  ],
+        [ '2014/01/06', 129.2  ],
+        [ '2014/01/07', 144  ],
+        [ '2014/01/08', 176  ]
+      ]
+    },
+    {
+      name: 'Brand B',
+      points: [
+        [ '2014/01/02', 98.5  ],
+        [ '2014/01/03', 135  ],
+        [ '2014/01/06', 148.7  ],
+        [ '2014/01/07', 164  ],
+        [ '2014/01/08', 276  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

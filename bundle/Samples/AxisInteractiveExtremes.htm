@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Interactive Extremes Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px"></div>
+
+<input id="low" type="text" value="0" /><input id="high" type="text" value="600" />
+<input onclick="setExtremes();" type="button" value="Set YAxis Range" /><br />
+<textarea id="info" cols="50" rows="3"></textarea><input onclick="getExtremes();" type="button" value="Get YAxis Range" />
+	
+<script type="text/javascript">
+/*
+Get and set the axis range dynamically through an interactive UI.
+Learn how to:
+
+  - Set axis range in real-time.
+  - Get axis range in real-time.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode: 'JavaScript',
+  type: 'column',
+  yAxis: { id: 'yA'  },
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales ',
+  series: [
+    {
+      name: 'Saw',
+      id: 's1',
+      points: [
+        [ 'Q1', 230  ],
+        [ 'Q2', 240  ],
+        [ 'Q3', 267  ],
+        [ 'Q4', 238  ]
+      ]
+    },
+    {
+      name: 'Hammer',
+      points: [
+        [ 'Q1', 325  ],
+        [ 'Q2', 347  ],
+        [ 'Q3', 392  ],
+        [ 'Q4', 371  ]
+      ]
+    },
+    {
+      name: 'Grinder',
+      points: [
+        [ 'Q1', 285  ],
+        [ 'Q2', 292  ],
+        [ 'Q3', 327  ],
+        [ 'Q4', 158  ]
+      ]
+    },
+    {
+      name: 'Drill',
+      points: [
+        [ 'Q1', 185  ],
+        [ 'Q2', 192  ],
+        [ 'Q3', 198  ],
+        [ 'Q4', 318  ]
+      ]
+    }
+  ]
+});
+
+function getExtremes(){
+    var axis = chart.get('yA'),
+        ext = axis.getRange();
+
+    jQuery('#info').val(JSON.stringify(ext).replace(',',',\n'));
+
+}
+
+function setExtremes(){
+    var axis = chart.get('yA');
+    axis.setRange(jQuery('#low').val(),jQuery('#high').val());
+}
+
+
+</script>
+	</body>
+</html>

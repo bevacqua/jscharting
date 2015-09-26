@@ -1,0 +1,112 @@
+﻿
+		<h2>Populating Data</h2>
+				Points can be represented as simple arrays to reduce the amount
+				of text necessary to add points, or as expanded objects with
+				access to all properties.<br />
+		<h3>Simple Arrays</h3>
+		When specifying a point as an array the following types are supported:<span class="output">
+
+		[x,y]<br />
+		[name,y]<br />
+		</span>
+		When the first value in the array is a string, it is interpreted as the 
+		point&#39;s name. If it is a numeric or date object, it is used as the 
+		point&#39;s x value. However, if the x axis scale is set to &#39;time&#39; the chart 
+		will attempt to evaluate the first value in the array as a date. <br />
+		<br />
+		Examples:<br />
+
+		A numeric x axis:
+		<span class="codeText">{<br />
+		series:[<br />
+		{<br />
+		name:&#39;series 1&#39;,<br />
+		points:[[1,10],[2,16],[3,8],[4,12],[5,18],]<br />
+		}<br />
+		]<br />}</span>
+		A category x axis
+		<span class="codeText">{<br />
+		series:[<br />
+		{<br />
+		name:&#39;series 1&#39;,<br />
+		points:[[&#39;one&#39;,10],[&#39;two&#39;,16],[&#39;three&#39;,8],[&#39;four&#39;,12],[&#39;five&#39;,18],]<br />
+		}<br />
+		]<br />}</span>
+		A date x axis
+		<span class="codeText">{<br />
+		series:[<br />
+		{<br />
+		name:&#39;series 1&#39;,<br />
+		points:[[new Date(2012,0,1),10],[new Date(2012,0,2),16],[new Date(2012,0,3),8],[new Date(2012,0,4),12],[new Date(2012,0,5),18],]<br />
+		}<br />
+		]<br />}</span>
+		A category x axis:
+		<span class="codeText">{<br />
+		series:[<br />
+		{<br />
+		name:&#39;series 1&#39;,<br />
+		points:[[&#39;1/1/2012&#39;,10],[&#39;1/2/2012&#39;,16],[&#39;1/3/2012&#39;,8],[&#39;1/4/2012&#39;,12],[&#39;1/5/2012&#39;,18],]<br />
+		}<br />
+		]<br />}</span> 
+
+		A date x axis using string x values.
+		<span class="codeText">{<br />
+		xAxisScale:&#39;time&#39;,<br />
+		series:[<br />
+		{<br />
+		name:&#39;series 1&#39;,<br />
+		points:[[&#39;1/1/2012&#39;,10],[&#39;1/2/2012&#39;,16],[&#39;1/3/2012&#39;,8],[&#39;1/4/2012&#39;,12],[&#39;1/5/2012&#39;,18],]<br />
+		}<br />
+		]<br />}</span>
+        <span class="docsNote">
+		Note that the previous example uses a time scale because a time scale is 
+		specified for the x axis which causes the chart to attempt to evaluate x 
+		values as such.</span>
+
+		<h3>Specifying additional point settings</h3>
+		Additional point settings that are shared across all points in a chart 
+		can be set through the defaultPoint property. For example:<br />
+
+        <span class="codeText">defaultPoint:{transparency:0.5}</span>
+
+		Additional point settings shared by all points in a series can be set 
+		through the series.defaultPoint property. For example: <br />
+
+        <span class="codeText"> series:[<br />
+        {<br />
+        defaultPoint:{transparency:0.5},<br />
+        points:[/*...*/]<br />
+        }<br />
+        ]</span>
+
+		<h3>Expanded points</h3>
+        The advantage of using expanded point data is that point specific
+        data can be set that differs from one point to the next.
+        <span class="codeText">points:[{x:5,y:5,tooltip:'%xValue - %yValue' },/*...*/]</span>
+
+        <span class="docsReference">Samples.PointLabels:Specifies point specific label settings</span>
+
+        <h3>Efficient Series Data Arrays</h3>
+<p>JSCharting provides the <a href="iObject.JSC.pointsFromArray()">JSC.pointsFromArray()</a> method to make adding large amounts of series data much more efficient in size.</p>
+
+                <p>Consider the following series data:</p>
+        <span class="codeText">
+{
+series:[{"name":"Series 0","points":[{"name":"Mason","y":29,"z":177,"attributes":{"distance":1}},{"name":"Andrew","y":45,"z":66,"attributes":{"distance":0}},{"name":"Levi","y":65,"z":99,"attributes":{"distance":2}},{"name":"Samuel","y":83,"z":148,"attributes":{"distance":1}},{"name":"Jordan","y":66,"z":120,"attributes":{"distance":0}}]}]
+}
+</span>
+                <p>This can be rewritten in the following shorter format using this helper method.</p>
+        <span class="codeText">
+{
+series:[{"name":"Series 0","points":JSC.pointsFromArray('name,y,z,attributes.distance',[['Mason',29,177,1],['Andrew',45,66,0],['Levi',65,99,2],['Samuel',83,148,1],['Jordan',66,120,0]])}]
+}
+</span>
+                <p>The difference in size is considerable even with 5 data points.</p>
+		<h3>Populate Data From Server</h3>
+		<p>To populate the chart with server data is fairly simple. A chart is
+		defined with text on an HTML page. All server based dev platforms allow 
+		populating text in an HTML page programmatically. Either all or part of a
+		chart JSON definition can be populated in this way.</p>
+        <span class="docsReference">
+    Tutorials.dataEnginePhp|</span>
+        <br><br><br>

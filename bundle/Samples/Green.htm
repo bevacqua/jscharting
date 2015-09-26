@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting Green Dashboard Chart</title>
+		  <style type="text/css">.mainWrapper{
+    width:890px;
+    height:1288px;
+    background:  url('images/eco.gif')  ;
+    background:  rgba(255,255,255,0) url('images/eco.svg') ;/*url('images/svgz/eco.svgz')*/
+    background-size: cover;
+    background-repeat:no-repeat;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    left:-25px;
+}
+
+#cc1{
+    position:absolute;
+    margin-top:550px;
+    margin-left:70px;
+    width:170px;
+}
+#cc2{
+    position:absolute;
+    margin-top:720px;
+    margin-left:70px;
+    width:166px;
+}
+#cc3{
+    position:absolute;
+    margin-top:720px;
+    margin-left:260px;
+    width:186px;
+}
+#cc4{
+    position:absolute;
+    margin-top:720px;
+    margin-left:465px;
+    width:186px;
+}
+#cc5{
+    position:absolute;
+    margin-top:720px;
+    margin-left:655px;
+    width:186px;
+}
+#cc6{
+    position:absolute;
+    margin-top:930px;
+    margin-left:230px;
+    width:228px;
+}
+#cc7{
+    position:absolute;
+    margin-top:920px;
+    margin-left:458px;
+    width:110px;
+}
+#cc8{
+    position:absolute;
+    margin-top:920px;
+    margin-left:578px;
+    width:110px;
+}
+#cc9{
+    position:absolute;
+    margin-top:920px;
+    margin-left:695px;
+    width:110px;
+}
+#cc10{
+    position:absolute;
+    margin-top:100px;
+    margin-left:555px;
+    width:145px;
+}</style>
+	</head>
+	<body>
+	<div class="mainWrapper">
+
+    <div id="cc1" ></div>
+    <div id="cc2" ></div>
+    <div id="cc3" ></div>
+    <div id="cc4" ></div>
+    <div id="cc5" ></div>
+    <div id="cc6" ></div>
+    <div id="cc7" ></div>
+    <div id="cc8" ></div>
+    <div id="cc9" ></div>
+    <div id="cc10" ></div>
+</div>
+	
+<script type="text/javascript">
+/*
+Ecology dashboard using JavaScript charts.
+Learn how to:
+
+  - Create a dashboard with overlaying charts.
+  - Use template for charts on the same page.
+*/
+// JS
+
+var template={
+
+    chartAreaFill:'rgba(0,0,0,0)',
+    chartAreaOutlineColor:'rgba(0,0,0,0)',
+    boxFill:'rgba(230,237,222,1)',
+    xAxis:{
+        defaultTick:{
+            gridLineColor:'rgba(0,0,0,0)',
+            labelStyle:{ fontSize:14, fontWeight:'bold'}
+        },
+        alternateGridFill:'rgba(0,0,0,0)',
+        spacingPercentage:.1
+    },
+    yAxis:{
+        defaultTick:{
+            gridLineColor:'rgba(0,0,0,0)',
+            labelStyle:{ fontSize:14, fontWeight:'bold'}
+        } ,
+        alternateGridFill:'rgba(0,0,0,0)'
+    },
+    legendVisible:false,
+    toolbarVisible:false
+};
+var chart = new JSC.Chart({
+    targetElement: 'cc1',
+    type: 'horizontalcolumnAqua',
+    template:template,
+    height:125,
+    marginBottom:-1,
+
+    defaultPointTooltip:'',
+    series:[{
+        color:'#86b300',
+        points:[
+            {name:'15',y:15,attributes:{nam:'a'}},
+            {name:'20',y:20,attributes:{nam:'b'}},
+            {name:'25',y:25,attributes:{nam:'c'}},
+            {name:'30',y:30,attributes:{nam:'d'}},
+            {name:'35',y:35,attributes:{nam:'e'}}
+        ]}]
+
+});
+
+var chart2 = new JSC.Chart({
+    targetElement: 'cc2',
+    defaultSeriesType: 'pie donut',
+    template:template,
+    height:142,
+    defaultPointTooltip:'%percentOfTotal% of Total',
+    series:[{
+        name:'Total',
+        shape:{center:'85,65',size:130,innerSize:80},
+        palette:['#86b300','#a8e100','#79a200','#b7f400','#d7f482'],
+        points:[
+            {name:'A',y:15},
+            {name:'B',y:20},
+            {name:'C',y:25},
+            {name:'D',y:30},
+            {name:'E',y:35}
+        ]}],
+    annotations:[
+        {labelText:'  12,457',
+            position:'65,50',
+
+            labelStyle:{ fontSize:15, fontWeight:'bold'},
+            boxVisible:false}
+        ,{labelText:'Respondents',
+            position:'55,65',
+            labelStyle:{ fontSize:12, fontWeight:'bold'},
+            boxVisible:false}
+    ]
+
+});
+var chart3 = new JSC.Chart({
+    targetElement: 'cc3',
+    type: 'area',
+    height:142,
+    template:template,
+    marginBottom:4,
+    series: [
+        {
+            name: 'Purchases',color:'#86b300',
+            points: [
+                [ new Date(2010, 0, 1), 29.9  ],
+                [ new Date(2010, 1, 1), 71.5  ],
+                [ new Date(2010, 2, 1), 96.4  ],
+                [ new Date(2010, 3, 1), 129.2  ],
+                [ new Date(2010, 4, 1), 144.0  ],
+                [ new Date(2010, 5, 1), 176.0  ]
+            ]
+        },
+
+        {
+            name: 'Rent',color:'#868686',
+            points: [
+                [ new Date(2010, 0, 1), 56.9  ],
+                [ new Date(2010, 1, 1), 56.5  ],
+                [ new Date(2010, 2, 1), 56.4  ],
+                [ new Date(2010, 3, 1), 56.2  ],
+                [ new Date(2010, 4, 1), 75.0  ],
+                [ new Date(2010, 5, 1), 56.0  ]
+            ]
+        }
+    ]
+
+});
+var chart4 = new JSC.Chart({
+    targetElement: 'cc4',
+
+    type: 'horizontalcolumnAqua',
+    template:template,
+    height:142,
+    marginBottom:0,
+
+
+    series:[{
+        color:'#86b300',
+        name:'Total',
+        points:[
+            {name:'duis',y:15},
+            {name:'aute',y:20},
+            {name:'irure',y:25},
+            {name:'dolor',y:30},
+            {name:'reprehen',y:35},
+            {name:'derit',y:30},
+            {name:'voluptate',y:28}
+        ]}]
+
+});
+var chart5 = new JSC.Chart({
+    targetElement: 'cc5',
+
+    defaultSeriesType: 'pie',
+    height:145,
+    template:template,
+defaultPointTooltip:'%percentOfTotal% of Total',
+    series:[{
+        shape:{center:'80,60',size:130},
+        palette:['#86b300','#a8e100','#838382'],
+        points:[{name:'A',y:52},{name:'B',y:38},{name:'C',y:10}  ]}]
+
+});
+var chart6 = new JSC.Chart({
+    targetElement: 'cc6',
+    type: 'horizontalcolumnAqua',
+    template:template,
+    marginTop:0,
+    height:215,
+    marginBottom:-1,
+    defaultPointLabel:{
+        visible:true,
+
+        styleFontSize:13,
+        styleFontWeight:'bold'
+    },
+
+    xAxis:{
+
+        defaultTick:{
+            gridLineColor:'none',
+            label:{
+                align:'left',
+                offset:'4,6',
+                style:{
+                    color:'white',
+                    fontSize:11,
+                    fontWeight:'bold'
+                }
+            }
+
+        }
+    },
+
+
+    series:[{
+        name:'Transportation',
+        color:'#86b300',
+        points:[
+            {name:'bike',y:15},
+            {name:'car',y:89},
+            {name:'bus',y:25},
+            {name:'train',y:30},
+            {name:'subway',y:47},
+            {name:'ship',y:19},
+            {name:'airplane',y:24}
+        ]}]
+
+});
+var chart7 = new JSC.Chart({
+    targetElement: 'cc7',
+
+    type: 'columnAqua',
+    template:template,
+
+    height:180,
+    marginRight:0,marginLeft:0,marginBottom:55,
+    defaultPointLabel:{
+        visible:true,
+        rotation:-90,
+        offset:'3,-5',
+        text:'%yValue%',
+        align:'left',
+        styleFontSize:9
+    },
+
+    xAxis:{
+        lineColor:'none',
+        defaultTick:{
+
+            label:{
+                rotation:-90,
+                align:'right',
+                offset:'2,7',
+                style:{
+                    color:'gray',
+                    fontSize:14,
+                    fontWeight:'bold'
+                }
+            }
+
+        }
+    },
+    yAxis:{
+        lineColor:'none',
+        defaultTick:{labelText:' '  }
+    },
+
+    series:[{
+        color:'#86b300',
+        name:'Usage',
+        points:[
+            {name:'nuclear',y:32,color:'gray'},
+            {name:'fossil',y:23,color:'gray'},
+            {name:'solar',y:10},
+            {name:'wind',y:11},
+            {name:'water',y:9}
+        ]}]
+
+});
+var chart8 = new JSC.Chart({
+    targetElement: 'cc8',
+
+   type: 'columnAqua',
+    template:template,
+
+    height:180,
+    marginRight:0,marginLeft:0,marginBottom:55,
+    defaultPointLabel:{
+        visible:true,
+        rotation:-90,
+        offset:'3,-5',
+        text:'%yValue%',
+        align:'left',
+        styleFontSize:9
+    },
+
+    xAxis:{
+        lineColor:'none',
+        defaultTick:{
+            label:{
+                rotation:-90,
+                align:'right',
+                offset:'2,7',
+                style:{
+                    color:'gray',
+                    fontSize:14,
+                    fontWeight:'bold'
+                }
+            }
+
+        }
+    },
+    yAxis:{
+        lineColor:'none',
+        defaultTick:{labelText:' '  }
+    },
+    series:[{
+        color:'#86b300',
+        name:'Usage',
+        points:[
+            {name:'nuclear',y:12,color:'gray'},
+            {name:'fossil',y:16,color:'gray'},
+            {name:'solar',y:18},
+            {name:'wind',y:30},
+            {name:'water',y:20}
+        ]}]
+
+});
+var chart9 = new JSC.Chart({
+    targetElement: 'cc9',
+
+    type: 'columnAqua',
+    template:template,
+
+    height:180,
+    marginRight:0,marginLeft:0,marginBottom:55,
+    defaultPointLabel:{
+        visible:true,
+        rotation:-90,
+        offset:'3,-5',
+        text:'%yValue%',
+        align:'left',
+        styleFontSize:9
+    },
+
+    xAxis:{
+        lineColor:'none',
+        defaultTick:{
+            label:{
+                rotation:-90,
+                align:'right',
+                offset:'2,7',
+                style:{
+                    color:'gray',
+                    fontSize:14,
+                    fontWeight:'bold'
+                }
+            }
+        }
+    },
+    yAxis:{
+        lineColor:'none',
+        defaultTick:{labelText:' '  }
+    },
+    series:[{
+        color:'#86b300',
+        name:'Usage',
+        points:[
+            {name:'nuclear',y:3,color:'gray'},
+            {name:'fossil',y:5,color:'gray'},
+            {name:'solar',y:30},
+            {name:'wind',y:34},
+            {name:'water',y:27}
+        ]}]
+
+});
+var chart10 = new JSC.Chart({
+    targetElement: 'cc10',
+
+    type: 'columnAqua',
+    template:template,
+    boxFill:'white',
+    height:120,
+    marginRight:0,marginLeft:0,marginBottom:5,
+    defaultPointLabel:{
+        visible:true,
+        rotation:-90,
+        offset:'4,-5',
+        text:'%yValue%',
+        align:'left',
+        styleFontSize:9
+    },
+
+    xAxis:{
+        lineColor:'none',
+        scaleInvert:true,
+        defaultTick:{
+            label:{
+                text:' ',
+                rotation:-90,
+                align:'right',
+
+                style:{
+                    color:'gray',
+                    fontSize:10,
+                    fontWeight:'normal'
+                }
+            }
+        }
+    },
+    yAxis:{
+        lineColor:'none',
+        defaultTick:{labelText:' '  }
+    },
+    series:[{
+        color:'#86b300',
+        name:'Usage',
+        points:[
+            {name:'nuclear',y:3,color:'gray'},
+            {name:'fossil',y:5,color:'gray'},
+            {name:'solar',y:30},
+            {name:'wind',y:34},
+            {name:'water',y:27}
+        ]}]
+
+});
+
+
+</script>
+	</body>
+</html>

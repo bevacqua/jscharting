@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Gauge Styling Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Gauges with different background fills and outlines.
+Learn how to:
+
+  - Draw a multiple gauges with different background and outline styling.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  defaultSeriesType: 'gauge',
+  yAxisScaleRange: [ 0, 80  ],
+  series: [
+    {
+      shape: {
+        fill: [ '#a0f1ff', 'white', 45  ],
+        outlineColor: '#2a74c0'
+      },
+      points: [  { y: 65  }]
+    },
+    {
+      shape: {
+        fill: '#fff0f0',
+        outline: { color: '#c02222', width: 2  }
+      },
+      angle: {  orientation: -45,  sweep: 90},
+      points: [  { y: 45  }]
+    },
+    {
+      shape: {
+        fill: '#f0fff1',
+        outline: { color: '#29c037', width: 2  }
+      },
+      angle: {  orientation: 45,  sweep: 90},
+      points: [  { y: 45  }]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

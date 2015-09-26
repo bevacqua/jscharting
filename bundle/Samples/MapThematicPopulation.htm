@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Thematic Population Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 740px; height: 480px">
+</div>
+	
+<script type="text/javascript">
+/*
+Thematic mapping bound to a dataSet.
+Learn how to:
+
+  - Make thematic maps.
+  - Map points from mapCodes.
+  - Show a SmartPalette in the legend.
+  - Set Default Map Padding.
+*/
+// JS
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  height: 480,
+  palette: {
+    pointValue: '{%zValue}',
+    colors: [
+      '#f7fcfd',
+      '#e0ecf4',
+      '#bfd3e6',
+      '#9ebcda',
+      '#8c96c6',
+      '#8c6bb1',
+      '#88419d',
+      '#810f7c',
+      '#4d004b'
+    ]
+  },
+  legend: {
+    titleLabelText: 'Population <br>(Millions)  ',
+    width: 80,
+    defaultEntryText: '{%value/1000000:n1}M'
+  },
+  zAxisLabelText: 'Population',
+  defaultPointLabelText: '%stateCode',
+  defaultSeriesShapePadding: 0.02,
+  series: [ {map: 'us' }  ]
+};
+
+var mapData = [["AL",4849377],["AK",736732],["AZ",6731484],["AR",4265033],["CA",10848721],["CO",5886091],["CT",3596677],["DE",935614],["FL",10054523],["GA",10155539],["HI",1419561],["ID",3423468],["IL",9583321],["IN",10093700],["IA",6108682],["KS",3877137],["KY",5657114],["LA",4649676],["ME",985462],["MD",4749758],["MA",4056827],["MI",7313247],["MN",5823252],["MS",4350930],["MO",6473004],["MT",2097100],["NE",4455211],["NV",1141504],["NH",123440],["NJ",234534],["NM",432513],["NY",1232540],["NC",1256365],["ND",134523],["OH",10105980],["OK",4659239],["OR",3724655],["PA",1101948],["RI",156432],["SC",76564],["SD",215345],["TN",5316649],["TX",9285148],["UT",3126011],["VT",4535165],["VA",1625712],["WA",4680803],["WV",354424],["WI",6737715],["WY",959570]];
+
+chartConfig.series[0].points = $.map(mapData,function(arrItem){
+    return {  map:'US.'+arrItem[0],  z:arrItem[1] }
+});
+var chart = new JSC.Chart(chartConfig);
+
+
+</script>
+	</body>
+</html>

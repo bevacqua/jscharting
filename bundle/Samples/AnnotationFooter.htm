@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Annotation Footer Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Uses an annotation as a chart footer.
+Learn how to:
+
+  - Draw a chart footer using a transparent annotation placed in the bottom chart margin.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  legendVisible: false,
+  marginBottom: 60,
+  type: 'column',
+  annotations: [
+    {
+      position: '180,310',
+      label: {
+        text: 'Annotation without box used as Chart Footer',
+        color: 'crimson'
+      },
+      boxVisible: false
+    }
+  ],
+  yAxisMarkers: [ {value: 0,color: [  'black',  0.8],lineWidth: 1 }  ],
+  titleLabelText: 'Unit sales change month over month.',
+  series: [
+    {
+      name: 'Representatives',
+      points: [
+        [ 'Angie', -3  ],
+        [ 'Chris', 8  ],
+        [ 'Arthur', 5  ],
+        [ 'David', 2  ],
+        [ 'Mike', -4  ],
+        [ 'George', -6  ],
+        [ 'Jeff', 6  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

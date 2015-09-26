@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Axis Shadowing Time Chart</title>
+		  <style type="text/css"></style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Define multiple axes sharing common gridlines while using different time intervals on each axis.
+Learn how to:
+
+  - Use two axes with different time intervals.
+  - Style axis gridlines.
+  - Specify complex time scale axis intervals.
+*/
+// JS
+
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'line',
+  legend: { position: 'CA:14,14', layout: 'horizontal'  },
+  titleLabel: { text: 'Shadow axis with different intervals.'  },
+  titlePosition: 'full',
+  toolbarVisible: false,
+  xAxis: [
+    {
+      id: 'mainX',
+      labelText: 'Month Intervals',
+      labelColor: '#059dff',
+      scale: {
+        type: 'time',
+        interval: { unit: 'month', multiplier: 1  }
+      },
+      defaultTick: {
+        gridLineColor: '#059dff',
+        gridLineWidth: 2,
+        labelStyleColor: '#059dff'
+      }
+    },
+    {
+      scale: {
+        syncWith: 'mainX',
+        type: 'time',
+        interval: { unit: 'week', multiplier: 1  }
+      },
+      labelText: 'Week Intervals (Shadow copy)',
+      labelColor: '#9d9de2',
+      formatString: 'M/d',
+      defaultTick: {
+        gridLineColor: '#9d9de2',
+        labelStyleColor: '#9d9de2'
+      },
+      orientation: 'top'
+    }
+  ],
+  series: [
+    {
+      name: 'Site 1',
+      points: [
+        [ new Date(2014, 0, 1), 29.9  ],
+        [ new Date(2014, 0, 15), 71.5  ],
+        [ new Date(2014, 1, 1), 106.4  ],
+        [ new Date(2014, 1, 15), 129.2  ],
+        [ new Date(2014, 2, 1), 144.0  ],
+        [ new Date(2014, 2, 15), 176.0  ]
+      ]
+    },
+    {
+      name: 'Site 2',
+      points: [
+        [ new Date(2014, 0, 1), 18.9  ],
+        [ new Date(2014, 0, 15), 52.5  ],
+        [ new Date(2014, 1, 1), 85.4  ],
+        [ new Date(2014, 1, 15), 102.2  ],
+        [ new Date(2014, 2, 1), 140.0  ],
+        [ new Date(2014, 2, 15), 168.0  ]
+      ]
+    },
+    {
+      name: 'Site 3',
+      points: [
+        [ new Date(2014, 0, 1), 76.9  ],
+        [ new Date(2014, 0, 15), 70.5  ],
+        [ new Date(2014, 1, 1), 60.4  ],
+        [ new Date(2014, 1, 15), 75.2  ],
+        [ new Date(2014, 2, 1), 84.0  ],
+        [ new Date(2014, 2, 15), 92.0  ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

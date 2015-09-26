@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Pie Donut Z Val Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Draw donut with z values controlling slice length.
+Learn how to:
+
+  - Draw donut chart with varying slice lengths.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  titleLabelText: 'Top Populations vs. Unemployment Rate',
+  defaultSeries: {
+    type: 'pieDonut',
+    angleOrientation: 125,
+    shapePadding: 0.3
+  },
+  defaultPoint: {
+    label: {
+      text: '<b>%name</b><br/>Population: <b>{%yValue/1000000:n1}M</b><br/>Unemployment: <b>%zValue%</b>',
+      offset: 15
+    },
+    tooltip: ''
+  },
+  zAxisFormatString: 'n1',
+  series: [
+    {
+      name: 'Country Population',
+      points: [
+        { name: 'China', y: 1349585838, z: 6.4  },
+        { name: 'India', y: 1220800359, z: 8.8  },
+        { name: 'European Union', y: 509365627, z: 10.8  },
+        { name: 'United States', y: 316438601, z: 7.3  },
+        { name: 'Indonesia', y: 251160124, z: 6.6  }
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

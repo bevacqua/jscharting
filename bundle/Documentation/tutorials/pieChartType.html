@@ -1,0 +1,164 @@
+<h2>Z Values</h2>
+        <p></p>
+In addition to the general pie type, a secondary value can be encoded into <a href="Types.point.z">point z properties</a>. If point z values are defined, it will
+vary the pie slice radius. Both positive and negative z values can be used which create different visual effects.
+</p>
+        <p>
+The z values are plotted along a z axis which is similar to a polar y axis. The z axis is 0 based and behaves similar to a normal column chart, except the columns are slices.
+</p>
+        <p>
+These pie charts demonstrate the different behaviors of using positive, negative, and both positive and negative z values.</p>
+<span class="tutorialImage">
+<img src="tutorials/images/pieZValues.png"/>
+<em>Figure 1.</em>
+</span>
+<span class="docsReference">
+    Samples.pieZValVariations
+</span>
+<h3>Z Value Formatting</h3>
+
+<p>
+    The x and y axis <a href="Types.axis.formatString">formatString</a>  settings provide default formatting for those values in any point
+    related text such as labels and tooltips.
+
+
+
+</p>
+<p>While the z axis is not currently a property of chart, the formatting properties of the z axis can be set at the chart level as shown below.</p>
+<p>This image shows a chart with z values representing life expectancy.</p>
+<span class="tutorialImage">
+<img src="tutorials/images/pieZValueFormatting.png"/>
+<em>Figure 2.</em>
+</span>
+
+        <p>The code below specifies the format string as number with one decimal place and is how the format of the above highlighted part of the tooltip is applied.</p>
+<span class="codeText">
+{
+ zAxisFormatString :'n1',
+}
+</span>
+<span class="docsReference">
+    Samples.pieZVal|Tutorials.labelExpressions|Tutorials.tokenReference
+</span>
+    <h2>Angles & Arcs</h2>
+Starting angles can be used with pie charts.
+<span class="codeText">
+{
+defaultSeriesAngle:45
+}
+</span>
+<span class="docsReference">
+    Samples.pieAngled
+</span>
+<p>
+Starting and ending angles can be used together to create pie arcs as with the following example.</p>
+<span class="tutorialImage">
+<img src="tutorials/images/pieArcLarge.png"/>
+<em>Figure 3.</em>
+</span>
+
+<span class="codeText">
+{
+ defaultSeriesAngle:{
+            start:80,
+            end:100
+}
+</span>
+<span class="docsReference">
+    Samples.donutArc
+</span>
+        <p>
+
+The <a href="Types.angleArc">angleArc</a> object also provides properties for orientation and sweep. Orientation is the center angle between start and end angles.</p>
+        <p>The following has the same effect as the above start and end angle settings, however,
+            it is given in orientation and sweep which makes it easier to think about.</p>
+<span class="codeText">
+{
+ defaultSeriesAngle:{
+           orientation:90,
+            sweep:20
+}
+</span>
+<p>
+Sweep can be given in numeric degrees or as a percentage string such as <span class="example">&#39;50%&#39;</span> which is equivalent to 180 degrees.
+If a string is provided, tokens can also be used. For example, consider a series of pie data split into two series.
+One series can be set with an orientation of <span class="example">-90</span> degrees (facing left) and the other with <span class="example">90</span> degrees (facing right).
+The sweep can be set with <span class="example">&#39;%percentOfTotal%&#39;</span>. This creates the effect of a single pie separated into two.
+</p>
+<p>
+This case can be especially useful when there are many smaller points on a pie chart. They can be put into a different pie
+arc which automatically scales up in size.</p>
+<span class="tutorialImage">
+<img src="tutorials/images/pieSegmentedArcs.png"/>
+<em>Figure 4.</em>
+</span>
+
+<span class="codeText">
+{
+  series:[{
+    name: "Left Side",
+        angle:{orientation:-90,sweep:'%PercentOfTotal%'},
+    points:[/*...*/]
+    },{
+    name: "Right Side",
+         angle:{orientation:90,sweep:'%PercentOfTotal%'},
+    points:[/*...*/]
+    }
+}
+</span>
+<span class="docsReference">
+    Samples.SegmentedPie
+</span>
+
+
+
+
+
+        <h2>Layout And Scaling</h2>
+<h3>Scaling</h3>
+        <p>Depending on pie arc angles, some pie segments are overall smaller in size than they would be as a full 360 degree pie.
+            JSC scales these up to match the width or height of all other pies as seen in figure 4.</p>
+<h3>Default Layout</h3>
+<p>Pie layout uses an algorithm that determines the most efficient number of columns and rows to maximize pie sizes.</p>
+
+<p>As pies may have varying point labels lengths, this can interfere with the automatic layout system.</p>
+        <h3>Tweaking pie layout.</h3>
+        <p>The series shape property which refers to the <a href="Types.series.shape">series.shape config</a> settings offer a number of
+            settings to allow manual layout adjustments.</p>
+
+<p>For example, consider the following pie chart</p>
+<span class="tutorialImage">
+<img src="tutorials/images/pieMisaligned.png"/>
+<em>Figure 5.</em>
+</span>
+
+        <p> Applying the following settings adjusts the chart to show correctly. These values are given as 'x,y' in pixels.</p>
+<span class="codeText">
+{
+  series:[{
+      /*...*/
+        shapeOffset:'70,20'
+    },{
+         /*...*/
+        shapeOffset:'-70,20'
+    }]
+}
+</span>
+        <p>Resulting in:</p>
+<span class="tutorialImage">
+<img src="tutorials/images/pieAligned.png"/>
+<em>Figure 6.</em>
+</span>
+<span class="docsReference">
+    Samples.PieArc
+</span>
+<h3>Padding Pies</h3>
+<p>In cases where pies or other similar series are too crowded, a general padding value can be applied for the entire chart.</p>
+
+<span class="codeText">
+{
+defaultSeries:{
+        shapePadding:.2
+    }
+}
+</span>

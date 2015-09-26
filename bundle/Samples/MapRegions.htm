@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Regions Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 740px; height: 400px">
+</div> <div id="cc2" style="width: 740px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+World regions shown with and without projection.
+Learn how to:
+
+  - Projection autoPalettes.
+*/
+// JS
+
+var palettes = makePalettes();
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  legendVisible: false,
+  title: {
+    position: 'full',
+    labelText: 'World Regions Without Projection'
+  },
+  mappingProjection: false,
+  series: [
+    {
+      map: 'world.region:africa',
+      palette: palettes[0]
+    },
+    {map: 'region:europe',palette: palettes[1] },
+    {map: 'region:asia',palette: palettes[2] },
+    {map: 'region:americas',palette: palettes[3] }
+  ]
+};
+var chartConfig2 = $.extend({},chartConfig,{targetElement: 'cc2',mappingProjection:true,title:{labelText:'World Regions With Projection'}});
+var chart = new JSC.Chart(chartConfig);
+
+var chart2 = new JSC.Chart(chartConfig2)
+
+/**
+ * Generate palettes for mapping
+ * @returns {Array}
+ */
+function makePalettes(){
+    var result= [];
+    result[0] = JSC.colorToPalette("#fbdebf",{"hue":0.05,"saturation":0.2,"lightness":0.3},50,2);
+    result[1] = JSC.colorToPalette("rgb(193, 241, 0)",{"hue":0.02,"saturation":0.1,"lightness":0.2},50,2)
+    result[2] = JSC.colorToPalette("#34FE35",{"hue":0.1,"saturation":0.4,"lightness":0.3},50,2);
+    result[3] = JSC.colorToPalette("rgb(255, 215, 49)",{"hue":0.052,"saturation":0.1,"lightness":0.25},50,2)
+    return result;
+}
+
+
+</script>
+	</body>
+</html>

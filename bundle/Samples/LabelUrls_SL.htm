@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Label Urls Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	<a href="LabelUrls.htm">Javascript</a> | Silverlight
+<script type="text/javascript">
+/*
+Uses the label URL properties to invoke JavaScript code.
+Learn how to:
+
+  - Replicate labels click events with the URL setting.
+  - Replicate a label click event and run JavaScript set using a URL string setting.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  renderMode : 'Silverlight',
+  height: 350,
+  titleLabelUrl: 'Javascript:alert("titleClicked");',
+  yAxisLabelUrl: 'Javascript:alert("yAxis Label Clicked");',
+  yAxisDefaultTickLabelUrl: 'Javascript:alert("yAxis Tick Label Clicked (%value)");',
+  xAxisDefaultTickLabelUrl: 'Javascript:alert("xAxis Tick Label Clicked (%value)");',
+  defaultPointLabel: {
+    url: 'Javascript:alert("Element %name of %seriesName clicked (%yValue)");',
+    text: '%yValue'
+  },
+  defaultSeries: {
+    type: 'column'
+  },
+  annotations: [
+    {
+      position: 'CA:5,5',
+      width: 500,
+      labelText: 'This sample enables clicking the chart title, Y Axis label, <br/>axis tick labels, and point labels through the label.url setting.',
+      boxVisible: false
+    }
+  ],
+  yAxisLabelText: 'Units Sold',
+  xAxisLabelText: 'Quarters',
+  titleLabelText: ' Acme Tool Sales ',
+  series: [
+    {
+      name: 'Saw',
+      id: 's1',
+      points: [
+        [
+          'Q1',
+          230
+        ],
+        [
+          'Q2',
+          240
+        ],
+        [
+          'Q3',
+          267
+        ],
+        [
+          'Q4',
+          238
+        ]
+      ]
+    },
+    {
+      name: 'Hammer',
+      points: [
+        [
+          'Q1',
+          325
+        ],
+        [
+          'Q2',
+          347
+        ],
+        [
+          'Q3',
+          392
+        ],
+        [
+          'Q4',
+          371
+        ]
+      ]
+    },
+    {
+      name: 'Grinder',
+      points: [
+        [
+          'Q1',
+          285
+        ],
+        [
+          'Q2',
+          292
+        ],
+        [
+          'Q3',
+          327
+        ],
+        [
+          'Q4',
+          158
+        ]
+      ]
+    },
+    {
+      name: 'Drill',
+      points: [
+        [
+          'Q1',
+          185
+        ],
+        [
+          'Q2',
+          192
+        ],
+        [
+          'Q3',
+          198
+        ],
+        [
+          'Q4',
+          318
+        ]
+      ]
+    }
+  ]
+});
+
+
+</script>
+	</body>
+</html>

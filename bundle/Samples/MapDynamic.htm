@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Dynamic Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 740px; height: 480px">
+</div>
+	
+<script type="text/javascript">
+/*
+Dynamically load provinces when a country is clicked.
+Learn how to:
+
+  - Map series from mapCodes.
+  - Add maps in real-time.
+  - Interact with map click events.
+*/
+// JS
+
+var colorIndex=0;
+var basePalette = JSCL.palettes.get(0);
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'map',
+  chartAreaFill: '#b6d9ff',
+  height: 480,
+  legendTitleLabelText: 'Click to zoom',
+  defaultSeriesEvents: { legendEntryClick: leClickEv  },
+  annotations: [
+    {
+      label: {
+        text: 'Click a country to load states/provinces.',
+        styleFontSize: 14
+      },
+      position: '20,0'
+    }
+  ],
+  series: [
+    {
+      map: 'Americas',
+      color: '#EEEDE3',
+      defaultPoint: {
+        eventsClick: countryClickEv,
+        tooltip: 'Click to load %country'
+      }
+    }
+  ]
+});
+
+function countryClickEv(){
+    var point = this;
+    //Get country code of this point.
+    var id = point.tokenValue('%mapCode');
+
+    //Add a series for this country.
+    chart.addSeries({
+        map:id,
+        palette:JSCL.palettes.colorToPalette(basePalette[colorIndex++],{hue:.03},20,1)}
+    );
+    //Zoom to it without animation
+    point.zoomTo({animation:false});
+}
+
+/**
+ * Cicking a legend entry zooms on the related map feature.
+ *
+ * @returns {boolean}
+ */
+function leClickEv(){ this.zoomTo(); return false;}
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<h2>Populating custom attributes</h2>
+
+     Custom attributes can be associated with any data point by including the info in the point JSON configuration.<br><br>
+
+        There are two equivalent ways of setting attributes. An array of key-value pair arrays can be specified, or an object with properties where the property name is the key.
+        Both ways are demonstrated below
+<span class="codeText">{
+points: [
+{
+    /*Array of key-value pair arrays.*/
+attributes: [[  'industry',  'IT'],[  'phone',  '(630)555-1234'] ],
+name: 'Angie',
+y: 3
+},
+{
+    /*Object with Named properties where the name is the key.*/
+attributes: {
+  'industry':  'Automotive',
+  'phone':  '(630)555-1235'
+},
+name: 'Chris',
+y: 8
+},
+}</span>
+
+        The attributes can be utilized in virtually all strings related to the point such as labels, links, urls, tooltips, etc. They are referenced by using tokens with the same name.
+
+        For example, the above data can be used in a tooltip using the following code:
+<span class="codeText">{
+defaultPointTooltip: &#39;&lt;b&gt;%name&lt;/b&gt;&lt;br&gt;%phone&lt;br&gt;Sector: %industry'
+}</span>
+
+<span class="docsReference">
+    Samples.LabelDataAttributes | Samples.DynamicData | Samples.HoverSideInfo
+</span>

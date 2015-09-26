@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Heat Map Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 640px; height: 400px">
+</div>
+	
+<script type="text/javascript">
+/*
+Using a smartPalette with an interactive legend swatch on a heatMap.
+Learn how to:
+
+  - Draw a heatmap chart with a smartPalette.
+*/
+// JS
+var chart = new JSC.Chart({
+  targetElement: 'cc',
+  type: 'heatmap',
+  toolbarVisible: false,
+  legendTitleLabelText: 'Minutes',
+  palette: {
+    colors: ['green','yellow','red' ],
+    pointValue: '{%zValue}'
+  },
+  defaultPoint: {
+    label: {
+      visible: true,
+      text: '%zValue',
+      style: {  fontWeight: 'normal'}
+    },
+    outlineWidth: 0
+  },
+  titleLabelText: 'Call Response Time (Minutes)',
+  yAxisScaleInterval: 1,
+  yAxisDefaultTickLabelText: yLabel,
+  xAxisDefaultTickLabelText: xLabel,
+  series: [
+    {
+      name: 'Call Response Time.',
+      points: [
+        { x: 1, y: 0, z: 1  },
+        { x: 1, y: 1, z: 6  },
+        { x: 1, y: 2, z: 3  },
+        { x: 1, y: 3, z: 2  },
+        { x: 1, y: 4, z: 5  },
+        { x: 1, y: 5, z: 1  },
+        { x: 2, y: 0, z: 4  },
+        { x: 2, y: 1, z: 6  },
+        { x: 2, y: 2, z: 1  },
+        { x: 2, y: 3, z: 8  },
+        { x: 2, y: 4, z: 6  },
+        { x: 2, y: 5, z: 1  },
+        { x: 3, y: 0, z: 2  },
+        { x: 3, y: 1, z: 2  },
+        { x: 3, y: 2, z: 3  },
+        { x: 3, y: 3, z: 1  },
+        { x: 3, y: 4, z: 2  },
+        { x: 3, y: 5, z: 2  }
+      ]
+    }
+  ]
+});
+
+
+
+function yLabel(v){
+    var yLabels = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    return yLabels[v];
+}
+function xLabel(v){
+    var xLabels = ['Josh','Greg','Molly'];
+    return xLabels[v-1];
+}
+
+
+</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text-html; charset=utf-8"/>
+<script type="text/javascript" src="../JSC/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../JSC/JSCharting.js"></script>
+
+
+
+		<title>JSCharting  Map Thematic Random Chart</title>
+		  <style type="text/css">/*CSS*/</style>
+	</head>
+	<body>
+	<div id="cc" style="width: 740px; height: 480px">
+</div>
+	
+<script type="text/javascript">
+/*
+Thematic mapping with a random data set and automatic tooltips.
+Learn how to:
+
+  - Thematic map.
+*/
+// JS
+var mapStates = "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY".split(',');
+
+var chartConfig = {
+  targetElement: 'cc',
+  type: 'map',
+  height: 480,
+  zAxisLabelText: 'Sales',
+  palette: {
+    pointValue: '{%zValue}',
+    invert: true,
+    colors: ['#006400','#00ff00','#ffff00','#ff0000','#8b0000' ]
+  },
+  legend: { titleLabelText: 'Sales', width: 70  },
+  defaultPointLabelText: '%stateCode',
+  defaultSeriesShapePadding: 0.02,
+  series: [ {id: 'usMap',map: 'us' }  ]
+};
+
+chartConfig.series[0].points = getRandomPoints();
+var chart = new JSC.Chart(chartConfig);
+
+function getRandomPoints(){
+    var serPoints = $.map(mapStates,function(arrItem){
+        return {map:'US.'+arrItem,z:Math.random()*1000  }
+    });
+    return serPoints;
+
+}
+
+
+</script>
+	</body>
+</html>
